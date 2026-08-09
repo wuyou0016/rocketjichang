@@ -3,8 +3,23 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { isDemoEntry } from '../../data/utils/demo-filter';
+import { getPublishableProviders } from '../../data/utils/provider-publish-gate';
 
-const reviews = await getCollection('reviews', ({ id }) => !isDemoEntry(id));
+const [reviews, publishableProviders] = await Promise.all([
+  getCollection('reviews', ({ id }) => !isDemoEntry(id)),
+  getPublishableProviders(),
+]);
+
+// 只展示"评测所属 Provider 确实已经通过发布门槛、真正有页面"的评测，
+// 避免链接到未生成的 /airports/[slug]/ 页面。
+const publishedReviews = reviews
+  .map((review) => ({
+    review,
+    provider: publishableProviders.find((provider) => provider.id === review.data.providerId.id),
+  }))
+  .filter((entry): entry is { review: (typeof reviews)[number]; provider: (typeof publishableProviders)[number] } =>
+    Boolean(entry.provider),
+  );
 ---
 
 <BaseLayout
@@ -27,11 +42,11 @@ const reviews = await getCollection('reviews', ({ id }) => !isDemoEntry(id));
 
   <h2>已发布评测</h2>
   {
-    reviews.length > 0 ? (
+    publishedReviews.length > 0 ? (
       <ul class="quick-links">
-        {reviews.map((review) => (
+        {publishedReviews.map(({ review, provider }) => (
           <li>
-            <a href={`/airports/${review.data.providerId.id}/`}>{review.data.title}</a>
+            <a href={`/airports/${provider.data.slug}/`}>{review.data.title}</a>
           </li>
         ))}
       </ul>

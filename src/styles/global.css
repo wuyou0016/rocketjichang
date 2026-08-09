@@ -369,6 +369,64 @@ td {
   gap: var(--space-2);
 }
 
+/* -------------------- Source Badge（Provider 页面数据来源标注） -------------------- */
+
+.source-badge {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.source-badge--vendor {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+}
+
+.source-badge--in-house {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.source-badge--editorial {
+  background: var(--color-surface);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.source-badge--third-party {
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  color: var(--color-muted);
+}
+
+/* -------------------- Test Record（本站测试记录卡片） -------------------- */
+
+.test-record {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.test-record dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-1) var(--space-3);
+  margin: var(--space-3) 0 0;
+}
+
+.test-record dt {
+  color: var(--color-muted);
+}
+
+.test-record dd {
+  margin: 0;
+}
+
 /* -------------------- Breadcrumbs -------------------- */
 
 .breadcrumbs ol {

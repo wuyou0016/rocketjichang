@@ -16,7 +16,8 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:docs.astro.build)",
       "PowerShell(git add .)",
-      "Bash(cd \"/c/Users/USER/Desktop/rocketjichang.com\" && echo \"=== 实际生成的路由 ===\" && find dist -name \"index.html\" | sed 's#dist##; s#/index.html##; s#^$#/#' | sort -u > /tmp/routes.txt && cat /tmp/routes.txt && echo \"\" && echo \"=== 全站出现的站内链接\\(去重\\) ===\" && grep -rohE 'href=\"/[^\"]*\"' dist/**/*.html dist/*.html 2>/dev/null | sed 's/href=\"//; s/\"$//' | grep -v '_astro' | sort -u > /tmp/links.txt && cat /tmp/links.txt && echo \"\" && echo \"=== 链接中不在路由表内的\\(潜在死链，排除favicon\\) ===\" && comm -23 /tmp/links.txt /tmp/routes.txt | grep -v favicon)"
+      "Bash(cd \"/c/Users/USER/Desktop/rocketjichang.com\" && echo \"=== 实际生成的路由 ===\" && find dist -name \"index.html\" | sed 's#dist##; s#/index.html##; s#^$#/#' | sort -u > /tmp/routes.txt && cat /tmp/routes.txt && echo \"\" && echo \"=== 全站出现的站内链接\\(去重\\) ===\" && grep -rohE 'href=\"/[^\"]*\"' dist/**/*.html dist/*.html 2>/dev/null | sed 's/href=\"//; s/\"$//' | grep -v '_astro' | sort -u > /tmp/links.txt && cat /tmp/links.txt && echo \"\" && echo \"=== 链接中不在路由表内的\\(潜在死链，排除favicon\\) ===\" && comm -23 /tmp/links.txt /tmp/routes.txt | grep -v favicon)",
+      "Bash(grep -v \"\\\\.map$\")"
     ]
   }
 }
