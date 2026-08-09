@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import RankingEntries from '../../../components/RankingEntries.astro';
+import { getRankingPageData } from '../../../data/utils/ranking-entries';
+import { resolveCanonicalUrl } from '../../../config/seo';
+
+const { ranking, entries } = await getRankingPageData('most-stable');
+
+const title = '2026最稳定的机场推荐｜稳定性榜单与评选方法｜火箭机场';
+const description = '说明火箭机场如何基于本站测试数据评估机场代理服务商的稳定性，以及稳定性榜单当前的收录情况。';
+const webPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: resolveCanonicalUrl('/rankings/most-stable/'),
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs
+    items={[
+      { name: '机场推荐', href: '/rankings/' },
+      { name: '最稳定的机场', href: '/rankings/most-stable/' },
+    ]}
+  />
+
+  <h1>2026最稳定的机场推荐</h1>
+  <p>更看重长期稳定使用的用户，可以参考这个稳定性榜单的整理思路。</p>
+
+  <h2>稳定性如何判断</h2>
+  <p>
+    稳定性优先看的是本站测试记录中的丢包率、稳定性评分等指标，而不是官方宣传中的表述。如果一个服务商暂时没有本站测试数据，就不会出现在这个稳定性榜单中，我们不会仅凭官方信息给出稳定性结论。
+  </p>
+
+  <h2>当前收录情况</h2>
+  <RankingEntries entries={entries} />
+  {ranking && <p>方法论版本：{ranking.data.scoringVersion}，数据快照时间：{ranking.data.snapshotAt.toISOString().slice(0, 10)}。</p>}
+
+  <p>你可能还想看：</p>
+  <ul class="quick-links">
+    <li><a href="/rankings/">查看机场推荐</a></li>
+    <li><a href="/airports/">查看机场导航</a></li>
+    <li><a href="/reviews/">了解评测方法</a></li>
+  </ul>
+
+  <script type="application/ld+json" set:html={JSON.stringify(webPageJsonLd)} />
+</BaseLayout>

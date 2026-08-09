@@ -1,0 +1,24 @@
+---
+import type { PublishedRankingEntry } from '../data/utils/ranking-entries';
+
+interface Props {
+  entries: PublishedRankingEntry[];
+}
+
+const { entries } = Astro.props;
+---
+
+{
+  entries.length > 0 ? (
+    <ul class="quick-links">
+      {entries.map((entry) => (
+        <li>
+          第 {entry.rank} 名：<a href={`/airports/${entry.providerSlug}/`}>{entry.providerName}</a>（评分 {entry.score}）——
+          {entry.reason}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>当前暂无符合发布条件的服务商。</p>
+  )
+}

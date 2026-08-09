@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import RankingEntries from '../../../components/RankingEntries.astro';
+import { getRankingPageData } from '../../../data/utils/ranking-entries';
+import { resolveCanonicalUrl } from '../../../config/seo';
+
+const { ranking, entries } = await getRankingPageData('for-beginners');
+
+const title = '适合新手的机场推荐｜机场代理入门｜火箭机场';
+const description = '介绍新手选择机场代理时可以关注的客户端、配置难度等因素，以及适合新手的机场代理推荐思路。';
+const webPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: resolveCanonicalUrl('/rankings/for-beginners/'),
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs
+    items={[
+      { name: '机场推荐', href: '/rankings/' },
+      { name: '适合新手的机场', href: '/rankings/for-beginners/' },
+    ]}
+  />
+
+  <h1>适合新手的机场推荐｜机场代理入门</h1>
+  <p>刚接触机场代理、还不确定怎么选的用户，可以从这个榜单入手。</p>
+
+  <h2>新手选择时可以关注什么</h2>
+  <p>
+    新手通常更需要客户端是否支持常用平台、是否有清晰的支持渠道、以及基础的稳定性表现，而不是最低的价格或最多的线路。这里会参考官方公开的客户端支持信息、支持渠道，以及编辑结论中标注的"适合人群"是否包含新手。我们不会给出没有数据支持的结论，例如具体的客服响应时间。
+  </p>
+
+  <h2>当前收录情况</h2>
+  <RankingEntries entries={entries} />
+  {ranking && <p>方法论版本：{ranking.data.scoringVersion}，数据快照时间：{ranking.data.snapshotAt.toISOString().slice(0, 10)}。</p>}
+
+  <p>你可能还想看：</p>
+  <ul class="quick-links">
+    <li><a href="/rankings/">查看机场推荐</a></li>
+    <li><a href="/airports/">查看机场导航</a></li>
+    <li><a href="/knowledge/">了解机场代理知识</a></li>
+    <li><a href="/tutorials/">机场教程</a></li>
+  </ul>
+
+  <script type="application/ld+json" set:html={JSON.stringify(webPageJsonLd)} />
+</BaseLayout>

@@ -1,58 +1,78 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import { isDemoEntry } from '../../data/utils/demo-filter';
+import { getRankingPageData } from '../../data/utils/ranking-entries';
+import { resolveCanonicalUrl } from '../../config/seo';
 
-const rankings = await getCollection('rankings', ({ id }) => !isDemoEntry(id));
-
-const dimensions = [
-  { title: '性价比', description: '关注预算和流量单价的用户可以参考的维度。' },
-  { title: '稳定性', description: '更看重长期稳定使用的用户可以参考的维度。' },
-  { title: '速度', description: '关注下载/上传速度表现的用户可以参考的维度。' },
-  { title: '新手友好度', description: '刚接触机场代理、还不确定怎么选的用户可以参考的维度。' },
+const subRankings = [
+  { slug: 'best-value', title: '性价比机场', href: '/rankings/best-value/' },
+  { slug: 'most-stable', title: '最稳定的机场', href: '/rankings/most-stable/' },
+  { slug: 'for-beginners', title: '适合新手的机场', href: '/rankings/for-beginners/' },
 ];
+
+const rankingStates = await Promise.all(
+  subRankings.map(async (item) => {
+    const { entries } = await getRankingPageData(item.slug);
+    return { ...item, hasEntries: entries.length > 0 };
+  }),
+);
+
+const title = '机场推荐｜机场代理推荐体系｜火箭机场';
+const description = '了解火箭机场按性价比、稳定性、速度等不同维度整理机场代理推荐的方法。';
+const webPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: resolveCanonicalUrl('/rankings/'),
+};
 ---
 
-<BaseLayout
-  title="机场推荐｜机场代理推荐体系｜火箭机场"
-  description="了解火箭机场按性价比、稳定性、速度等不同维度整理机场代理推荐的方法。"
->
+<BaseLayout title={title} description={description}>
   <Breadcrumbs items={[{ name: '机场推荐', href: '/rankings/' }]} />
 
   <h1>机场推荐｜按不同需求选择机场代理</h1>
-  <p>不同用户关注的重点不同，同一个服务商在不同维度下的表现也可能不一样，因此我们不用单一标准做推荐。</p>
+  <p>
+    "机场推荐"回答的是"为什么推荐"这个问题，和"机场导航"（服务商目录）、"机场评测"（单个服务商详解）是不同角度。
+  </p>
 
-  <h2>推荐维度</h2>
-  <div class="dimension-list">
+  <h2>为什么不同用户的选择标准不同</h2>
+  <p>
+    有人最在意价格和流量是否划算，有人更看重长期使用是否稳定，也有人刚接触机场代理、更需要简单易配置的服务商。同一个服务商在不同维度下的表现可能不一样，因此我们按不同维度分别整理推荐，而不是用单一标准排序。
+  </p>
+
+  <h2>推荐体系</h2>
+  <ul class="quick-links">
     {
-      dimensions.map((item) => (
-        <div>
-          <h3>{item.title}</h3>
-          <p>{item.description}</p>
-        </div>
+      subRankings.map((item) => (
+        <li>
+          <a href={item.href}>{item.title}</a>
+        </li>
       ))
     }
-  </div>
+  </ul>
 
-  <h2>已发布的推荐榜单</h2>
-  {
-    rankings.length > 0 ? (
-      <ul class="quick-links">
-        {rankings.map((ranking) => (
-          <li>
-            <a href={`/rankings/${ranking.id}/`}>{ranking.data.title}</a>
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <p>当前暂无已发布的推荐榜单。</p>
-    )
-  }
+  <h2>推荐数据来源</h2>
+  <p>
+    每个榜单的候选服务商都必须先满足我们的发布门槛——具备真实的官方公开信息，并至少有本站测试数据或实质性的编辑结论，仅有官方宣传信息的服务商不会出现在任何榜单中。
+  </p>
+
+  <h2>当前榜单状态</h2>
+  <ul class="quick-links">
+    {
+      rankingStates.map((item) => (
+        <li>
+          <a href={item.href}>{item.title}</a>：{item.hasEntries ? '已有符合条件的服务商' : '当前暂无符合发布条件的服务商'}
+        </li>
+      ))
+    }
+  </ul>
 
   <p>你可能还想看：</p>
   <ul class="quick-links">
     <li><a href="/airports/">查看机场导航</a></li>
     <li><a href="/reviews/">了解评测方法</a></li>
   </ul>
+
+  <script type="application/ld+json" set:html={JSON.stringify(webPageJsonLd)} />
 </BaseLayout>

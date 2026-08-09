@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import RankingEntries from '../../../components/RankingEntries.astro';
+import { getRankingPageData } from '../../../data/utils/ranking-entries';
+import { resolveCanonicalUrl } from '../../../config/seo';
+
+const { ranking, entries } = await getRankingPageData('best-value');
+
+const title = '性价比机场｜机场代理推荐｜火箭机场';
+const description = '从价格、流量、设备数等实际使用条件出发，说明火箭机场如何评估机场代理服务商的性价比，而不是单纯比价格。';
+const webPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: resolveCanonicalUrl('/rankings/best-value/'),
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <Breadcrumbs
+    items={[
+      { name: '机场推荐', href: '/rankings/' },
+      { name: '性价比机场', href: '/rankings/best-value/' },
+    ]}
+  />
+
+  <h1>性价比机场｜机场代理推荐</h1>
+  <p>关注预算和流量单价的用户，可以参考这个榜单的整理思路。</p>
+
+  <h2>"性价比"如何评估</h2>
+  <p>
+    性价比不等于价格最低。本榜单关注在实际使用条件下，服务成本与可用资源之间的平衡，而不是单纯按照价格排序。具体会参考官方公开的价格、流量额度、设备数等信息；如果有本站测试数据，也会一并参考实际使用表现；此外，服务商的编辑结论中提到的"适合人群"也会作为参考依据之一。
+  </p>
+
+  <h2>当前收录情况</h2>
+  <RankingEntries entries={entries} />
+  {ranking && <p>方法论版本：{ranking.data.scoringVersion}，数据快照时间：{ranking.data.snapshotAt.toISOString().slice(0, 10)}。</p>}
+
+  <p>你可能还想看：</p>
+  <ul class="quick-links">
+    <li><a href="/rankings/">查看机场推荐</a></li>
+    <li><a href="/airports/">查看机场导航</a></li>
+    <li><a href="/reviews/">了解评测方法</a></li>
+  </ul>
+
+  <script type="application/ld+json" set:html={JSON.stringify(webPageJsonLd)} />
+</BaseLayout>
