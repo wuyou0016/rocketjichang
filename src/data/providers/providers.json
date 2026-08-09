@@ -1,0 +1,82 @@
+[
+  {
+    "id": "demo-provider-alpha",
+    "slug": "demo-provider-alpha",
+    "name": "Demo Provider Alpha",
+    "aliases": [],
+    "status": "watch",
+    "vendor": {
+      "officialWebsite": "https://example.com/demo-provider-alpha",
+      "description": "开发占位数据，用于验证 Provider Schema，非真实机场代理服务商信息。",
+      "pricing": [
+        {
+          "name": "Demo Plan",
+          "price": "示例价格，非真实数据",
+          "billingCycle": "monthly",
+          "trafficQuota": "示例流量额度"
+        }
+      ],
+      "traffic": "示例数据",
+      "devices": 3,
+      "protocols": ["示例协议 A"],
+      "routes": ["示例线路 A"],
+      "regions": ["示例地区"],
+      "clientSupport": ["示例客户端"],
+      "support": ["示例支持渠道"],
+      "source": {
+        "type": "vendor",
+        "sourceUrl": "https://example.com/demo-provider-alpha",
+        "retrievedAt": "2026-08-09",
+        "claim": "开发占位数据，非真实厂商声明"
+      }
+    },
+    "thirdPartyNotes": [],
+    "editorial": {
+      "pros": ["示例优点，仅用于开发验证"],
+      "cons": ["示例缺点，仅用于开发验证"],
+      "suitableFor": ["示例适合人群"],
+      "notSuitableFor": ["示例不适合人群"],
+      "summary": "开发占位编辑结论，非真实评测意见。",
+      "source": {
+        "type": "editorial",
+        "retrievedAt": "2026-08-09",
+        "claim": "开发占位编辑观点"
+      }
+    },
+    "lastVerified": "2026-08-09",
+    "createdAt": "2026-08-09",
+    "updatedAt": "2026-08-09"
+  },
+  {
+    "id": "demo-provider-beta",
+    "slug": "demo-provider-beta",
+    "name": "Demo Provider Beta",
+    "aliases": [],
+    "status": "watch",
+    "vendor": {
+      "officialWebsite": "https://example.com/demo-provider-beta",
+      "description": "开发占位数据，用于验证 Comparison Schema，非真实机场代理服务商信息。",
+      "source": {
+        "type": "vendor",
+        "sourceUrl": "https://example.com/demo-provider-beta",
+        "retrievedAt": "2026-08-09",
+        "claim": "开发占位数据，非真实厂商声明"
+      }
+    },
+    "editorial": {
+      "pros": ["示例优点，仅用于开发验证"],
+      "cons": ["示例缺点，仅用于开发验证"],
+      "suitableFor": ["示例适合人群"],
+      "notSuitableFor": ["示例不适合人群"],
+      "summary": "开发占位编辑结论，非真实评测意见。",
+      "source": {
+        "type": "editorial",
+        "retrievedAt": "2026-08-09",
+        "claim": "开发占位编辑观点"
+      }
+    },
+    "lastVerified": "2026-08-09",
+    "createdAt": "2026-08-09",
+    "updatedAt": "2026-08-09"
+  }
+]

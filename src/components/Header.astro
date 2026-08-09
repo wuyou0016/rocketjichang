@@ -1,0 +1,29 @@
+---
+import { siteConfig } from '../config/site';
+
+const navItems = [
+  { label: '机场导航', href: '/airports/' },
+  { label: '机场推荐', href: '/rankings/' },
+  { label: '机场评测', href: '/reviews/' },
+  { label: '机场对比', href: '/comparisons/' },
+  { label: '教程', href: '/tutorials/' },
+  { label: '知识库', href: '/knowledge/' },
+];
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__logo">{siteConfig.brandName}</a>
+    <nav aria-label="主导航" class="site-nav">
+      <ul>
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,64 @@
+---
+import SEOHead from '../components/SEOHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../config/site';
+import { resolveCanonicalUrl, type RobotsDirective } from '../config/seo';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  robots?: RobotsDirective;
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+}
+
+const { title, description, robots, ogType, ogImage, publishedTime, modifiedTime } = Astro.props;
+const pathname = Astro.url.pathname;
+const homepageUrl = resolveCanonicalUrl('/');
+
+// 网站级 JSON-LD：只在此处生成一次，覆盖全站，不逐页重复声明。
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteConfig.brandName,
+  url: homepageUrl,
+};
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: siteConfig.brandName,
+  url: homepageUrl,
+};
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <SEOHead
+      title={title}
+      description={description}
+      pathname={pathname}
+      robots={robots}
+      ogType={ogType}
+      ogImage={ogImage}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+  </head>
+  <body>
+    <Header />
+    <main class="container">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

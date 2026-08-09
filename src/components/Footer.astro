@@ -1,0 +1,57 @@
+---
+import { siteConfig } from '../config/site';
+
+// 只链接已在 Information Architecture v1.1 中确定的核心结构。
+// About/Contact/Privacy/Terms 尚无对应内容规划，暂不放入，避免死链。
+const coreLinks = [
+  { label: '机场导航', href: '/airports/' },
+  { label: '机场推荐', href: '/rankings/' },
+  { label: '机场评测', href: '/reviews/' },
+  { label: '机场对比', href: '/comparisons/' },
+];
+
+const learnLinks = [
+  { label: '教程', href: '/tutorials/' },
+  { label: '知识库', href: '/knowledge/' },
+  { label: '故障排查', href: '/troubleshooting/' },
+  { label: '术语表', href: '/glossary/' },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div>
+      <h2>{siteConfig.brandName}</h2>
+      <p>{siteConfig.description}</p>
+    </div>
+    <div>
+      <h2>核心入口</h2>
+      <ul>
+        {
+          coreLinks.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div>
+      <h2>学习</h2>
+      <ul>
+        {
+          learnLinks.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="container site-footer__bottom">
+    <p>&copy; {currentYear} {siteConfig.brandName}（{siteConfig.brandNameEn}）</p>
+  </div>
+</footer>

@@ -1,0 +1,27 @@
+[
+  {
+    "slug": "demo-most-stable",
+    "title": "开发占位榜单：最稳定示例",
+    "description": "用于验证 Ranking Schema 的开发占位数据，非正式榜单内容。",
+    "methodology": "开发占位方法论说明：本示例仅按单一维度演示评分结构。",
+    "criteria": [
+      {
+        "key": "stability",
+        "label": "稳定性",
+        "weight": 1,
+        "description": "开发占位权重说明"
+      }
+    ],
+    "scoringVersion": "dev-0.1",
+    "snapshotAt": "2026-08-09",
+    "updatedAt": "2026-08-09",
+    "entries": [
+      {
+        "providerId": "demo-provider-alpha",
+        "rank": 1,
+        "score": 90,
+        "reason": "开发占位排名理由，仅用于验证 Schema"
+      }
+    ]
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "id": "demo-provider-alpha-test-1",
+    "providerId": "demo-provider-alpha",
+    "date": "2026-08-01",
+    "methodology": "开发占位测试方法说明，正式方法论以未来 /reviews/ 方法论页为准。",
+    "environment": {
+      "location": "示例地区",
+      "network": "示例家庭宽带",
+      "client": "示例客户端 v1",
+      "protocol": "示例协议 A"
+    },
+    "results": {
+      "downloadMbps": 123.4,
+      "latencyMs": 56
+    },
+    "notes": "开发占位测试数据，非真实测速结果，仅覆盖部分指标以验证 optional 字段。"
+  }
+]

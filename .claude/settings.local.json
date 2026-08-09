@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(node -v 2>&1)",
+      "PowerShell(npm -v 2>&1)",
+      "Bash(npm -v)",
+      "PowerShell(Write-Output \"=== 常见 Node 安装路径检查 ===\"; $paths = @\\(\"$env:ProgramFiles\\\\nodejs\\\\node.exe\", \"${env:ProgramFiles\\(x86\\)}\\\\nodejs\\\\node.exe\", \"$env:APPDATA\\\\npm\\\\node.exe\", \"$env:LOCALAPPDATA\\\\Programs\\\\nodejs\\\\node.exe\"\\); foreach \\($p in $paths\\) { if \\(Test-Path $p\\) { Write-Output \"找到: $p\" } }; Write-Output \"`n=== nvm-windows 检查 ===\"; if \\(Get-Command nvm -ErrorAction SilentlyContinue\\) { nvm list } else { Write-Output \"未找到 nvm 命令\" }; Write-Output \"`n=== PATH 环境变量 ===\"; $env:PATH -split ';' | Select-String -Pattern \"node|npm\")",
+      "PowerShell($items = Get-ChildItem -Force; if \\($items.Count -eq 0\\) { Write-Output \"目录为空: 是 \\(0 个文件/文件夹\\)\" } else { Write-Output \"目录为空: 否，共 $\\($items.Count\\) 项\"; $items | Format-Table Name, Mode, Length, LastWriteTime -AutoSize }; Write-Output \"`n=== package.json 是否存在 ===\"; Test-Path \"package.json\"; Write-Output \"`n=== astro.config 是否存在 ===\"; Test-Path \"astro.config.mjs\"; Test-Path \"astro.config.ts\"; Write-Output \"`n=== .git 目录是否存在 ===\"; Test-Path \".git\")",
+      "PowerShell(Write-Output \"=== 检查包管理器/安装工具可用性 ===\"; foreach \\($cmd in @\\(\"winget\",\"choco\",\"scoop\",\"fnm\",\"volta\"\\)\\) { if \\(Get-Command $cmd -ErrorAction SilentlyContinue\\) { Write-Output \"$cmd : 可用\" } else { Write-Output \"$cmd : 不可用\" } })",
+      "PowerShell(winget install OpenJS.NodeJS.LTS --silent --accept-package-agreements --accept-source-agreements)",
+      "PowerShell(git init)",
+      "Bash(grep -iE \"^yaml$|js-yaml\")",
+      "Bash(node -e \"const p=require\\('./node_modules/astro/package.json'\\); console.log\\(Object.keys\\(p.exports\\).filter\\(k=>k.includes\\('loader'\\)||k.includes\\('content'\\)||k==='.'\\)\\)\")",
+      "WebFetch(domain:registry.npmjs.org)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:docs.astro.build)",
+      "PowerShell(git add .)"
+    ]
+  }
+}

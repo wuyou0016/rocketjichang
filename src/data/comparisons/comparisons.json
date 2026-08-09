@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "demo-provider-alpha-vs-demo-provider-beta",
+    "providerA": "demo-provider-alpha",
+    "providerB": "demo-provider-beta",
+    "comparisonCriteria": ["stability", "pricing"],
+    "dataSnapshot": {
+      "capturedAt": "2026-08-09",
+      "providerA": {
+        "name": "Demo Provider Alpha",
+        "stability": "示例数据"
+      },
+      "providerB": {
+        "name": "Demo Provider Beta",
+        "stability": "示例数据"
+      }
+    },
+    "editorialAnalysis": "开发占位对比分析文字，用于验证 Comparison Schema。",
+    "conclusion": "开发占位结论，非正式发布内容。",
+    "updatedAt": "2026-08-09"
+  }
+]
