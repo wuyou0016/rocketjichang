@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { isDemoEntry } from '../../data/utils/demo-filter';
+
+const knowledgeArticles = await getCollection(
+  'articles',
+  ({ id, data }) => !isDemoEntry(id) && data.type === 'knowledge',
+);
+
+const topicClusters = [
+  '机场代理基础',
+  '节点与线路',
+  '协议与网络',
+  '流量与套餐',
+  '延迟与速度',
+  '客户端',
+  'DNS',
+  '安全与隐私基础',
+];
+---
+
+<BaseLayout
+  title="机场代理知识｜从基础概念到进阶理解｜火箭机场"
+  description="从机场代理基础概念到协议、网络等进阶知识的系统性说明。"
+>
+  <Breadcrumbs items={[{ name: '知识库', href: '/knowledge/' }]} />
+
+  <h1>机场代理知识｜从基础概念到进阶理解</h1>
+
+  <h2>机场代理是什么</h2>
+  <p>
+    机场代理是中文互联网语境中对代理服务商的俗称，本站的"机场"均指这类服务商，不是现实中的机场、航班或交通信息。
+  </p>
+
+  <h2>知识体系包含哪些主题</h2>
+  <p>{topicClusters.join('、')}。</p>
+
+  <h2>当前文章发布情况</h2>
+  {
+    knowledgeArticles.length > 0 ? (
+      <ul class="quick-links">
+        {knowledgeArticles.map((article) => (
+          <li>
+            <a href={`/knowledge/${article.id}/`}>{article.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>目前站内还没有已发布的知识文章。</p>
+    )
+  }
+
+  <p>你可能还想看：</p>
+  <ul class="quick-links">
+    <li><a href="/tutorials/">机场教程</a></li>
+    <li><a href="/troubleshooting/">机场故障排查</a></li>
+    <li><a href="/glossary/">术语表</a></li>
+  </ul>
+</BaseLayout>

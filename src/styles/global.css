@@ -261,6 +261,114 @@ td {
   font-size: 0.875rem;
 }
 
+/* -------------------- Hero -------------------- */
+
+.hero {
+  padding-block: var(--space-12) var(--space-8);
+}
+
+.hero h1 {
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+.hero__subtitle {
+  color: var(--color-muted);
+  font-size: 1.125rem;
+  max-width: var(--content-width);
+}
+
+.hero__clarify {
+  display: inline-block;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+/* -------------------- Section -------------------- */
+
+.section {
+  padding-block: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+
+/* -------------------- Entry Grid / Card -------------------- */
+
+.entry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.entry-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.entry-card:hover {
+  border-color: var(--color-primary);
+}
+
+.entry-card__title {
+  font-weight: 700;
+  font-size: 1.0625rem;
+}
+
+.entry-card__description {
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+.entry-card__cta {
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  margin-top: auto;
+}
+
+/* -------------------- Dimension List（机场推荐维度说明，非链接） -------------------- */
+
+.dimension-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-4) 0;
+}
+
+.dimension-list h3 {
+  margin-top: 0;
+  font-size: 1.0625rem;
+}
+
+/* -------------------- Quick Links -------------------- */
+
+.quick-links {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 /* -------------------- Breadcrumbs -------------------- */
 
 .breadcrumbs ol {

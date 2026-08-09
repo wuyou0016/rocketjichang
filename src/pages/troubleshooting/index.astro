@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { isDemoEntry } from '../../data/utils/demo-filter';
+
+const troubleshootingArticles = await getCollection(
+  'articles',
+  ({ id, data }) => !isDemoEntry(id) && data.type === 'troubleshooting',
+);
+
+const categories = ['连接失败', '速度异常', '延迟过高', '节点不可用', '客户端配置问题', 'DNS 相关问题'];
+---
+
+<BaseLayout
+  title="机场故障排查｜连接、速度与节点问题｜火箭机场"
+  description="连接失败、速度异常、延迟过高等机场代理常见问题的排查思路。"
+>
+  <Breadcrumbs items={[{ name: '故障排查', href: '/troubleshooting/' }]} />
+
+  <h1>机场故障排查｜连接、速度与节点问题</h1>
+  <p>这里收录机场代理使用过程中常见问题的排查思路，按问题类型分类。</p>
+
+  <h2>常见问题分类</h2>
+  <p>{categories.join('、')}。</p>
+
+  <h2>当前排障文章发布情况</h2>
+  {
+    troubleshootingArticles.length > 0 ? (
+      <ul class="quick-links">
+        {troubleshootingArticles.map((article) => (
+          <li>
+            <a href={`/troubleshooting/${article.id}/`}>{article.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>目前站内还没有已发布的排障文章。</p>
+    )
+  }
+
+  <p>你可能还想看：</p>
+  <ul class="quick-links">
+    <li><a href="/knowledge/">了解机场代理知识</a></li>
+    <li><a href="/tutorials/">机场教程</a></li>
+  </ul>
+</BaseLayout>

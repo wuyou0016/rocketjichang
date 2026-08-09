@@ -1,8 +1,194 @@
 ---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import EntryCard from '../components/EntryCard.astro';
+
+// 开发占位数据（demo-*）绝不能出现在正式首页，这里按 id 前缀过滤。
+const isDemoEntry = (id: string) => id.startsWith('demo-') || id.includes('/demo-');
+
+const articleBasePathByType: Record<CollectionEntry<'articles'>['data']['type'], string> = {
+  knowledge: '/knowledge/',
+  tutorial: '/tutorials/',
+  troubleshooting: '/troubleshooting/',
+  news: '/news/',
+};
+
+function articleHref(article: CollectionEntry<'articles'>): string {
+  return `${articleBasePathByType[article.data.type]}${article.id}/`;
+}
+
+// 评测的最终 URL 由所属 Provider 决定；等 /airports/[slug]/ 页面实现后
+// 需要与实际路由方式对齐，这里先用 Provider 的 collection id 作为占位推导。
+function reviewHref(review: CollectionEntry<'reviews'>): string {
+  return `/airports/${review.data.providerId.id}/`;
+}
+
+const [articles, reviews] = await Promise.all([
+  getCollection('articles', ({ id }) => !isDemoEntry(id)),
+  getCollection('reviews', ({ id }) => !isDemoEntry(id)),
+]);
+
+// News 目前统一存放在 articles collection（type: 'news'），不需要单独查询。
+const latestContent = [
+  ...articles.map((entry) => ({
+    title: entry.data.title,
+    href: articleHref(entry),
+    publishedAt: entry.data.publishedAt,
+  })),
+  ...reviews.map((entry) => ({
+    title: entry.data.title,
+    href: reviewHref(entry),
+    publishedAt: entry.data.publishedAt,
+  })),
+]
+  .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+  .slice(0, 6);
+
+const coreEntries = [
+  {
+    title: '机场导航',
+    href: '/airports/',
+    description: '浏览火箭机场收录的机场代理服务商，查看公开信息以及后续提供的测试与编辑分析。',
+    cta: '查看机场导航',
+  },
+  {
+    title: '机场推荐',
+    href: '/rankings/',
+    description: '按照不同使用需求查看机场推荐榜单，了解不同维度的选择思路。',
+    cta: '查看机场推荐',
+  },
+  {
+    title: '机场评测',
+    href: '/reviews/',
+    description: '了解火箭机场的评测方法，并查看已经发布的 Provider 评测。',
+    cta: '查看评测方法',
+  },
+  {
+    title: '机场对比',
+    href: '/comparisons/',
+    description: '通过稳定性、速度、延迟、套餐和适用人群等维度比较不同服务商。',
+    cta: '查看机场对比',
+  },
+];
+
+const beginnerLinks = [
+  { label: '先搞懂什么是机场代理', href: '/knowledge/' },
+  { label: '机场怎么选', href: '/knowledge/' },
+  { label: '认识节点和线路', href: '/knowledge/' },
+  { label: '协议基础', href: '/knowledge/' },
+  { label: '客户端是什么', href: '/tutorials/' },
+];
+
+const knowledgeClusters = [
+  { title: '机场基础', href: '/knowledge/', description: '机场代理是什么，能解决什么问题。' },
+  { title: '协议与网络基础', href: '/knowledge/', description: '协议、TCP/UDP、DNS 等底层概念。' },
+  { title: '节点与线路', href: '/knowledge/', description: '节点、线路对使用体验的影响。' },
+  { title: '客户端教程', href: '/tutorials/', description: '各平台客户端的安装与配置。' },
+  { title: '故障排查', href: '/troubleshooting/', description: '连不上、速度慢等常见问题排查。' },
+  { title: '术语表', href: '/glossary/', description: '快速查阅机场代理相关术语。' },
+];
 ---
 
-<BaseLayout title="首页">
-	<p>火箭机场基础设施建设中。</p>
-</BaseLayout>
+<BaseLayout
+  title="火箭机场｜机场导航、机场推荐与评测"
+  description="火箭机场是面向中文用户的机场代理信息与知识网站，提供机场导航、推荐、评测、对比和从入门到进阶的使用教程。"
+>
+  <section class="hero">
+    <h1>火箭机场：看懂机场代理，选对适合你的服务商</h1>
+    <p class="hero__subtitle">机场导航、机场推荐、评测与对比，覆盖从入门到进阶的机场代理知识与教程。</p>
+    <p class="hero__clarify">本站所说的"机场"，指机场代理服务商，不是机场、航班或交通信息。</p>
+    <div class="hero__ctas">
+      <a href="/airports/" class="button button--primary">开始机场导航</a>
+      <a href="/rankings/" class="button">查看机场推荐</a>
+    </div>
+  </section>
 
+  <section class="section" aria-labelledby="core-entries-heading">
+    <h2 id="core-entries-heading">从这里开始：四个核心入口</h2>
+    <div class="entry-grid">
+      {coreEntries.map((entry) => <EntryCard {...entry} />)}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="airports-heading">
+    <h2 id="airports-heading">机场导航——找到你需要的机场代理服务商</h2>
+    <p>
+      这里的"机场导航"是机场代理服务商目录，不是现实机场或航班信息查询。收录的每个 Provider
+      页面会展示官方公开信息、本站测试数据与编辑分析，帮助你快速了解一个服务商的基本情况。
+    </p>
+    <h3>机场导航能帮你做什么</h3>
+    <p>你可以在这里浏览已收录的服务商列表，并进入具体页面查看详细信息——目前站内正在建立首批收录内容。</p>
+    <p><a href="/airports/">查看机场导航</a></p>
+  </section>
+
+  <section class="section" aria-labelledby="rankings-heading">
+    <h2 id="rankings-heading">机场推荐——不同需求对应不同榜单</h2>
+    <p>不同用户关注的重点不同，因此我们按不同维度分别整理推荐，而不是用单一标准排序。</p>
+    <div class="dimension-list">
+      <div>
+        <h3>性价比机场</h3>
+        <p>关注预算和流量单价的用户，可以参考这个维度的整理思路。</p>
+      </div>
+      <div>
+        <h3>最稳定的机场</h3>
+        <p>更看重长期稳定使用的用户，可以参考这个维度。</p>
+      </div>
+      <div>
+        <h3>新手更适合哪些机场</h3>
+        <p>刚接触机场代理、还不确定怎么选的用户，可以从这里入手。</p>
+      </div>
+    </div>
+    <p><a href="/rankings/">查看机场推荐榜单</a></p>
+  </section>
+
+  <section class="section" aria-labelledby="reviews-heading">
+    <h2 id="reviews-heading">机场评测——我们如何测试和评价一个机场</h2>
+    <p>
+      评测信息会区分官方公开信息、本站测试数据与编辑分析，并注明各自的来源与时间，只有实际存在的数据才会展示。
+    </p>
+    <p><a href="/reviews/">查看评测方法</a></p>
+  </section>
+
+  <section class="section" aria-labelledby="comparisons-heading">
+    <h2 id="comparisons-heading">机场对比——不知道选哪个？直接比一比</h2>
+    <p>可以从稳定性、速度、延迟、套餐和适用人群、协议与客户端支持等维度比较不同服务商。</p>
+    <p><a href="/comparisons/">查看机场对比</a></p>
+  </section>
+
+  <section class="section" aria-labelledby="beginner-heading">
+    <h2 id="beginner-heading">第一次接触机场代理？从这里开始</h2>
+    <p>如果你是第一次了解机场代理，可以从下面几个话题开始。</p>
+    <ul class="quick-links">
+      {
+        beginnerLinks.map((item) => (
+          <li>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="knowledge-heading">
+    <h2 id="knowledge-heading">机场代理知识体系</h2>
+    <div class="entry-grid">
+      {knowledgeClusters.map((entry) => <EntryCard {...entry} />)}
+    </div>
+  </section>
+
+  {
+    latestContent.length > 0 && (
+      <section class="section" aria-labelledby="latest-heading">
+        <h2 id="latest-heading">最新内容</h2>
+        <ul class="quick-links">
+          {latestContent.map((item) => (
+            <li>
+              <a href={item.href}>{item.title}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</BaseLayout>

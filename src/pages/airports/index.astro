@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { isDemoEntry } from '../../data/utils/demo-filter';
+
+const providers = await getCollection('providers', ({ id }) => !isDemoEntry(id));
+---
+
+<BaseLayout
+  title="机场导航｜机场代理服务商目录｜火箭机场"
+  description="浏览火箭机场收录的机场代理服务商，了解基础信息、测试数据与编辑分析的呈现方式。"
+>
+  <Breadcrumbs items={[{ name: '机场导航', href: '/airports/' }]} />
+
+  <h1>机场导航｜机场代理服务商目录</h1>
+  <p>
+    本站所说的"机场"，指机场代理服务商，不是现实机场、航班、航站楼或机场交通。这里是我们收录的机场代理服务商目录，帮助你快速找到并了解具体的服务商。
+  </p>
+
+  <h2>Provider 信息将包含什么</h2>
+  <p>
+    每个服务商页面会区分官方公开信息、本站测试数据与编辑分析三类内容，并标注各自的来源与时间，不会把不同性质的信息混在一起呈现。
+  </p>
+
+  <h2>当前收录的服务商</h2>
+  {
+    providers.length > 0 ? (
+      <ul class="quick-links">
+        {providers.map((provider) => (
+          <li>
+            <a href={`/airports/${provider.id}/`}>{provider.data.name}</a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>当前暂无已发布的机场代理服务商页面。</p>
+    )
+  }
+
+  <p>你可能还想看：</p>
+  <ul class="quick-links">
+    <li><a href="/rankings/">查看机场推荐</a></li>
+    <li><a href="/reviews/">了解评测方法</a></li>
+    <li><a href="/knowledge/">了解机场代理基础</a></li>
+  </ul>
+</BaseLayout>

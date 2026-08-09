@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { isDemoEntry } from '../../data/utils/demo-filter';
+
+const tutorials = await getCollection(
+  'articles',
+  ({ id, data }) => !isDemoEntry(id) && data.type === 'tutorial',
+);
+
+const topics = ['客户端安装与配置', '节点选择', '线路设置', '协议相关设置', '常见操作'];
+---
+
+<BaseLayout
+  title="机场教程｜从入门到进阶的使用指南｜火箭机场"
+  description="机场代理相关的客户端配置、节点与线路设置等操作型教程分类。"
+>
+  <Breadcrumbs items={[{ name: '教程', href: '/tutorials/' }]} />
+
+  <h1>机场教程｜从入门到进阶的使用指南</h1>
+  <p>这里收录机场代理相关的操作型教程，围绕客户端配置、节点与线路设置等实际操作展开。</p>
+
+  <h2>教程涵盖哪些内容</h2>
+  <p>{topics.join('、')}。</p>
+
+  <h2>当前教程发布情况</h2>
+  {
+    tutorials.length > 0 ? (
+      <ul class="quick-links">
+        {tutorials.map((tutorial) => (
+          <li>
+            <a href={`/tutorials/${tutorial.id}/`}>{tutorial.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>目前站内还没有已发布的教程文章。</p>
+    )
+  }
+
+  <p>你可能还想看：</p>
+  <ul class="quick-links">
+    <li><a href="/knowledge/">了解机场代理知识</a></li>
+    <li><a href="/troubleshooting/">机场故障排查</a></li>
+  </ul>
+</BaseLayout>

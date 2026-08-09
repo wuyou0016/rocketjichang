@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { isDemoEntry } from '../../data/utils/demo-filter';
+
+const rankings = await getCollection('rankings', ({ id }) => !isDemoEntry(id));
+
+const dimensions = [
+  { title: '性价比', description: '关注预算和流量单价的用户可以参考的维度。' },
+  { title: '稳定性', description: '更看重长期稳定使用的用户可以参考的维度。' },
+  { title: '速度', description: '关注下载/上传速度表现的用户可以参考的维度。' },
+  { title: '新手友好度', description: '刚接触机场代理、还不确定怎么选的用户可以参考的维度。' },
+];
+---
+
+<BaseLayout
+  title="机场推荐｜机场代理推荐体系｜火箭机场"
+  description="了解火箭机场按性价比、稳定性、速度等不同维度整理机场代理推荐的方法。"
+>
+  <Breadcrumbs items={[{ name: '机场推荐', href: '/rankings/' }]} />
+
+  <h1>机场推荐｜按不同需求选择机场代理</h1>
+  <p>不同用户关注的重点不同，同一个服务商在不同维度下的表现也可能不一样，因此我们不用单一标准做推荐。</p>
+
+  <h2>推荐维度</h2>
+  <div class="dimension-list">
+    {
+      dimensions.map((item) => (
+        <div>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </div>
+      ))
+    }
+  </div>
+
+  <h2>已发布的推荐榜单</h2>
+  {
+    rankings.length > 0 ? (
+      <ul class="quick-links">
+        {rankings.map((ranking) => (
+          <li>
+            <a href={`/rankings/${ranking.id}/`}>{ranking.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>当前暂无已发布的推荐榜单。</p>
+    )
+  }
+
+  <p>你可能还想看：</p>
+  <ul class="quick-links">
+    <li><a href="/airports/">查看机场导航</a></li>
+    <li><a href="/reviews/">了解评测方法</a></li>
+  </ul>
+</BaseLayout>
