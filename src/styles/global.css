@@ -780,6 +780,17 @@ td {
   margin: 0;
 }
 
+.site-footer__contact {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.site-footer__contact-label {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
 .footer-icon-btn {
   flex-shrink: 0;
   display: inline-flex;
