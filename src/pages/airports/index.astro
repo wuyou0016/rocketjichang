@@ -5,6 +5,33 @@ import { getPublishableProviders } from '../../data/utils/provider-publish-gate'
 
 // 只列出通过发布门槛（真正有独立页面）的 Provider，避免链接到未生成的页面。
 const providers = await getPublishableProviders();
+
+const statusLabel: Record<string, string> = {
+  active: '正常运营',
+  inactive: '暂停服务',
+  discontinued: '已停止服务',
+  watch: '观察中',
+};
+
+function providerCard(provider: (typeof providers)[number]) {
+  const noteCount = provider.data.thirdPartyNotes?.length ?? 0;
+  return {
+    name: provider.data.name,
+    href: `/airports/${provider.data.slug}/`,
+    status: provider.data.status,
+    statusText: statusLabel[provider.data.status] ?? provider.data.status,
+    protocols: provider.data.vendor.protocols?.join('、'),
+    traffic: provider.data.vendor.traffic,
+    meta: noteCount > 0 ? `官方公开信息 + ${noteCount} 条第三方资料 + 编辑分析` : '官方公开信息 + 编辑分析',
+  };
+}
+// 目录展示顺序（与 Ranking 数据无关，纯前台陈列顺序）：无忧链接固定排在最前面。
+const providerDisplayOrder = [...providers].sort((a, b) => {
+  if (a.id === 'wuyou-lianjie') return -1;
+  if (b.id === 'wuyou-lianjie') return 1;
+  return 0;
+});
+const providerCards = providerDisplayOrder.map(providerCard);
 ---
 
 <BaseLayout
@@ -20,28 +47,48 @@ const providers = await getPublishableProviders();
 
   <h2>Provider 信息将包含什么</h2>
   <p>
-    每个服务商页面会区分官方公开信息、本站测试数据与编辑分析三类内容，并标注各自的来源与时间，不会把不同性质的信息混在一起呈现。
+    每个服务商页面会用明确的标签区分三类信息：<strong>官方公开信息</strong>（服务商自己发布的套餐、节点介绍）、<strong>本站测试数据</strong>（如果存在，会标注测试日期与测试环境）、<strong>编辑分析</strong>（基于以上信息形成的判断，比如优缺点和适合人群）。三类信息各自标注来源与时间，不会混在一起呈现，也不会把编辑的主观判断包装成客观测试结果。
+  </p>
+
+  <h2>怎么使用机场导航</h2>
+  <p>
+    如果你还不确定要选哪个服务商，可以先浏览这里收录的服务商列表，点开具体页面逐一查看官方信息、测试数据和编辑结论。如果你已经明确自己更看重哪个维度（比如价格还是稳定性），也可以跳过逐个浏览，直接前往<a href="/rankings/">机场推荐</a>，按维度查看已经整理好的候选服务商。
   </p>
 
   <h2>当前收录的服务商</h2>
   {
-    providers.length > 0 ? (
-      <ul class="quick-links">
-        {providers.map((provider) => (
-          <li>
-            <a href={`/airports/${provider.data.slug}/`}>{provider.data.name}</a>
-          </li>
+    providerCards.length > 0 ? (
+      <div class="provider-grid">
+        {providerCards.map((card) => (
+          <a href={card.href} class="provider-card">
+            <div class="provider-card__top">
+              <span class="provider-card__name">{card.name}</span>
+              <span class={`status-dot status-dot--${card.status}`}>{card.statusText}</span>
+            </div>
+            <p class="provider-card__meta">{card.meta}</p>
+            {(card.protocols || card.traffic) && (
+              <p class="provider-card__facts">
+                {card.protocols && <span>协议：{card.protocols}</span>}
+                {card.traffic && <span>流量：{card.traffic}</span>}
+              </p>
+            )}
+            <span class="provider-card__cta">查看详情 →</span>
+          </a>
         ))}
-      </ul>
+      </div>
     ) : (
       <p>当前暂无已发布的机场代理服务商页面。</p>
     )
   }
 
-  <p>你可能还想看：</p>
+  <h2>看完机场导航，接下来可以做什么</h2>
   <ul class="quick-links">
-    <li><a href="/rankings/">查看机场推荐</a></li>
-    <li><a href="/reviews/">了解评测方法</a></li>
-    <li><a href="/knowledge/">了解机场代理基础</a></li>
+    <li>还不知道机场代理是什么？先看<a href="/knowledge/what-is-airport-proxy/">机场代理基础</a></li>
+    <li>了解概念了，但不知道按什么标准选？看<a href="/knowledge/how-to-choose-an-airport-proxy/">机场代理怎么选</a></li>
+    <li>更看重预算和流量单价？查看<a href="/rankings/best-value/">性价比机场</a></li>
+    <li>更看重长期稳定使用？查看<a href="/rankings/most-stable/">最稳定的机场</a></li>
+    <li>第一次接触机场代理？查看<a href="/rankings/for-beginners/">适合新手的机场推荐</a></li>
+    <li>已经看中了两三个服务商，拿不定主意？去<a href="/comparisons/">机场对比</a></li>
+    <li>想了解测评方法是怎么来的？看<a href="/reviews/">机场评测</a></li>
   </ul>
 </BaseLayout>

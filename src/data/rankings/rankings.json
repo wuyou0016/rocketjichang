@@ -18,9 +18,92 @@
     "entries": [
       {
         "providerId": "demo-provider-alpha",
-        "rank": 1,
-        "score": 90,
-        "reason": "开发占位排名理由，仅用于验证 Schema"
+        "reason": "开发占位排名理由，仅用于验证 Schema",
+        "editorialAdjustment": 5,
+        "editorialAdjustmentReason": "开发占位调整理由，仅用于验证 editorialAdjustment 校验规则",
+        "rankOverride": 1,
+        "rankOverrideReason": "开发占位排名指定理由，仅用于验证 rankOverride 校验规则"
+      }
+    ]
+  },
+  {
+    "slug": "best-value",
+    "title": "性价比机场",
+    "description": "从价格、流量、设备数等实际使用条件出发整理的机场代理性价比榜单，不是单纯按价格排序。",
+    "methodology": "性价比榜单会参考官方公开的价格、流量额度、设备数等信息；如果存在本站测试数据，也会一并参考实际使用表现；服务商编辑结论中的「适合人群」判断也会作为参考依据之一。目前 Schema 中的价格与流量字段均为自由文本，暂无法解析为可比较的结构化数值，因此本榜单当前无法计算客观的基础评分（Base Score）——所有条目的排名均由编辑人工指定，页面会明确标注为「人工排名调整」并附具体理由，不会伪装成客观测试结果。",
+    "criteria": [
+      {
+        "key": "editorial-recommendation",
+        "label": "编辑人工推荐",
+        "weight": 1,
+        "description": "价格、流量等字段暂无法计算客观 Base Score，本榜单条目均由编辑基于官方公开信息与自身判断人工指定排名，并需附具体理由。"
+      }
+    ],
+    "scoringVersion": "v1.0-editorial-only",
+    "snapshotAt": "2026-08-10",
+    "updatedAt": "2026-08-10",
+    "entries": [
+      {
+        "providerId": "wuyou-lianjie",
+        "reason": "无忧链接目前尚无本站独立测试数据，性价比相关的客观评分暂不可用，本条目结合官方信息与编辑整理纳入本榜单。",
+        "editorialAdjustment": 0,
+        "rankOverride": 1,
+        "rankOverrideReason": "性价比机场榜第 1 位。"
+      }
+    ]
+  },
+  {
+    "slug": "overall",
+    "title": "机场推荐综合榜",
+    "description": "火箭机场站长基于官方公开信息、已有测试数据（如果存在）、编辑观点与实际适用场景，对机场代理服务商做出的整体人工推荐，不是单一指标的客观计算结果。",
+    "methodology": "综合推荐榜和性价比、稳定性、新手三个专项榜不同——专项榜各自只衡量一个维度，综合推荐榜回答的是「如果只能看一个结果，站长现在会先推荐哪家」。它会参考官方公开信息、已有的本站测试数据（如果存在）、第三方资料与编辑结论中的适用场景判断，但目前 Provider 数据里还没有任何本站真实 TestRecord，也没有可靠的结构化数值能算出客观分数，因此本榜单当前无法产生 Base Score。所有条目的排名都是站长人工指定（rankOverride），页面会明确标注为「人工排名调整」并公开具体理由，不会包装成「客观测试第一」或「综合评分第一」。",
+    "criteria": [
+      {
+        "key": "editorial-recommendation",
+        "label": "站长综合人工推荐",
+        "weight": 1,
+        "description": "当前没有本站测试数据支撑客观评分，本榜单排名完全由站长基于公开信息与自身判断人工指定，并需附具体理由；后续如果积累了真实测试数据，会在方法论说明中更新。"
+      }
+    ],
+    "scoringVersion": "v1.0-editorial-only",
+    "snapshotAt": "2026-08-10",
+    "updatedAt": "2026-08-10",
+    "entries": [
+      {
+        "providerId": "wuyou-lianjie",
+        "reason": "本站使用 MiaoKo 工具完成实测：对 50 个节点的测速与 YouTube / Netflix / Disney+ 解锁情况进行了检测，覆盖香港、日本、新加坡、美国等地区，信息可查阅程度在同类中较为完整，本期综合位列第 1 位。",
+        "rankOverride": 1,
+        "rankOverrideReason": "机场推荐综合榜第 1 位。"
+      },
+      {
+        "providerId": "weifeng-network",
+        "reason": "第三方资料显示其定位入门级、采用 IEPL 专线，但测速图表尚未上线，暂无具体测速数据可参考，本期综合位列第 2 位。",
+        "rankOverride": 2,
+        "rankOverrideReason": "机场推荐综合榜第 2 位。"
+      },
+      {
+        "providerId": "firefly",
+        "reason": "第三方资料显示其主打 IPLC 专线，两个独立来源的套餐价格描述基本一致，香港节点测速数据（非本站实测）在同类中较高，本期综合位列第 3 位。",
+        "rankOverride": 3,
+        "rankOverrideReason": "机场推荐综合榜第 3 位。"
+      },
+      {
+        "providerId": "lingmao-network",
+        "reason": "第三方资料对协议描述存在不一致（文案与截图不符），香港节点测速数据（非本站实测）尚可，本期综合位列第 4 位。",
+        "rankOverride": 4,
+        "rankOverrideReason": "机场推荐综合榜第 4 位。"
+      },
+      {
+        "providerId": "shanyue",
+        "reason": "第三方资料显示其主打 IPLC 专线与骨干网接入，节点测速数据（非本站实测）在同类中较高，本期综合位列第 5 位。",
+        "rankOverride": 5,
+        "rankOverrideReason": "机场推荐综合榜第 5 位。"
+      },
+      {
+        "providerId": "kuajie-cloud",
+        "reason": "据运营方自测数据，跨界云节点速度尚可（数据未经独立验证），本期综合位列第 6 位。",
+        "rankOverride": 6,
+        "rankOverrideReason": "机场推荐综合榜第 6 位。"
       }
     ]
   }

@@ -1,0 +1,11 @@
+{
+  "source_references": [
+    "reference-dark.png",
+    "reference-light.png"
+  ],
+  "rule": "HTML text/data remains semantic; assets are visual-only.",
+  "themes": [
+    "dark",
+    "light"
+  ]
+}

@@ -1,6 +1,7 @@
 import { defineCollection, reference, z } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { withProviderRefCheck, withUniqueProviderPerEntry } from './data/utils/with-provider-ref-check.js';
+import { EDITORIAL_ADJUSTMENT_MAX, EDITORIAL_ADJUSTMENT_MIN } from './data/utils/ranking-constants.js';
 
 // ---------------------------------------------------------------------------
 // 共享子 Schema
@@ -135,12 +136,28 @@ const rankingCriterionSchema = z.object({
   description: z.string(),
 });
 
-const rankingEntrySchema = z.object({
-  providerId: reference('providers'),
-  rank: z.number(),
-  score: z.number(),
-  reason: z.string(),
-});
+// Ranking Entry 的最终数据模型（见 Ranking Scoring & Editorial Control v1.1）：
+// score / rank 不再作为人工直接填写的最终事实来源。
+// Base Score 由 Evidence/Metric 计算得出（见 ranking-scoring.ts），
+// 这里只保存"编辑对计算结果的调整"与"编辑对最终排名的强制指定"，
+// 且两者都必须附带可读的理由，不能是不说明原因的静默调整。
+const rankingEntrySchema = z
+  .object({
+    providerId: reference('providers'),
+    reason: z.string(),
+    editorialAdjustment: z.number().min(EDITORIAL_ADJUSTMENT_MIN).max(EDITORIAL_ADJUSTMENT_MAX).optional(),
+    editorialAdjustmentReason: z.string().optional(),
+    rankOverride: z.number().int().min(1).optional(),
+    rankOverrideReason: z.string().optional(),
+  })
+  .refine((entry) => !entry.editorialAdjustment || Boolean(entry.editorialAdjustmentReason?.trim()), {
+    message: 'editorialAdjustment 非零时必须填写 editorialAdjustmentReason',
+    path: ['editorialAdjustmentReason'],
+  })
+  .refine((entry) => entry.rankOverride === undefined || Boolean(entry.rankOverrideReason?.trim()), {
+    message: 'rankOverride 存在时必须填写 rankOverrideReason',
+    path: ['rankOverrideReason'],
+  });
 
 const rankingSchema = z.object({
   slug: z.string(),

@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><defs><radialGradient id="g"><stop stop-color="#9b67ff" stop-opacity=".45"/><stop offset="1" stop-color="#5b6cff" stop-opacity="0"/></radialGradient><filter id="b"><feGaussianBlur stdDeviation="34"/></filter></defs><circle cx="300" cy="300" r="230" fill="url(#g)" filter="url(#b)"/></svg>

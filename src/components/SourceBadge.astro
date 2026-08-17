@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  type: 'vendor' | 'in-house' | 'third-party' | 'editorial';
+  type: 'vendor' | 'in-house' | 'third-party' | 'editorial' | 'calculated' | 'rank-override';
 }
 
 const { type } = Astro.props;
@@ -10,6 +10,8 @@ const labelByType: Record<Props['type'], string> = {
   'in-house': '本站实测',
   'third-party': '第三方资料',
   editorial: '编辑观点',
+  calculated: '客观计算',
+  'rank-override': '综合推荐',
 };
 ---
 

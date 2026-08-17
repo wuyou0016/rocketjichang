@@ -4,17 +4,29 @@ import { siteConfig } from '../config/site';
 // 只链接已在 Information Architecture v1.1 中确定的核心结构。
 // About/Contact/Privacy/Terms 尚无对应内容规划，暂不放入，避免死链。
 const coreLinks = [
+  { label: '首页', href: '/' },
   { label: '机场导航', href: '/airports/' },
   { label: '机场推荐', href: '/rankings/' },
+  { label: '知识库', href: '/knowledge/' },
+  { label: '教程', href: '/tutorials/' },
+  { label: '故障排查', href: '/troubleshooting/' },
   { label: '机场评测', href: '/reviews/' },
-  { label: '机场对比', href: '/comparisons/' },
 ];
 
-const learnLinks = [
-  { label: '教程', href: '/tutorials/' },
-  { label: '知识库', href: '/knowledge/' },
-  { label: '故障排查', href: '/troubleshooting/' },
-  { label: '术语表', href: '/glossary/' },
+// 核心主题：对应站内最重要的几个 SEO 落点，直接指向各自的 Landing Page，
+// 不制造新的关键词竞争页面。
+const topicLinks = [
+  { label: '机场代理', href: '/knowledge/what-is-airport-proxy/' },
+  { label: '机场推荐', href: '/rankings/' },
+  { label: '性价比机场', href: '/rankings/best-value/' },
+  { label: '机场稳定性', href: '/rankings/most-stable/' },
+  { label: '机场新手教程', href: '/tutorials/airport-beginner-full-guide/' },
+];
+
+const friendLinks = [
+  { label: '机场视野', href: 'https://jichangview.com' },
+  { label: 'i机场', href: 'https://ijichang.com' },
+  { label: '极速云', href: 'https://jisucloud.mom' },
 ];
 
 const currentYear = new Date().getFullYear();
@@ -27,7 +39,7 @@ const currentYear = new Date().getFullYear();
       <p>{siteConfig.description}</p>
     </div>
     <div>
-      <h2>核心入口</h2>
+      <h2>主要导航</h2>
       <ul>
         {
           coreLinks.map((item) => (
@@ -39,10 +51,10 @@ const currentYear = new Date().getFullYear();
       </ul>
     </div>
     <div>
-      <h2>学习</h2>
+      <h2>核心主题</h2>
       <ul>
         {
-          learnLinks.map((item) => (
+          topicLinks.map((item) => (
             <li>
               <a href={item.href}>{item.label}</a>
             </li>
@@ -50,6 +62,24 @@ const currentYear = new Date().getFullYear();
         }
       </ul>
     </div>
+    <div>
+      <h2>友情链接</h2>
+      <ul>
+        {
+          friendLinks.map((item) => (
+            <li>
+              <a href={item.href} target="_blank" rel="noopener">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="container site-footer__note">
+    <h2>网站说明</h2>
+    <p>本站提供机场信息整理、使用知识、测试数据与编辑推荐。不同来源的数据会明确标注来源类型（官方公开信息、第三方资料、本站实测、编辑观点），不会混在一起呈现。</p>
   </div>
   <div class="container site-footer__bottom">
     <p>&copy; {currentYear} {siteConfig.brandName}（{siteConfig.brandNameEn}）</p>

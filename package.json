@@ -13,6 +13,13 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
-    "astro": "^7.2.0"
+    "astro": "^7.2.0",
+    "finalhandler": "^2.1.1",
+    "puppeteer": "^25.6.0",
+    "serve-static": "^2.2.1",
+    "sharp": "^0.35.3"
+  },
+  "allowScripts": {
+    "puppeteer@25.6.0": true
   }
 }

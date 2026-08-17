@@ -3,8 +3,18 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { isDemoEntry } from '../../data/utils/demo-filter';
+import { getPublishableProviders } from '../../data/utils/provider-publish-gate';
 
-const comparisons = await getCollection('comparisons', ({ id }) => !isDemoEntry(id));
+const [allComparisons, publishableProviders] = await Promise.all([
+  getCollection('comparisons', ({ id }) => !isDemoEntry(id)),
+  getPublishableProviders(),
+]);
+
+// 只列出 A、B 两个 Provider 都通过发布门槛的对比，避免链接到未生成的 /comparisons/[slug]/ 页面。
+const publishableIds = new Set(publishableProviders.map((p) => p.id));
+const comparisons = allComparisons.filter(
+  (comparison) => publishableIds.has(comparison.data.providerA.id) && publishableIds.has(comparison.data.providerB.id),
+);
 ---
 
 <BaseLayout
@@ -25,7 +35,9 @@ const comparisons = await getCollection('comparisons', ({ id }) => !isDemoEntry(
       <ul class="quick-links">
         {comparisons.map((comparison) => (
           <li>
-            <a href={`/comparisons/${comparison.id}/`}>{comparison.data.slug}</a>
+            <a href={`/comparisons/${comparison.id}/`}>
+              {comparison.data.dataSnapshot.providerA.name} vs {comparison.data.dataSnapshot.providerB.name}
+            </a>
           </li>
         ))}
       </ul>
