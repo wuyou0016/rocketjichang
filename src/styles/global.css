@@ -767,9 +767,44 @@ td {
 }
 
 .site-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
   border-top: 1px solid var(--color-border);
   padding-block: var(--space-4);
   font-size: 0.875rem;
+}
+
+.site-footer__bottom p {
+  margin: 0;
+}
+
+.footer-icon-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-soft);
+  color: var(--color-muted);
+  transition: border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.footer-icon-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+:root[data-theme='dark'] .footer-icon-btn {
+  box-shadow: 0 0 0 1px rgb(139 92 246 / 12%);
+}
+
+:root[data-theme='dark'] .footer-icon-btn:hover {
+  box-shadow: 0 0 0 1px rgb(139 92 246 / 30%), 0 0 14px rgb(139 92 246 / 30%);
 }
 
 /* -------------------- Hero -------------------- */
