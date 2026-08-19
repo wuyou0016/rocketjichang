@@ -14,9 +14,10 @@ interface Props {
   ogImage?: string;
   publishedTime?: string;
   modifiedTime?: string;
+  keywords?: string[];
 }
 
-const { title, description, robots, ogType, ogImage, publishedTime, modifiedTime } = Astro.props;
+const { title, description, robots, ogType, ogImage, publishedTime, modifiedTime, keywords } = Astro.props;
 const pathname = Astro.url.pathname;
 const homepageUrl = resolveCanonicalUrl('/');
 
@@ -61,6 +62,7 @@ const organizationJsonLd = {
       ogImage={ogImage}
       publishedTime={publishedTime}
       modifiedTime={modifiedTime}
+      keywords={keywords}
     />
     <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />

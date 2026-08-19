@@ -20,14 +20,64 @@ const rankingStates = await Promise.all(
   }),
 );
 
-const title = '机场推荐｜机场推荐排行榜｜火箭机场';
-const description = '火箭机场综合推荐榜：查看当前站长人工推荐的机场代理，并了解性价比、稳定性、新手等专项榜单与整体推荐逻辑。人工排名调整会明确标注，不会伪装成客观测试结果。';
+const title = '机场推荐排行榜｜2026综合榜与选购说明 - 火箭机场';
+const description = '查看火箭机场综合推荐榜，了解2026机场推荐排序思路、数据来源与更新方式。从稳定性、性价比与新手友好等维度，对照各机场代理的定位再决定是否试用。';
 const webPageJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: title,
   description,
   url: resolveCanonicalUrl('/rankings/'),
+};
+
+// ItemList 只放名称+链接，不带评分字段——overall 榜单当前没有客观 Base Score，
+// 写了评分就是编出来的。
+const overallItemListJsonLd =
+  overallEntries.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: '机场推荐综合榜',
+        itemListElement: overallEntries.map((entry) => ({
+          '@type': 'ListItem',
+          position: entry.finalRank,
+          name: entry.providerName,
+          url: resolveCanonicalUrl(`/airports/${entry.providerSlug}/`),
+        })),
+      }
+    : null;
+
+// FAQPage：逐字对应下方"常见问题"里真实可见的 3 组问答，不额外编造问题或答案。
+const faqAnswer1 =
+  overallEntries.length > 0
+    ? `当前是「${overallEntries[0]!.providerName}」（第 ${overallEntries[0]!.finalRank} 名），具体理由见上方榜单条目。该结果会随本站掌握的资料更新而调整，不是固定不变的。`
+    : '当前暂无综合推荐条目。';
+const faqPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '火箭机场目前综合推荐第一是谁？',
+      acceptedAnswer: { '@type': 'Answer', text: faqAnswer1 },
+    },
+    {
+      '@type': 'Question',
+      name: '综合推荐是本站实测出来的客观结果吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '不完全是。综合推荐榜会参考官方公开信息、第三方资料，以及已有的本站测试数据（如果存在）进行整理，目前暂无法给出可比较的客观量化评分，排序结果会随资料更新而调整。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '机场导航和机场推荐有什么区别？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '机场导航是收录服务商的完整目录，帮你查具体某一家的信息；机场推荐是本站按不同维度整理出的候选建议，回答"现在优先看哪家"。',
+      },
+    },
+  ],
 };
 ---
 
@@ -118,4 +168,6 @@ const webPageJsonLd = {
   </ul>
 
   <script type="application/ld+json" set:html={JSON.stringify(webPageJsonLd)} />
+  {overallItemListJsonLd && <script type="application/ld+json" set:html={JSON.stringify(overallItemListJsonLd)} />}
+  <script type="application/ld+json" set:html={JSON.stringify(faqPageJsonLd)} />
 </BaseLayout>

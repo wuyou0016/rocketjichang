@@ -7,6 +7,7 @@ import Top6Grid from '../components/Top6Grid.astro';
 import { isDemoEntry } from '../data/utils/demo-filter';
 import { getPublishableProviders } from '../data/utils/provider-publish-gate';
 import { getRankingPageData } from '../data/utils/ranking-entries';
+import { resolveCanonicalUrl } from '../config/seo';
 
 // 首页展示"当前收录的推荐榜单数量"用的是真实存在的榜单页面数量（综合 + 三个专项），
 // 和 /rankings/ 首页用的是同一份 subRankings 结构，不是凭空写的数字。
@@ -19,11 +20,29 @@ const [articles, publishableProviders, { entries: overallEntries }] = await Prom
 ]);
 
 const top6Entries = overallEntries.slice(0, 6);
+
+// TOP6 是首页可见内容里唯一的真实排名列表，ItemList 里只放名称+链接，
+// 不带任何评分/评级字段——当前数据模型里没有可靠的客观评分，写了就是虚构。
+const top6ItemListJsonLd =
+  top6Entries.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: '2026机场推荐 综合榜 TOP 6',
+        itemListElement: top6Entries.map((entry, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: entry.providerName,
+          url: resolveCanonicalUrl(`/airports/${entry.providerSlug}/`),
+        })),
+      }
+    : null;
 ---
 
 <BaseLayout
-  title="机场代理推荐与导航｜火箭机场"
-  description="火箭机场是面向中文用户的机场代理信息与推荐网站：查看站长综合推荐、浏览已收录的机场代理服务商、按性价比与稳定性等维度查看榜单。"
+  title="2026机场推荐｜火箭机场 - 稳定与性价比排行导航"
+  description="火箭机场整理2026机场推荐与导航信息，覆盖性价比机场、稳定线路与新手选购要点。综合榜每周更新，结合公开资料与使用体验，帮你更快判断不同机场代理是否适合自己。"
+  keywords={['机场推荐', '2026机场推荐', '性价比机场', '机场导航', '机场代理', '火箭机场']}
 >
   <HomeHero entries={overallEntries} />
 
@@ -36,7 +55,7 @@ const top6Entries = overallEntries.slice(0, 6);
           <span class="section__eyebrow">综合推荐</span>
           <h2>TOP 6</h2>
         </div>
-        <a class="section__more" href="/rankings/">查看完整推荐榜单 →</a>
+        <a class="section__more" href="/rankings/">查看机场推荐排行榜 →</a>
       </div>
       {
         top6Entries.length > 0 ? (
@@ -58,6 +77,11 @@ const top6Entries = overallEntries.slice(0, 6);
         </div>
       </div>
       <div class="entry-grid">
+        <a class="entry-card" href="/rankings/">
+          <span class="entry-card__title">查看综合推荐</span>
+          <p class="entry-card__description">火箭机场综合推荐榜每周更新，按性价比、稳定性、新手友好等维度整理候选服务商。</p>
+          <span class="entry-card__cta">查看机场推荐排行榜 →</span>
+        </a>
         <a class="entry-card" href="/airports/">
           <span class="entry-card__title">机场导航</span>
           <p class="entry-card__description">浏览已收录的机场代理服务商目录，查看官方信息、测试数据与编辑分析。</p>
@@ -81,4 +105,6 @@ const top6Entries = overallEntries.slice(0, 6);
       </div>
     </section>
   </div>
+
+  {top6ItemListJsonLd && <script type="application/ld+json" set:html={JSON.stringify(top6ItemListJsonLd)} />}
 </BaseLayout>

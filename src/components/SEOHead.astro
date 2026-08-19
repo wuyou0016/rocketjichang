@@ -20,6 +20,7 @@ interface Props {
   ogImage?: string;
   publishedTime?: string;
   modifiedTime?: string;
+  keywords?: string[];
 }
 
 const {
@@ -31,6 +32,7 @@ const {
   ogImage = siteConfig.defaultOgImage,
   publishedTime,
   modifiedTime,
+  keywords,
 } = Astro.props;
 
 // title 若已包含品牌名则不重复拼接，避免"火箭机场｜XXX｜火箭机场"。
@@ -43,6 +45,7 @@ const robotsContent = robotsToString(robots);
 
 <title>{resolvedTitle}</title>
 <meta name="description" content={description} />
+{keywords && keywords.length > 0 && <meta name="keywords" content={keywords.join(',')} />}
 <link rel="canonical" href={canonicalUrl} />
 <meta name="robots" content={robotsContent} />
 
