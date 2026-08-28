@@ -7,7 +7,7 @@ difficulty: "beginner"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-09
 updatedAt: 2026-08-09
-relatedTopics: ["what-is-clash-getting-started", "how-to-choose-an-airport-proxy"]
+relatedTopics: ["what-is-clash-getting-started", "how-to-choose-an-airport-proxy", "subscription-link-import-failed"]
 ---
 
 购买机场代理套餐后，服务商通常会给你一个"订阅链接"，这是连接客户端和节点信息的关键一步。

@@ -7,7 +7,7 @@ difficulty: "intermediate"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-09
 updatedAt: 2026-08-09
-relatedTopics: ["what-are-nodes-and-routes", "airport-stability-latency-packet-loss"]
+relatedTopics: ["what-are-nodes-and-routes", "what-is-iplc-ieplc-line", "airport-stability-latency-packet-loss"]
 ---
 
 在了解[节点和线路到底是什么](/knowledge/what-are-nodes-and-routes/)之后，你可能还会遇到"直连""中转""专线"这几个描述线路方式的词。它们描述的是数据从你的设备到目标节点之间，具体走了一条什么样的路径。

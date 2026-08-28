@@ -7,7 +7,7 @@ difficulty: "beginner"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-09
 updatedAt: 2026-08-09
-relatedTopics: ["what-is-airport-traffic-and-multiplier", "airport-devices-count-explained", "airport-value-for-money-explained"]
+relatedTopics: ["what-is-airport-traffic-and-multiplier", "airport-devices-count-explained", "airport-value-for-money-explained", "is-free-airport-reliable", "monthly-vs-annual-airport-plan"]
 ---
 
 价格是选择机场代理时最直观的信息，但单纯比较数字大小容易掉进坑里。这篇文章说明价格背后通常包含哪些信息，以及怎么做有意义的比较。
