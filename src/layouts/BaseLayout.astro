@@ -2,6 +2,7 @@
 import SEOHead from '../components/SEOHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '../components/Analytics.astro';
 import { siteConfig } from '../config/site';
 import { resolveCanonicalUrl, type RobotsDirective } from '../config/seo';
 import '../styles/global.css';
@@ -73,6 +74,7 @@ const organizationJsonLd = {
         y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
       })(window, document, 'clarity', 'script', 'y5nptxq5kc');
     </script>
+    <Analytics />
   </head>
   <body>
     <Header />
