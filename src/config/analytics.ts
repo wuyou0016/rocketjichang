@@ -16,5 +16,5 @@ export const analyticsConfig = {
   cloudflareBeaconToken: '',
 
   // zztools.cc 站点访问统计的检测码（data-sid），三站统一用这套简易统计做访问量对比。
-  zztoolsSiteId: 'f307df2788839bf1',
+  zztoolsSiteId: '8a7509a1d24320bd',
 } as const;
