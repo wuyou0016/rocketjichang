@@ -6,8 +6,8 @@ category: "机场客户端"
 difficulty: "beginner"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-09
-updatedAt: 2026-08-09
-relatedTopics: ["what-is-subscription-link", "airport-proxy-protocols-explained"]
+updatedAt: 2026-08-27
+relatedTopics: ["what-is-subscription-link", "airport-proxy-protocols-explained", "sing-box-mihomo-getting-started"]
 ---
 
 Clash 是机场代理用户中比较常见的一类客户端软件，如果你是第一次接触，这篇文章会介绍它的基本作用和大致的使用流程。
@@ -36,11 +36,15 @@ Clash 是一款支持规则配置的代理客户端软件，可以在电脑、�
 
 ## 规则配置是进阶功能
 
-Clash 比较有特点的"规则分流"功能（比如指定某些网站走代理、某些网站直连），属于进阶使用技巧，新手第一次使用时不需要马上研究，先确保基础连接正常使用即可，后续有需要再逐步了解。
+Clash 比较有特点的"[分流规则](/glossary/rule-set/)"功能（比如指定某些网站走代理、某些网站直连），属于进阶使用技巧，新手第一次使用时不需要马上研究，先确保基础连接正常使用即可，后续有需要再逐步了解。
 
 ## 只用 iOS 设备？也可以考虑 Shadowrocket
 
 Clash 系列覆盖电脑、手机等多个平台；如果你只用 iOS 设备，且不介意付费购买 App，也可以考虑另一款常见客户端 Shadowrocket，具体可以看[Shadowrocket 是什么？机场用户怎么使用](/tutorials/what-is-shadowrocket/)。
+
+## Clash 生态也在演进
+
+如果你之后看到"Clash Meta""Mihomo""sing-box"这类名字，不用感到困惑——这些是 Clash 内核生态延续和演进出的相关项目，具体是什么关系，可以看[sing-box 和 Mihomo 是什么？新手怎么开始用](/tutorials/sing-box-mihomo-getting-started/)。
 
 ## 遇到连接问题怎么办
 

@@ -26,7 +26,7 @@ relatedTopics: ["what-is-airport-proxy", "how-to-choose-an-airport-proxy", "airp
 |---|---|---|
 | 客户端 | 需要自己选择第三方客户端（Clash、Shadowrocket 等） | 官方提供一体化 App，下载即用 |
 | 配置方式 | 需要导入订阅链接、选择节点 | 通常一键连接，配置简单 |
-| 协议 | 常见 VLESS、Trojan、Shadowsocks、Hysteria2 等 | 通常用 OpenVPN、WireGuard、IKEv2 等 |
+| 协议 | 常见 VLESS、Trojan、Shadowsocks、Hysteria2 等 | 通常用 OpenVPN、[WireGuard](/glossary/wireguard/)、IKEv2 等 |
 | 节点选择自由度 | 通常可以自由切换不同地区、不同服务商提供的节点 | 节点范围限定在该 VPN 品牌自己的服务器网络内 |
 | 计费方式 | 按流量额度、按月/按年订阅 | 通常按月/按年订阅，部分不限流量 |
 | 上手门槛 | 相对更高，需要理解订阅、节点、协议等概念 | 相对更低，接近"装了就能用" |

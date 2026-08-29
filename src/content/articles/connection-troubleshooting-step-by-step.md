@@ -6,9 +6,9 @@ category: "故障排查"
 difficulty: "beginner"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-09
-updatedAt: 2026-08-09
+updatedAt: 2026-08-27
 symptom: "连接失败 / 无法连接"
-relatedTopics: ["what-is-subscription-link", "what-are-nodes-and-routes", "what-is-clash-getting-started"]
+relatedTopics: ["what-is-subscription-link", "what-are-nodes-and-routes", "what-is-clash-getting-started", "dns-pollution-leak-impact-explained"]
 ---
 
 如果你已经看过[连不上机场代理？常见连接失败排查步骤](/troubleshooting/connection-failed-troubleshooting/)里的基础检查清单，问题依然没解决，这篇文章提供另一个角度的思路：按"订阅层→节点层→客户端层"逐层定位问题，而不是逐条检查所有可能性。
@@ -43,6 +43,7 @@ relatedTopics: ["what-is-subscription-link", "what-are-nodes-and-routes", "what-
 - 检查客户端是否有额外的路由规则、DNS 设置等配置，尝试恢复默认设置
 - 确认客户端软件版本是否较旧，尝试更新到最新版本
 - 如果是刚开始使用 Clash 相关客户端，可以对照[Clash 是什么？新手如何开始使用](/tutorials/what-is-clash-getting-started/)重新检查基础配置步骤是否有遗漏
+- 如果表现为"节点显示已连接，但部分网站打不开或内容不对"，问题也可能出在 DNS 处理上，具体可以参考[DNS 污染和 DNS 泄漏对机场代理用户有什么实际影响](/knowledge/dns-pollution-leak-impact-explained/)
 
 ## 三层都排查完还是不行
 

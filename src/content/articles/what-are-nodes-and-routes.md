@@ -6,8 +6,8 @@ category: "节点与线路"
 difficulty: "beginner"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-09
-updatedAt: 2026-08-09
-relatedTopics: ["what-is-airport-proxy", "airport-proxy-protocols-explained", "connection-failed-troubleshooting", "airport-speed-explained", "what-is-transit-route", "what-is-clash-getting-started"]
+updatedAt: 2026-08-27
+relatedTopics: ["what-is-airport-proxy", "airport-proxy-protocols-explained", "connection-failed-troubleshooting", "airport-speed-explained", "what-is-transit-route", "what-is-clash-getting-started", "airport-node-region-selection-guide"]
 ---
 
 在了解[什么是机场代理](/knowledge/what-is-airport-proxy/)之后，你会经常在套餐介绍里看到"节点""线路"这两个词。它们是决定实际使用体验最直接的两个因素，但很多新手其实分不清两者的区别。
@@ -16,7 +16,7 @@ relatedTopics: ["what-is-airport-proxy", "airport-proxy-protocols-explained", "c
 
 节点，简单说就是服务商部署在各地的服务器。你的设备连接机场代理时，实际上是先连接到某一个具体的节点，再由这个节点把请求转发出去。
 
-节点通常按地区命名（比如某地区节点、某地区节点），因为服务器所在的物理位置会直接影响到你访问对应地区网络服务时的速度和延迟。
+节点通常按地区命名（比如某地区节点、某地区节点），因为服务器所在的物理位置会直接影响到你访问对应地区网络服务时的速度和延迟。不同地区节点通用的适用场景，可以参考[香港、日本、新加坡、美国节点分别适合什么场景](/knowledge/airport-node-region-selection-guide/)。
 
 节点数量本身说明不了太多问题——10 个质量差的节点，体验可能还不如 2 个质量好的节点。真正需要关心的是：**你常用的场景，对应的地区有没有节点，这些节点是否稳定**。
 

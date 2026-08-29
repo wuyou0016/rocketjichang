@@ -6,8 +6,8 @@ category: "订阅与配置"
 difficulty: "beginner"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-09
-updatedAt: 2026-08-09
-relatedTopics: ["what-is-clash-getting-started", "how-to-choose-an-airport-proxy", "subscription-link-import-failed"]
+updatedAt: 2026-08-27
+relatedTopics: ["what-is-clash-getting-started", "how-to-choose-an-airport-proxy", "subscription-link-import-failed", "v2rayn-windows-getting-started"]
 ---
 
 购买机场代理套餐后，服务商通常会给你一个"订阅链接"，这是连接客户端和节点信息的关键一步。
@@ -29,7 +29,7 @@ relatedTopics: ["what-is-clash-getting-started", "how-to-choose-an-airport-proxy
 3. 粘贴服务商提供的订阅链接
 4. 点击更新/保存，客户端会自动拉取节点列表
 
-如果你使用的是 Clash 相关客户端，具体操作可以参考[Clash 是什么？新手如何开始使用](/tutorials/what-is-clash-getting-started/)；如果你使用的是 iOS 设备上的 Shadowrocket，可以参考[Shadowrocket 是什么？机场用户怎么使用](/tutorials/what-is-shadowrocket/)。
+如果你使用的是 Clash 相关客户端，具体操作可以参考[Clash 是什么？新手如何开始使用](/tutorials/what-is-clash-getting-started/)；如果你使用的是 iOS 设备上的 Shadowrocket，可以参考[Shadowrocket 是什么？机场用户怎么使用](/tutorials/what-is-shadowrocket/)；如果你主要用 Windows 电脑，可以参考[V2rayN 是什么？Windows 电脑怎么导入机场订阅](/tutorials/v2rayn-windows-getting-started/)。
 
 ## 订阅需要定期更新吗
 

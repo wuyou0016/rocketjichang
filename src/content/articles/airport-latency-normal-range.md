@@ -6,8 +6,8 @@ category: "速度与稳定性"
 difficulty: "intermediate"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-10
-updatedAt: 2026-08-10
-relatedTopics: ["airport-stability-latency-packet-loss", "airport-packet-loss-explained", "how-to-test-airport-speed", "airport-test-data-explained"]
+updatedAt: 2026-08-27
+relatedTopics: ["airport-stability-latency-packet-loss", "airport-packet-loss-explained", "how-to-test-airport-speed", "airport-test-data-explained", "is-airport-proxy-good-for-gaming"]
 ---
 
 看到客户端节点列表里的延迟数字，很多人不知道多少算正常、多少算需要留意。这篇文章说明一个大致的判断区间，但延迟本身该怎么理解，建议先看[机场稳定性怎么看？延迟、丢包和稳定性有什么区别](/knowledge/airport-stability-latency-packet-loss/)。
@@ -34,6 +34,8 @@ relatedTopics: ["airport-stability-latency-packet-loss", "airport-packet-loss-ex
 ## 延迟不等于总体体验
 
 延迟只是影响体验的一个因素，丢包率、带宽、节点负载等因素同样重要。延迟数字正常但丢包率高，实际体验依然会很差，具体可以参考[机场丢包率多少算高](/knowledge/airport-packet-loss-explained/)。如果想系统了解怎么解读一份测试数据，可以看[机场测试数据怎么看](/knowledge/airport-test-data-explained/)。
+
+如果你关心的场景本身就对延迟高度敏感（比如在线游戏），可以看[机场代理适合打游戏吗？延迟敏感场景怎么权衡](/knowledge/is-airport-proxy-good-for-gaming/)里更具体的权衡说明。
 
 ## 常见问题
 

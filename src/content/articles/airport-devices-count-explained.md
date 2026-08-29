@@ -6,8 +6,8 @@ category: "价格与套餐"
 difficulty: "beginner"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-09
-updatedAt: 2026-08-09
-relatedTopics: ["airport-pricing-explained", "how-to-choose-an-airport-proxy"]
+updatedAt: 2026-08-27
+relatedTopics: ["airport-pricing-explained", "how-to-choose-an-airport-proxy", "router-airport-proxy-setup"]
 ---
 
 套餐介绍里经常会标注"支持 X 台设备同时在线"，这个数字看起来简单，但实际使用中容易被忽略，直到某天发现连不上才意识到问题。
@@ -34,7 +34,7 @@ relatedTopics: ["airport-pricing-explained", "how-to-choose-an-airport-proxy"]
 
 - 只有一台主力设备（比如只用手机）：入门档位的设备数通常够用
 - 手机 + 电脑日常切换使用：至少需要 2-3 台的额度
-- 多人共用，或者路由器单独占一个连接：需要预留更多设备数，路由器通常按一台设备计算
+- 多人共用，或者路由器单独占一个连接：需要预留更多设备数，路由器通常按一台设备计算——如果你打算让家里所有设备统一通过路由器走机场代理，可以参考[路由器怎么接入机场代理](/tutorials/router-airport-proxy-setup/)了解具体原理
 
 购买套餐前，建议先明确自己实际会同时使用几台设备，避免因为设备数不够而影响体验。这也是[机场代理怎么选？新手避坑指南](/knowledge/how-to-choose-an-airport-proxy/)里提到的"流量与设备数是否匹配"这一维度的具体展开。
 

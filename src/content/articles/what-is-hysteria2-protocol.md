@@ -14,7 +14,7 @@ relatedTopics: ["airport-proxy-protocols-explained", "what-is-vless-protocol", "
 
 ## Hysteria2 是什么
 
-Hysteria2 是一款基于 QUIC（一种建立在 UDP 之上的传输协议）设计的代理协议，是早期 Hysteria 协议的升级版本。它的设计重点是应对弱网、高丢包环境下的传输效率问题——通过自定义的拥塞控制算法，试图在网络质量不理想的情况下，依然维持较好的传输速度。
+Hysteria2 是一款基于 QUIC（一种建立在 UDP 之上的传输协议）设计的代理协议，是早期 Hysteria 协议的升级版本，天然涉及完整的 [UDP 转发](/glossary/udp-forwarding/)能力。它的设计重点是应对弱网、高丢包环境下的传输效率问题——通过自定义的拥塞控制算法，试图在网络质量不理想的情况下，依然维持较好的传输速度。
 
 ## Hysteria2 和 VLESS、Trojan 的主要区别
 

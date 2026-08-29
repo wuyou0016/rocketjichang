@@ -6,8 +6,8 @@ category: "机场选择"
 difficulty: "beginner"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-09
-updatedAt: 2026-08-09
-relatedTopics: ["what-is-airport-proxy", "airport-proxy-protocols-explained", "what-is-airport-traffic-and-multiplier", "airport-stability-latency-packet-loss", "airport-choosing-pitfalls", "airport-review-credibility"]
+updatedAt: 2026-08-27
+relatedTopics: ["what-is-airport-proxy", "airport-proxy-protocols-explained", "what-is-airport-traffic-and-multiplier", "airport-stability-latency-packet-loss", "airport-choosing-pitfalls", "airport-review-credibility", "airport-proxy-for-remote-work"]
 ---
 
 如果你已经知道[什么是机场代理](/knowledge/what-is-airport-proxy/)，下一步大概率会遇到一个更实际的问题：市面上服务商这么多，到底该怎么选？
@@ -69,4 +69,4 @@ relatedTopics: ["what-is-airport-proxy", "airport-proxy-protocols-explained", "w
 
 另外，除了体验层面的判断，购买前也建议了解一下极端情况下的风险控制——比如服务商突然无法访问、客服失联该怎么判断和应对，可以参考[机场跑路了怎么办？购买前如何判断和降低风险](/knowledge/what-if-airport-shuts-down/)。
 
-如果你还在纠结要不要用机场、和传统 VPN 有什么区别，可以先看[机场和 VPN 有什么区别？该怎么选](/knowledge/airport-vs-vpn/)；如果你看到了"免费机场"这类选项，建议先看[免费机场靠谱吗？为什么不建议长期使用](/knowledge/is-free-airport-reliable/)再做决定。
+如果你还在纠结要不要用机场、和传统 VPN 有什么区别，可以先看[机场和 VPN 有什么区别？该怎么选](/knowledge/airport-vs-vpn/)；如果你看到了"免费机场"这类选项，建议先看[免费机场靠谱吗？为什么不建议长期使用](/knowledge/is-free-airport-reliable/)再做决定。如果你是出于远程办公需求选购机场代理，评估重点会有所不同，可以参考[远程办公场景下选机场代理要注意什么](/knowledge/airport-proxy-for-remote-work/)。
