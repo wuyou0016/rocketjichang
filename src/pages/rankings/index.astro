@@ -47,6 +47,20 @@ const overallItemListJsonLd =
       }
     : null;
 
+// ItemList：三个专项榜是本站真实存在的页面分类入口，不是编造的数据条目，
+// 用 ItemList 标注这三个入口本身（而不是其中的排名结果）是准确的。
+const subRankingsItemListJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: '机场推荐专项榜',
+  itemListElement: subRankings.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.title,
+    url: resolveCanonicalUrl(item.href),
+  })),
+};
+
 // FAQPage：逐字对应下方"常见问题"里真实可见的 3 组问答，不额外编造问题或答案。
 const faqAnswer1 =
   overallEntries.length > 0
@@ -89,6 +103,20 @@ const faqPageJsonLd = {
     这里是火箭机场的机场推荐排行榜入口：先看本站当前的综合推荐结果，再按你自己更看重的维度（性价比、稳定性、新手友好）查看对应的专项榜单。和"机场导航"（服务商目录）、"机场评测"（单个服务商详解）不同，这里回答的是"现在应该优先看哪家"。
   </p>
 
+  <h2>按维度查看：性价比 / 稳定性 / 新手友好</h2>
+  <p>
+    有人最在意价格和流量是否划算，有人更看重长期使用是否稳定，也有人刚接触机场代理、更需要简单易配置的服务商。同一个服务商在不同维度下的表现可能不一样，因此除了下方的综合推荐榜，本站还按不同维度分别整理了三个专项榜，而不是只给一个笼统的排序：
+  </p>
+  <ul class="quick-links">
+    {
+      subRankings.map((item) => (
+        <li>
+          <a href={item.href}>{item.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+
   <h2>当前综合推荐</h2>
   <p>
     综合推荐榜结合官方公开信息、第三方资料与本站掌握的服务商情况，整理出当前的机场代理推荐顺序，并会随资料更新持续调整。
@@ -114,20 +142,6 @@ const faqPageJsonLd = {
 
   <p><strong>机场导航和机场推荐有什么区别？</strong></p>
   <p><a href="/airports/">机场导航</a>是收录服务商的完整目录，帮你查具体某一家的信息；机场推荐（本页）是本站按不同维度整理出的候选建议，回答"现在优先看哪家"。</p>
-
-  <h2>综合推荐和专项榜有什么区别</h2>
-  <p>
-    有人最在意价格和流量是否划算，有人更看重长期使用是否稳定，也有人刚接触机场代理、更需要简单易配置的服务商。同一个服务商在不同维度下的表现可能不一样，因此我们除了这个综合推荐榜，还按不同维度分别整理了三个专项榜，而不是只给一个笼统的排序。
-  </p>
-  <ul class="quick-links">
-    {
-      subRankings.map((item) => (
-        <li>
-          <a href={item.href}>{item.title}</a>
-        </li>
-      ))
-    }
-  </ul>
 
   <h2>推荐数据来源与发布门槛</h2>
   <p>
@@ -168,6 +182,7 @@ const faqPageJsonLd = {
   </ul>
 
   <script type="application/ld+json" set:html={JSON.stringify(webPageJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(subRankingsItemListJsonLd)} />
   {overallItemListJsonLd && <script type="application/ld+json" set:html={JSON.stringify(overallItemListJsonLd)} />}
   <script type="application/ld+json" set:html={JSON.stringify(faqPageJsonLd)} />
 </BaseLayout>

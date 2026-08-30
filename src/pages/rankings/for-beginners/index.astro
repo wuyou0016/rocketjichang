@@ -38,6 +38,16 @@ const webPageJsonLd = {
   <RankingEntries entries={entries} />
   {ranking && <p>方法论版本：{ranking.data.scoringVersion}，数据快照时间：{ranking.data.snapshotAt.toISOString().slice(0, 10)}。</p>}
 
+  <h2>常见问题</h2>
+
+  <p><strong>为什么现在这个榜单是空的？</strong></p>
+  <p>
+    这个榜单只统计官方是否公开了客户端支持、支持渠道这两项结构化信息。目前本站收录的服务商官方入口普遍设有注册墙或图形验证码，本站未创建账户、未完成验证码，因此暂时无法核实这两项信息是否公开——不满足这个最低门槛就不会出现在榜单里。我们不会用第三方资料里提到的"支持 Clash、Shadowrocket 等客户端"之类的描述替代官方口径凑数。
+  </p>
+
+  <p><strong>没有榜单结果，新手现在能看什么？</strong></p>
+  <p>可以先看上面"新手选择时可以关注什么"，了解应该关注的具体方向；也可以直接查看<a href="/airports/">机场导航</a>里各服务商的详情页，自行比对客户端支持与支持渠道等信息。</p>
+
   <p>你可能还想看：</p>
   <ul class="quick-links">
     <li><a href="/rankings/">查看机场推荐</a></li>
