@@ -156,6 +156,10 @@ export interface RankingComputationInput {
   rankOverride?: number;
   rankOverrideReason?: string;
   reason: string;
+  // Provider 数据里的 createdAt（本站开始收录该服务商的日期），用于页面
+  // 展示"本站已跟踪 X 天"，不是"该服务商已稳定运营 X 天"——两者含义不同，
+  // 不能混淆表述。
+  trackedSince: string;
 }
 
 export interface RankingComputation extends RankingComputationInput {

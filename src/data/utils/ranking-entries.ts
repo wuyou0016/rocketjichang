@@ -80,6 +80,7 @@ export async function getRankingPageData(slug: string): Promise<RankingPageData>
           rankOverride: entry.rankOverride,
           rankOverrideReason: entry.rankOverrideReason,
           reason: entry.reason,
+          trackedSince: provider.data.createdAt.toISOString(),
         };
       }
 
@@ -95,6 +96,7 @@ export async function getRankingPageData(slug: string): Promise<RankingPageData>
         rankOverride: entry.rankOverride,
         rankOverrideReason: entry.rankOverrideReason,
         reason: entry.reason,
+        trackedSince: provider.data.createdAt.toISOString(),
       };
     })
     .filter((input): input is RankingComputationInput => input !== null);
