@@ -49,6 +49,41 @@
         "editorialAdjustment": 0,
         "rankOverride": 1,
         "rankOverrideReason": "性价比机场榜第 1 位。"
+      },
+      {
+        "providerId": "weifeng-network",
+        "reason": "第三方资料显示微风网络起步约 11 元/月、含 100GB 流量，按流量与价格的比例换算，每元对应流量在已收录的几家服务商中相对较高；但这一数字仅来自第三方来源，本站未通过官方入口核实，具体以官方页面为准。",
+        "editorialAdjustment": 0,
+        "rankOverride": 2,
+        "rankOverrideReason": "性价比机场榜第 2 位——第三方资料显示的流量单价在已收录服务商中相对靠前。"
+      },
+      {
+        "providerId": "firefly",
+        "reason": "第三方资料显示 Firefly 起步约 8 元/月、含 60GB 流量，两个独立第三方来源的数字基本一致，可信度相对高，但仍非本站实测或官方核实。",
+        "editorialAdjustment": 0,
+        "rankOverride": 3,
+        "rankOverrideReason": "性价比机场榜第 3 位——第三方资料的流量单价与闪跃接近，且价格数字有两个独立来源互相印证。"
+      },
+      {
+        "providerId": "shanyue",
+        "reason": "第三方资料显示闪跃起步约 8 元/月、含 60GB 流量，与 Firefly 的第三方数字基本一致；官方入口为验证码校验页，本站未能直接核实。",
+        "editorialAdjustment": 0,
+        "rankOverride": 4,
+        "rankOverrideReason": "性价比机场榜第 4 位——第三方资料的流量单价与 Firefly 接近。"
+      },
+      {
+        "providerId": "lingmao-network",
+        "reason": "第三方资料显示灵猫网络起步约 7.1 元/月、含 45GB 流量，单价略低于其他几家，且不同第三方来源对协议描述存在出入，本站未能判断实际情况，纳入本榜单时相应保守处理。",
+        "editorialAdjustment": 0,
+        "rankOverride": 5,
+        "rankOverrideReason": "性价比机场榜第 5 位——第三方资料显示的流量单价在已收录服务商中偏低，且信息一致性弱于其他条目。"
+      },
+      {
+        "providerId": "kuajie-cloud",
+        "reason": "跨界云的第三方资料对起步价与流量档位的描述差异明显（不同来源分别给出约 8 元/月 60GB 起、20 元/月 120GB 起等版本），本站无法判断哪个更准确，因此难以给出可信的性价比判断，暂列末位，建议以官方页面实际价格为准。",
+        "editorialAdjustment": 0,
+        "rankOverride": 6,
+        "rankOverrideReason": "性价比机场榜第 6 位——第三方资料本身存在价格分歧，可信度低于其他条目。"
       }
     ]
   },
