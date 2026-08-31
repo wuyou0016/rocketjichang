@@ -7,7 +7,7 @@ difficulty: "beginner"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-31
 updatedAt: 2026-08-31
-relatedTopics: ["airport-vs-vpn", "what-is-airport-proxy", "how-to-choose-an-airport-proxy", "what-is-iplc-ieplc-line"]
+relatedTopics: ["airport-vs-vpn", "what-is-airport-proxy", "how-to-choose-an-airport-proxy", "what-is-iplc-ieplc-line", "nordvpn-china-alternative"]
 ---
 
 Proton VPN 是一款知名度较高、以隐私和安全为卖点的 VPN 服务，不少人第一次尝试翻墙时会先想到它。但如果你在中国大陆境内使用过就会发现，情况并不像官网介绍的那样顺畅。这篇文章整理目前公开可查的第三方说法，并说明一般性的技术背景，帮你判断接下来该怎么办。
