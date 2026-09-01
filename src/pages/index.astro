@@ -19,7 +19,7 @@ const [articles, publishableProviders, { entries: overallEntries }] = await Prom
   getRankingPageData('overall'),
 ]);
 
-const top6Entries = overallEntries.slice(0, 6);
+const top6Entries = overallEntries.slice(0, 7);
 
 // TOP6 是首页可见内容里唯一的真实排名列表，ItemList 里只放名称+链接，
 // 不带任何评分/评级字段——当前数据模型里没有可靠的客观评分，写了就是虚构。
@@ -28,7 +28,7 @@ const top6ItemListJsonLd =
     ? {
         '@context': 'https://schema.org',
         '@type': 'ItemList',
-        name: '2026机场推荐 综合榜 TOP 6',
+        name: '2026机场推荐 综合榜 TOP 7',
         itemListElement: top6Entries.map((entry, index) => ({
           '@type': 'ListItem',
           position: index + 1,
@@ -53,7 +53,7 @@ const top6ItemListJsonLd =
       <div class="section__head">
         <div>
           <span class="section__eyebrow">综合推荐</span>
-          <h2>TOP 6</h2>
+          <h2>TOP 7</h2>
         </div>
         <a class="section__more" href="/rankings/">查看机场推荐排行榜 →</a>
       </div>
