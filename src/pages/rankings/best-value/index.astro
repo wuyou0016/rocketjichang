@@ -72,6 +72,33 @@ const priceComparison: Array<{ slug: string; name: string; notes: string[] }> = 
     ],
   },
 ];
+
+// 按预算分档：只用"多来源互相印证、没有明显冲突"的起步价放进档位，
+// 冲突严重（跨界云）或暂无确认起步价（快狸）的服务商不参与分档，
+// 避免把不确定的数字包装成确定的档位归类。
+const budgetTiers = [
+  {
+    label: '¥8 元/月以内',
+    hint: '预算最紧张，先接受较低的流量额度',
+    providers: [
+      { slug: 'wuyou-lianjie', name: '无忧链接', price: '约 ¥6.5/月起（站长确认）' },
+      { slug: 'lingmao-network', name: '灵猫网络', price: '约 ¥7.1/月起（第三方资料，两来源基本吻合）' },
+    ],
+  },
+  {
+    label: '¥8–12 元/月',
+    hint: '本组是第三方资料里密度最高的价位段',
+    providers: [
+      { slug: 'firefly', name: 'Firefly', price: '约 ¥8/月起（第三方资料，多来源一致）' },
+      { slug: 'shanyue', name: '闪跃', price: '约 ¥8/月起（第三方资料，多来源一致）' },
+      { slug: 'weifeng-network', name: '微风网络', price: '约 ¥11/月起（第三方资料，单一来源）' },
+    ],
+  },
+];
+const unTieredProviders = [
+  { slug: 'kuajie-cloud', name: '跨界云', reason: '第三方资料对起步价的描述差异过大（8元/60GB 到 20元/120GB 均有），不归入任何档位' },
+  { slug: 'kuaili', name: '快狸', reason: '暂无可信的起步价资料，不归入任何档位' },
+];
 const webPageJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
@@ -112,6 +139,33 @@ const webPageJsonLd = {
   </ol>
   <p>
     需要提醒的是：本站目前收录的服务商，价格与流量数据大多来自<strong>相互冲突的第三方资料</strong>（见下方对照表），本站不会为了套用这个公式而自行选择一个"更准的"数字去计算，具体请你在拿到官方当前套餐页面的准确数字后自己代入计算。
+  </p>
+
+  <h2>按预算选择</h2>
+  <p>
+    不想自己套公式算的话，可以先按预算档位缩小范围——这里只列入"多来源资料互相印证、没有明显冲突"的起步价，价格标注为"约"，具体以官方当前页面为准。
+  </p>
+  {
+    budgetTiers.map((tier) => (
+      <div class="table-wrap">
+        <h3>{tier.label}</h3>
+        <p>{tier.hint}</p>
+        <ul>
+          {tier.providers.map((p) => (
+            <li><a href={`/airports/${p.slug}/`}>{p.name}</a>：{p.price}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+  <p>
+    <strong>暂不分档的服务商：</strong>
+    {unTieredProviders.map((p, i) => (
+      <>
+        {i > 0 && '；'}
+        <a href={`/airports/${p.slug}/`}>{p.name}</a>——{p.reason}
+      </>
+    ))}
   </p>
 
   <h2>各服务商价格资料对照（第三方来源，如有冲突原样并列）</h2>
