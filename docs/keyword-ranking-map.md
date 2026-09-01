@@ -1,6 +1,16 @@
-# 核心关键词排名地图（rocketjichang.com）
+# 核心关键词排名地图（三站）
 
-最终 KPI：Bing 核心关键词进入 Top 3（Google 为第二优先级）。这份表格用于跟踪 6 个核心词的现状、竞品页面类型与下一步动作，避免重复研究同一个词。
+最终 KPI：jichangbao.com / rocketjichang.com / ejichang.com 三站的 6 个核心关键词都进入 Bing Top 3（Google 为第二优先级）。这份表格主要跟踪 rocketjichang.com，三站汇总状态见文末"三站状态速览"。
+
+## 三站状态速览（更新于 2026-09-01）
+
+| 站点 | Bing site: 查询 | Google site: 查询 | 本轮发现/动作 |
+|---|---|---|---|
+| jichangbao.com | 本轮工具异常未采信（见下方风险说明） | 未查（上轮已确认收录良好） | 保护性检查：首页品牌顺序（无忧链接→Firefly→闪跃→快狸→微风网络→灵猫网络→跨界云）、Title/canonical/robots 均完好，无需改动 |
+| rocketjichang.com | 见下方逐关键词表 | 未系统检查 | 见下方逐关键词表 |
+| ejichang.com | 本轮工具异常未采信 | 已确认收录：首页+多篇 knowledge/tutorials/airports 页面 | 发现并修复了 /rankings/ 系列 3 个页面 Title/H1 与 rocketjichang 高度雷同的问题（同一套模板扩展出的两个站，此前只换了品牌名）；补全并部署了此前已完成但未上线验证的差异化改版（首页/推荐榜 champion 卡片、4 篇独有知识文章）；提交 34 个 URL 至 IndexNow。**Blocking**：本机从未为 ejichang.com 仓库配置过 git 身份（user.name/email），无法创建 commit——按规则我不能自己执行 `git config`，需要你决定用什么身份（可以和 rocketjichang 一样用 wongcingtony/wongcingtony@gmail.com，也可以指定别的），部署本身不受影响（Wrangler 部署不依赖 git commit），只是这些改动目前没有版本记录 |
+
+
 
 **追踪频率**：不逐日重复搜索，建议每 1-2 周更新一次本表（除非有重大页面改版需要立即验证效果）。
 
