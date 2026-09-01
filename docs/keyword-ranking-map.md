@@ -12,6 +12,8 @@
 
 **ejichang.com 的 PRIMARY KEYWORD（唯一第一突破口）：机场推荐**，`/rankings/` 是 money page。理由：结合此前几轮对"机场推荐/性价比机场/稳定机场"的 Bing 竞品研究——性价比机场的强竞品套路是"单位成本计算器"（rocketjichang 已经做了这个定位），稳定机场的强竞品套路是"长期实测数据中心"（rocketjichang 也已经是这个定位）；而"机场推荐"本质是"决策"意图，与 ejichang"决策+风险核验"的定位天然契合，不需要和 rocketjichang 抢同一套内容形态。
 
+**第三轮（2026-09-01，服务商决策价值深化）**：7 家服务商的 `editorial.suitableFor`/`notSuitableFor` 此前全部为空（providers.json 里的 schema 字段一直没被使用），在 `/airports/[slug]/` 页面上完全没有"适合谁/不适合谁"这层结论，只有一堆事实罗列。本轮基于每家已有的真实数据（价格来源是否互相印证、协议是否有冲突、官方入口能否核实、有无实测数据支撑），逐一写出有依据的"适合什么人/不适合什么人"结论并渲染到页面上——不是新增模块凑数，是把一直存在但从未使用的 schema 字段填上真实内容。7 个页面全部 build → deploy → 生产验证 → IndexNow 提交。
+
 ### ejichang.com 差异化专项记录（2026-09-01，两轮）
 
 **第一轮**：发现并修复 `/rankings/` 系列 3 个页面 Title/H1 与 rocketjichang 高度雷同的问题（同一套模板扩展出的两个站，此前只换了品牌名）；确认此前已完成但未提交 IndexNow 的差异化改版（首页/推荐榜 champion 卡片、4 篇独有知识文章：机场跑路风险/免费vs付费/自建节点对比/支付方式）已经在生产环境生效；提交 34 个 URL 至 IndexNow。
