@@ -10,6 +10,8 @@
 | rocketjichang.com | 见下方逐关键词表 | 未系统检查 | 见下方逐关键词表 |
 | ejichang.com | 本轮工具异常未采信 | 已确认收录：首页+多篇 knowledge/tutorials/airports 页面 | 见下方"ejichang.com 差异化专项记录"。**Blocking（不阻塞SEO工作，按你的指示继续执行）**：本机从未为 ejichang.com 仓库配置过 git 身份，无法创建 commit——按规则我不能自己执行 `git config`，需要你之后决定用什么身份（可以和 rocketjichang 一样用 wongcingtony/wongcingtony@gmail.com）。部署不受影响（Wrangler 部署不依赖 git commit），只是这些改动目前没有版本记录 |
 
+**ejichang.com 的 PRIMARY KEYWORD（唯一第一突破口）：机场推荐**，`/rankings/` 是 money page。理由：结合此前几轮对"机场推荐/性价比机场/稳定机场"的 Bing 竞品研究——性价比机场的强竞品套路是"单位成本计算器"（rocketjichang 已经做了这个定位），稳定机场的强竞品套路是"长期实测数据中心"（rocketjichang 也已经是这个定位）；而"机场推荐"本质是"决策"意图，与 ejichang"决策+风险核验"的定位天然契合，不需要和 rocketjichang 抢同一套内容形态。
+
 ### ejichang.com 差异化专项记录（2026-09-01，两轮）
 
 **第一轮**：发现并修复 `/rankings/` 系列 3 个页面 Title/H1 与 rocketjichang 高度雷同的问题（同一套模板扩展出的两个站，此前只换了品牌名）；确认此前已完成但未提交 IndexNow 的差异化改版（首页/推荐榜 champion 卡片、4 篇独有知识文章：机场跑路风险/免费vs付费/自建节点对比/支付方式）已经在生产环境生效；提交 34 个 URL 至 IndexNow。
