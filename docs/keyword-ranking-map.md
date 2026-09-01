@@ -8,7 +8,20 @@
 |---|---|---|---|
 | jichangbao.com | 本轮工具异常未采信（见下方风险说明） | 未查（上轮已确认收录良好） | 保护性检查：首页品牌顺序（无忧链接→Firefly→闪跃→快狸→微风网络→灵猫网络→跨界云）、Title/canonical/robots 均完好，无需改动 |
 | rocketjichang.com | 见下方逐关键词表 | 未系统检查 | 见下方逐关键词表 |
-| ejichang.com | 本轮工具异常未采信 | 已确认收录：首页+多篇 knowledge/tutorials/airports 页面 | 发现并修复了 /rankings/ 系列 3 个页面 Title/H1 与 rocketjichang 高度雷同的问题（同一套模板扩展出的两个站，此前只换了品牌名）；补全并部署了此前已完成但未上线验证的差异化改版（首页/推荐榜 champion 卡片、4 篇独有知识文章）；提交 34 个 URL 至 IndexNow。**Blocking**：本机从未为 ejichang.com 仓库配置过 git 身份（user.name/email），无法创建 commit——按规则我不能自己执行 `git config`，需要你决定用什么身份（可以和 rocketjichang 一样用 wongcingtony/wongcingtony@gmail.com，也可以指定别的），部署本身不受影响（Wrangler 部署不依赖 git commit），只是这些改动目前没有版本记录 |
+| ejichang.com | 本轮工具异常未采信 | 已确认收录：首页+多篇 knowledge/tutorials/airports 页面 | 见下方"ejichang.com 差异化专项记录"。**Blocking（不阻塞SEO工作，按你的指示继续执行）**：本机从未为 ejichang.com 仓库配置过 git 身份，无法创建 commit——按规则我不能自己执行 `git config`，需要你之后决定用什么身份（可以和 rocketjichang 一样用 wongcingtony/wongcingtony@gmail.com）。部署不受影响（Wrangler 部署不依赖 git commit），只是这些改动目前没有版本记录 |
+
+### ejichang.com 差异化专项记录（2026-09-01，两轮）
+
+**第一轮**：发现并修复 `/rankings/` 系列 3 个页面 Title/H1 与 rocketjichang 高度雷同的问题（同一套模板扩展出的两个站，此前只换了品牌名）；确认此前已完成但未提交 IndexNow 的差异化改版（首页/推荐榜 champion 卡片、4 篇独有知识文章：机场跑路风险/免费vs付费/自建节点对比/支付方式）已经在生产环境生效；提交 34 个 URL 至 IndexNow。
+
+**第二轮（正文级差异化，不只是 Title）**：逐块对比 ejichang 与 rocketjichang 的 `/rankings/` 三页，确认"发布门槛说明""排名怎么算出来"等大段正文仍是同一套模板文字，直接重构：
+- `/rankings/`：删除模板化的方法论段落，新增"先判断你属于哪种情况"场景路由、"买之前必须检查的几件事"、"本站资料核验情况"表（7 家服务商官方入口能否核实的真实记录，逐条来自 providers.json）
+- `/rankings/best-value/`：删除模板化的"性价比不等于最低价"通用段落，新增"便宜是否等于风险更高"——用飞猫云真实案例（宣传 IEPL专线2.5Gbps，第三方监测显示下载速率0.69Mbps/请求失败率100%）说明价格不能单独看；同时把该榜单从 1 个条目扩到 7 个（原来只有无忧链接一家在编辑推荐里，其余 6 家的真实数据被闲置），新理由全部基于 ejichang 自己 providers.json 里的第三方资料，不是照抄 rocketjichang 的措辞
+- `/rankings/most-stable/`：删除模板化的测试方法论大段文字，新增"数据不足时你自己可以怎么验证"实操清单；诚实说明 ejichang 和 rocketjichang 共享同一套测试数据体系、真实数据主要积累在 rocketjichang，不重复造一个数据中心
+- `/airports/[slug]/`：确认此前已重构为"资料能否核实"框架（非 rocketjichang 的"评测指南"框架），本轮新增"下单前建议再检查这几件事"，链接到风险核验类知识文章
+- 内链闭环：`airport-scam-risk.md`/`airport-payment-methods.md`/`airport-vs-self-hosted.md` 补充了指回 `/rankings/` 的链接，形成 rankings ↔ airports ↔ 风险知识 的双向闭环
+
+全部改动：build 通过 → `wrangler deploy` → curl 生产验证（含 cache-bypass 处理边缘缓存延迟）→ 针对性提交 IndexNow（只提交真正改动的 URL，未重复全站提交）。
 
 
 
