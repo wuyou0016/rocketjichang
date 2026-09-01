@@ -1,14 +1,61 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import RankingEntries from '../../../components/RankingEntries.astro';
 import { getRankingPageData } from '../../../data/utils/ranking-entries';
+import { getPublishableProviders } from '../../../data/utils/provider-publish-gate';
+import { isDemoEntry } from '../../../data/utils/demo-filter';
+import { MIN_STABILITY_SPAN_DAYS, MIN_STABILITY_TEST_RECORDS } from '../../../data/utils/ranking-constants';
 import { resolveCanonicalUrl } from '../../../config/seo';
 
 const { ranking, entries } = await getRankingPageData('most-stable');
 
 const title = '2026最稳定的机场推荐｜稳定性榜单与评选方法｜火箭机场';
 const description = '说明火箭机场如何基于本站测试数据评估机场代理服务商的稳定性，以及稳定性榜单当前的收录情况。';
+
+// 逐 Provider 的真实进度披露：不满足门槛不代表"没有数据"，而是数据具体
+// 差多少——这里直接统计真实 TestRecord，不编造、不预估未来会有多少条。
+const [allTests, publishableProviders] = await Promise.all([
+  getCollection('tests', ({ id }) => !isDemoEntry(id)),
+  getPublishableProviders(),
+]);
+
+const evidenceProgress = publishableProviders
+  .map((provider) => {
+    const relevant = allTests.filter(
+      (test) =>
+        test.data.providerId.id === provider.id &&
+        (test.data.results?.stabilityScore !== undefined || test.data.results?.packetLossPercent !== undefined),
+    );
+    const dates = relevant.map((test) => test.data.date.getTime()).sort((a, b) => a - b);
+    const spanDays =
+      dates.length >= 2 ? Math.round((dates[dates.length - 1]! - dates[0]!) / (1000 * 60 * 60 * 24)) : 0;
+    const meetsRecordCount = relevant.length >= MIN_STABILITY_TEST_RECORDS;
+    const meetsSpan = spanDays >= MIN_STABILITY_SPAN_DAYS;
+    const qualifies = meetsRecordCount && meetsSpan;
+
+    let gap: string;
+    if (qualifies) {
+      gap = '已满足最低门槛';
+    } else if (relevant.length === 0) {
+      gap = `还差至少 ${MIN_STABILITY_TEST_RECORDS} 条测试记录`;
+    } else if (!meetsRecordCount) {
+      gap = `还差至少 ${MIN_STABILITY_TEST_RECORDS - relevant.length} 条测试记录`;
+    } else {
+      gap = `记录数已够，时间跨度还差 ${MIN_STABILITY_SPAN_DAYS - spanDays} 天`;
+    }
+
+    return {
+      name: provider.data.name,
+      slug: provider.data.slug,
+      count: relevant.length,
+      spanDays,
+      gap,
+      qualifies,
+    };
+  })
+  .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 const webPageJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
@@ -41,10 +88,40 @@ const webPageJsonLd = {
   <RankingEntries entries={entries} />
   {ranking && <p>方法论版本：{ranking.data.scoringVersion}，数据快照时间：{ranking.data.snapshotAt.toISOString().slice(0, 10)}。</p>}
 
+  <h2>各服务商目前的真实进度</h2>
+  <p>
+    下表是本站已收录服务商各自积累的真实测试记录数量，逐条统计，不做预估。达标门槛是
+    <strong>至少 {MIN_STABILITY_TEST_RECORDS} 条记录、时间跨度 {MIN_STABILITY_SPAN_DAYS} 天以上</strong>。
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>服务商</th>
+          <th>本站测试记录数</th>
+          <th>已有记录时间跨度</th>
+          <th>距离达标</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          evidenceProgress.map((row) => (
+            <tr>
+              <td><a href={`/airports/${row.slug}/`}>{row.name}</a></td>
+              <td>{row.count}</td>
+              <td>{row.count >= 2 ? `${row.spanDays} 天` : '—'}</td>
+              <td>{row.qualifies ? '已满足最低门槛' : row.gap}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
   <h2>常见问题</h2>
 
   <p><strong>为什么现在这个榜单是空的？</strong></p>
-  <p>因为目前没有任何一个已收录的服务商积累到至少 2 条、时间跨度 7 天以上的本站真实测试记录。我们不会为了让页面看起来有内容就放宽这个门槛，也不会用官方宣传或第三方测速数据代替本站实测。</p>
+  <p>因为目前没有任何一个已收录的服务商积累到至少 2 条、时间跨度 7 天以上的本站真实测试记录。我们不会为了让页面看起来有内容就放宽这个门槛，也不会用官方宣传或第三方测速数据代替本站实测。上表列出了每家服务商目前具体差多少。</p>
 
   <p><strong>什么时候会有排名结果？</strong></p>
   <p>等某个服务商积累够符合条件的测试数据后，会自动出现在这个榜单里。这是一个持续更新的过程，不是一次性生成的结果。</p>
