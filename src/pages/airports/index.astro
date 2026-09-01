@@ -1,10 +1,13 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { getPublishableProviders } from '../../data/utils/provider-publish-gate';
+import { isDemoEntry } from '../../data/utils/demo-filter';
 
 // 只列出通过发布门槛（真正有独立页面）的 Provider，避免链接到未生成的页面。
 const providers = await getPublishableProviders();
+const allTests = await getCollection('tests', ({ id }) => !isDemoEntry(id));
 
 const statusLabel: Record<string, string> = {
   active: '正常运营',
@@ -15,6 +18,7 @@ const statusLabel: Record<string, string> = {
 
 function providerCard(provider: (typeof providers)[number]) {
   const noteCount = provider.data.thirdPartyNotes?.length ?? 0;
+  const testCount = allTests.filter((test) => test.data.providerId.id === provider.id).length;
   return {
     name: provider.data.name,
     href: `/airports/${provider.data.slug}/`,
@@ -22,6 +26,8 @@ function providerCard(provider: (typeof providers)[number]) {
     statusText: statusLabel[provider.data.status] ?? provider.data.status,
     protocols: provider.data.vendor.protocols?.join('、'),
     traffic: provider.data.vendor.traffic,
+    testCount,
+    noteCount,
     meta: noteCount > 0 ? `官方公开信息 + ${noteCount} 条第三方资料 + 编辑分析` : '官方公开信息 + 编辑分析',
   };
 }
@@ -55,7 +61,36 @@ const providerCards = providerDisplayOrder.map(providerCard);
     如果你还不确定要选哪个服务商，可以先浏览这里收录的服务商列表，点开具体页面逐一查看官方信息、测试数据和编辑结论。如果你已经明确自己更看重哪个维度（比如价格还是稳定性），也可以跳过逐个浏览，直接前往<a href="/rankings/">机场推荐</a>，按维度查看已经整理好的候选服务商。
   </p>
 
-  <h2>当前收录的服务商</h2>
+  <h2>服务商速览对照表</h2>
+  <p>先看这张表快速比较，再点进具体服务商页面看完整信息。表格只展示可以直接核实的客观项（是否有本站实测、第三方资料数量），不展示价格——价格数据本站掌握多个互相冲突的第三方版本，放进一张表格里会误导你，具体请看<a href="/rankings/best-value/">性价比机场</a>的多来源对照。</p>
+  {
+    providerCards.length > 0 && (
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>服务商</th>
+              <th>运营状态</th>
+              <th>本站实测数据</th>
+              <th>第三方资料</th>
+            </tr>
+          </thead>
+          <tbody>
+            {providerCards.map((card) => (
+              <tr>
+                <td><a href={card.href}>{card.name}</a></td>
+                <td>{card.statusText}</td>
+                <td>{card.testCount > 0 ? `${card.testCount} 条` : '暂无'}</td>
+                <td>{card.noteCount > 0 ? `${card.noteCount} 条` : '暂无'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+
+  <h2>逐个查看详情</h2>
   {
     providerCards.length > 0 ? (
       <div class="provider-grid">
