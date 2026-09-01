@@ -7,7 +7,7 @@ difficulty: "intermediate"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-09
 updatedAt: 2026-08-09
-relatedTopics: ["airport-latency-normal-range", "airport-packet-loss-explained", "airport-speed-explained", "airport-stability-comparison"]
+relatedTopics: ["airport-latency-normal-range", "airport-packet-loss-explained", "airport-speed-explained", "airport-stability-comparison", "why-airport-is-unstable"]
 ---
 
 延迟、丢包率、稳定性这三个词经常一起出现，很多人会把它们当成同一件事，但实际上分别反映的是不同的问题。

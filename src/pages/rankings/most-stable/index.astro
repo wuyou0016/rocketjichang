@@ -21,19 +21,27 @@ const [allTests, publishableProviders] = await Promise.all([
   getPublishableProviders(),
 ]);
 
+const MS_PER_DAY = 1000 * 60 * 60 * 24;
+const today = Date.now();
+
 const evidenceProgress = publishableProviders
   .map((provider) => {
-    const relevant = allTests.filter(
-      (test) =>
-        test.data.providerId.id === provider.id &&
-        (test.data.results?.stabilityScore !== undefined || test.data.results?.packetLossPercent !== undefined),
-    );
-    const dates = relevant.map((test) => test.data.date.getTime()).sort((a, b) => a - b);
-    const spanDays =
-      dates.length >= 2 ? Math.round((dates[dates.length - 1]! - dates[0]!) / (1000 * 60 * 60 * 24)) : 0;
+    const relevant = allTests
+      .filter(
+        (test) =>
+          test.data.providerId.id === provider.id &&
+          (test.data.results?.stabilityScore !== undefined || test.data.results?.packetLossPercent !== undefined),
+      )
+      .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+
+    const dates = relevant.map((test) => test.data.date.getTime());
+    const spanDays = dates.length >= 2 ? Math.round((dates[dates.length - 1]! - dates[0]!) / MS_PER_DAY) : 0;
     const meetsRecordCount = relevant.length >= MIN_STABILITY_TEST_RECORDS;
     const meetsSpan = spanDays >= MIN_STABILITY_SPAN_DAYS;
     const qualifies = meetsRecordCount && meetsSpan;
+    // 观察天数：从第一条有效证据记录到今天，用于 7/14/30 天观察进度展示，
+    // 不是"该服务商已稳定运营 X 天"，只是"本站已经开始跟踪多久"。
+    const daysObserved = dates.length > 0 ? Math.floor((today - dates[0]!) / MS_PER_DAY) : 0;
 
     let gap: string;
     if (qualifies) {
@@ -51,8 +59,14 @@ const evidenceProgress = publishableProviders
       slug: provider.data.slug,
       count: relevant.length,
       spanDays,
+      daysObserved,
       gap,
       qualifies,
+      records: relevant.map((test) => ({
+        date: test.data.date.toISOString().slice(0, 10),
+        packetLossPercent: test.data.results?.packetLossPercent,
+        stabilityScore: test.data.results?.stabilityScore,
+      })),
     };
   })
   .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
@@ -84,6 +98,12 @@ const webPageJsonLd = {
     一个服务商要出现在这个榜单里，至少需要满足：<strong>至少 2 条本站真实测试记录</strong>，且这些记录的<strong>时间跨度不少于 7 天</strong>。单次测试、或者时间跨度太短的测试，不足以证明"稳定"这种需要跨时间观察才能确认的属性，因此不会被纳入计算。如果一个服务商完全没有相关测试数据，或者测试记录不满足这两个最低门槛，就不会出现在这个稳定性榜单中——我们不会仅凭官方信息或宣传语给出稳定性结论。
   </p>
 
+  <h2>什么决定了机场稳定不稳定</h2>
+  <p>
+    丢包率、延迟这些数字是"结果"，背后有具体的技术原因——入口线路是否有冗余、晚高峰带宽是否留有余量、节点故障后是人工处理还是自动切换、域名是否容易被干扰等。这些因素普通用户很难从外部直接验证，但了解它们有助于判断"为什么这家稳、那家不稳"，详见
+    <a href="/knowledge/why-airport-is-unstable/">机场为什么会不稳定？入口冗余、晚高峰负载与故障自愈怎么影响体验</a>。本站不会对这些内部机制做无法验证的断言，只通过持续积累的真实测试数据间接反映结果。
+  </p>
+
   <h2>当前收录情况</h2>
   <RankingEntries entries={entries} />
   {ranking && <p>方法论版本：{ranking.data.scoringVersion}，数据快照时间：{ranking.data.snapshotAt.toISOString().slice(0, 10)}。</p>}
@@ -91,7 +111,7 @@ const webPageJsonLd = {
   <h2>各服务商目前的真实进度</h2>
   <p>
     下表是本站已收录服务商各自积累的真实测试记录数量，逐条统计，不做预估。达标门槛是
-    <strong>至少 {MIN_STABILITY_TEST_RECORDS} 条记录、时间跨度 {MIN_STABILITY_SPAN_DAYS} 天以上</strong>。
+    <strong>至少 {MIN_STABILITY_TEST_RECORDS} 条记录、时间跨度 {MIN_STABILITY_SPAN_DAYS} 天以上</strong>——达标只是"能否上榜"的最低门槛，之后我们会继续按 7 天、14 天、30 天的观察周期持续积累数据，跨度越长，稳定性判断的可信度越高。
   </p>
   <div class="table-wrap">
     <table>
@@ -100,6 +120,7 @@ const webPageJsonLd = {
           <th>服务商</th>
           <th>本站测试记录数</th>
           <th>已有记录时间跨度</th>
+          <th>已观察天数</th>
           <th>距离达标</th>
         </tr>
       </thead>
@@ -110,6 +131,13 @@ const webPageJsonLd = {
               <td><a href={`/airports/${row.slug}/`}>{row.name}</a></td>
               <td>{row.count}</td>
               <td>{row.count >= 2 ? `${row.spanDays} 天` : '—'}</td>
+              <td>
+                {row.daysObserved} 天
+                {row.daysObserved < 7 && '（未满 7 天）'}
+                {row.daysObserved >= 7 && row.daysObserved < 14 && '（已过 7 天观察点）'}
+                {row.daysObserved >= 14 && row.daysObserved < 30 && '（已过 14 天观察点）'}
+                {row.daysObserved >= 30 && '（已过 30 天观察点）'}
+              </td>
               <td>{row.qualifies ? '已满足最低门槛' : row.gap}</td>
             </tr>
           ))
@@ -117,6 +145,36 @@ const webPageJsonLd = {
       </tbody>
     </table>
   </div>
+
+  <h2>本站测试历史记录</h2>
+  <p>逐条列出每个服务商每次测试的原始日期与数值，不做平均、不做加工，方便你自己核对数据来源。</p>
+  {
+    evidenceProgress
+      .filter((row) => row.records.length > 0)
+      .map((row) => (
+        <div class="table-wrap">
+          <h3>{row.name}</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>测试日期</th>
+                <th>丢包率</th>
+                <th>稳定性评分（加工指标）</th>
+              </tr>
+            </thead>
+            <tbody>
+              {row.records.map((record) => (
+                <tr>
+                  <td>{record.date}</td>
+                  <td>{record.packetLossPercent !== undefined ? `${record.packetLossPercent}%` : '—'}</td>
+                  <td>{record.stabilityScore !== undefined ? record.stabilityScore : '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))
+  }
 
   <h2>常见问题</h2>
 
@@ -132,10 +190,18 @@ const webPageJsonLd = {
   <p><strong>丢包率和稳定性评分有什么区别？</strong></p>
   <p>丢包率是测试时直接观测到的原始数据；稳定性评分是在没有丢包率数据时才会使用的退回指标，属于已加工数据，页面会明确标注当前用的是哪一种，不会混淆呈现。</p>
 
+  <p><strong>为什么用丢包率，不直接看服务商自己宣传的"稳定不掉线"？</strong></p>
+  <p>"稳定""不掉线"是宣传用语，不是可验证的客观数据。丢包率是可以重复测量、可以跨时间对比的具体指标，这也是为什么本榜单只认本站实测数据，不采用官方宣传或未经核实的第三方测速截图。</p>
+
+  <p><strong>我自己也想测，应该怎么测？</strong></p>
+  <p>可以参考<a href="/tutorials/how-to-test-airport-speed/">机场测速怎么做</a>，其中也提到了晚高峰测试的注意事项；想了解丢包率具体反映什么、多少算高，可以看<a href="/knowledge/airport-packet-loss-explained/">机场丢包率多少算高</a>。</p>
+
   <p>你可能还想看：</p>
   <ul class="quick-links">
     <li><a href="/rankings/">查看机场推荐</a></li>
+    <li><a href="/rankings/best-value/">查看性价比机场</a></li>
     <li><a href="/airports/">查看机场导航</a></li>
+    <li><a href="/knowledge/why-airport-is-unstable/">机场为什么会不稳定</a></li>
     <li><a href="/reviews/">了解评测方法</a></li>
   </ul>
 

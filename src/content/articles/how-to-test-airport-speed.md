@@ -7,7 +7,7 @@ difficulty: "beginner"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-10
 updatedAt: 2026-08-10
-relatedTopics: ["airport-speed-explained", "airport-test-data-explained", "airport-stability-comparison"]
+relatedTopics: ["airport-speed-explained", "airport-test-data-explained", "airport-stability-comparison", "why-airport-is-unstable"]
 ---
 
 看别人分享的测速截图，不如自己动手测一遍——毕竟你自己的网络环境、所在地区、使用时段，都会影响实际速度。这篇文章介绍普通用户可以自己完成的测速方法，不涉及需要专业设备或后台权限的测试手段。

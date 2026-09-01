@@ -7,7 +7,7 @@ difficulty: "intermediate"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-09
 updatedAt: 2026-08-09
-relatedTopics: ["airport-stability-latency-packet-loss", "airport-test-data-explained"]
+relatedTopics: ["airport-stability-latency-packet-loss", "airport-test-data-explained", "why-airport-is-unstable"]
 ---
 
 在了解[延迟、丢包和稳定性的区别](/knowledge/airport-stability-latency-packet-loss/)之后，实际比较不同机场时，还有一个容易被忽略的问题：一次测试表现好，不代表长期使用也稳定。

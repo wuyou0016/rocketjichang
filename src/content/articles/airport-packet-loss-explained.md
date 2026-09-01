@@ -7,7 +7,7 @@ difficulty: "intermediate"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-10
 updatedAt: 2026-08-10
-relatedTopics: ["airport-stability-latency-packet-loss", "airport-latency-normal-range", "airport-stability-comparison", "airport-test-data-explained"]
+relatedTopics: ["airport-stability-latency-packet-loss", "airport-latency-normal-range", "airport-stability-comparison", "airport-test-data-explained", "why-airport-is-unstable"]
 ---
 
 丢包率是判断机场代理连接质量的一个重要指标，但很多人不清楚具体多少算高、多少算可以接受。这篇文章说明一个大致的判断区间，丢包率本身的概念可以先看[机场稳定性怎么看？延迟、丢包和稳定性有什么区别](/knowledge/airport-stability-latency-packet-loss/)。
