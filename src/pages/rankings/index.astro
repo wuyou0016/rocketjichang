@@ -1,8 +1,11 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import RankingEntries from '../../components/RankingEntries.astro';
 import { getRankingPageData } from '../../data/utils/ranking-entries';
+import { getPublishableProviders } from '../../data/utils/provider-publish-gate';
+import { isDemoEntry } from '../../data/utils/demo-filter';
 import { resolveCanonicalUrl } from '../../config/seo';
 
 const subRankings = [
@@ -19,6 +22,42 @@ const rankingStates = await Promise.all(
     return { ...item, hasEntries: entries.length > 0 };
   }),
 );
+
+// 真实数据统计条：全部来自 collection 的实际计数，不是营销数字。
+const [publishableProviders, allTests] = await Promise.all([
+  getPublishableProviders(),
+  getCollection('tests', ({ id }) => !isDemoEntry(id)),
+]);
+const stats = {
+  providerCount: publishableProviders.length,
+  testRecordCount: allTests.length,
+  rankingCount: subRankings.length + 1,
+};
+
+// 场景路由：帮用户先判断自己属于哪种情况，再决定看哪个榜单——
+// 不是营销话术，纯粹是站内已有 3 个专项榜 + 综合榜的入口重新组织。
+const scenarioRoutes = [
+  {
+    label: '第一次接触机场代理，不知道怎么选',
+    href: '/rankings/for-beginners/',
+    hint: '看新手向榜单，先了解筛选逻辑，而不是直接看价格排序',
+  },
+  {
+    label: '预算有限，想知道哪家更划算',
+    href: '/rankings/best-value/',
+    hint: '看性价比机场榜，附带可自己套用的单位成本计算公式',
+  },
+  {
+    label: '需要长期稳定使用（比如日常办公）',
+    href: '/rankings/most-stable/',
+    hint: '看稳定性机场榜，基于本站真实丢包率测试数据，不满足最低证据门槛不会强行排名',
+  },
+  {
+    label: '不想自己比较，想直接看当前结论',
+    href: '#overall',
+    hint: '直接看下方综合推荐榜',
+  },
+];
 
 const title = '机场推荐排行榜｜2026综合榜与选购说明 - 火箭机场';
 const description = '查看火箭机场综合推荐榜，了解2026机场推荐排序思路、数据来源与更新方式。从稳定性、性价比与新手友好等维度，对照各机场代理的定位再决定是否试用。';
@@ -103,6 +142,23 @@ const faqPageJsonLd = {
     这里是火箭机场的机场推荐排行榜入口：先看本站当前的综合推荐结果，再按你自己更看重的维度（性价比、稳定性、新手友好）查看对应的专项榜单。和"机场导航"（服务商目录）、"机场评测"（单个服务商详解）不同，这里回答的是"现在应该优先看哪家"。
   </p>
 
+  <p class="hub-stats">
+    当前收录 <strong>{stats.providerCount}</strong> 家服务商 · 累计 <strong>{stats.testRecordCount}</strong> 条本站真实测试记录 ·
+    {stats.rankingCount} 个推荐榜单（1 个综合榜 + {subRankings.length} 个专项榜） · 本页内容随服务商资料与测试数据更新持续调整，不是一次性发布后不再变动的年度榜单。
+  </p>
+
+  <h2>先想清楚你的场景，再看榜单</h2>
+  <p>不同人挑机场代理时最在意的东西不一样，直接按你的情况选一条路径：</p>
+  <ul class="quick-links">
+    {
+      scenarioRoutes.map((route) => (
+        <li>
+          <a href={route.href}>{route.label}</a>——{route.hint}
+        </li>
+      ))
+    }
+  </ul>
+
   <h2>按维度查看：性价比 / 稳定性 / 新手友好</h2>
   <p>
     有人最在意价格和流量是否划算，有人更看重长期使用是否稳定，也有人刚接触机场代理、更需要简单易配置的服务商。同一个服务商在不同维度下的表现可能不一样，因此除了下方的综合推荐榜，本站还按不同维度分别整理了三个专项榜，而不是只给一个笼统的排序：
@@ -117,7 +173,7 @@ const faqPageJsonLd = {
     }
   </ul>
 
-  <h2>当前综合推荐</h2>
+  <h2 id="overall">当前综合推荐</h2>
   <p>
     综合推荐榜结合官方公开信息、第三方资料与本站掌握的服务商情况，整理出当前的机场代理推荐顺序，并会随资料更新持续调整。
   </p>
@@ -142,6 +198,12 @@ const faqPageJsonLd = {
 
   <p><strong>机场导航和机场推荐有什么区别？</strong></p>
   <p><a href="/airports/">机场导航</a>是收录服务商的完整目录，帮你查具体某一家的信息；机场推荐（本页）是本站按不同维度整理出的候选建议，回答"现在优先看哪家"。</p>
+
+  <p><strong>这是 2026 年一次性发布的榜单吗？</strong></p>
+  <p>不是。本页没有固定的"年度发布"节奏——服务商资料、测试数据、榜单排序会随本站掌握的信息更新持续调整，你现在看到的是最新状态，不是年初发布后就不再变动的静态清单。</p>
+
+  <p><strong>有没有专门的"高端专线"榜单？</strong></p>
+  <p>目前没有——建立一个新的专项榜需要足够的专线相关数据支撑，本站暂时还没有积累到可以独立成榜的程度，不会为了凑一个榜单类型就仓促上线。如果你需要专线（IPLC/IEPL）机场，可以在<a href="/airports/">机场导航</a>里查看各服务商详情页标注的线路类型。</p>
 
   <h2>推荐数据来源与发布门槛</h2>
   <p>
@@ -186,3 +248,12 @@ const faqPageJsonLd = {
   {overallItemListJsonLd && <script type="application/ld+json" set:html={JSON.stringify(overallItemListJsonLd)} />}
   <script type="application/ld+json" set:html={JSON.stringify(faqPageJsonLd)} />
 </BaseLayout>
+
+<style>
+  .hub-stats {
+    font-size: 0.9375rem;
+    color: var(--color-muted, #64748b);
+    border-left: 3px solid var(--color-accent, #2563eb);
+    padding-left: 0.75rem;
+  }
+</style>
