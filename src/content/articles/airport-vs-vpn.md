@@ -6,8 +6,8 @@ category: "入门知识"
 difficulty: "beginner"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-10
-updatedAt: 2026-08-31
-relatedTopics: ["what-is-airport-proxy", "how-to-choose-an-airport-proxy", "airport-beginner-full-guide", "airport-review-credibility", "proton-vpn-china-alternative", "nordvpn-china-alternative", "astrill-vpn-vs-airport"]
+updatedAt: 2026-09-02
+relatedTopics: ["what-is-airport-proxy", "how-to-choose-an-airport-proxy", "airport-beginner-full-guide", "airport-review-credibility", "proton-vpn-china-alternative", "nordvpn-china-alternative", "astrill-vpn-vs-airport", "letsvpn-china-alternative", "quickq-vpn-review"]
 ---
 
 如果你是第一次接触"机场"这个概念，很可能会有一个疑问：这和 VPN 不是一回事吗？两者确实都能让你的网络流量通过其他地区的服务器转发，但背后的运作模式、使用方式差别不小。这篇文章说明具体区别在哪，以及分别适合什么人。
