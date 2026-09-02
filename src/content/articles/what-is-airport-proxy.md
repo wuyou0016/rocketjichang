@@ -7,7 +7,7 @@ difficulty: "beginner"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-09
 updatedAt: 2026-08-09
-relatedTopics: ["how-to-choose-an-airport-proxy", "what-are-nodes-and-routes", "airport-vs-vpn"]
+relatedTopics: ["how-to-choose-an-airport-proxy", "what-are-nodes-and-routes", "airport-vs-vpn", "what-is-kexue-shangwang"]
 ---
 
 如果你是第一次听说"机场代理"这个词，大概率是从朋友或者论坛里看到的。这个说法有点让人摸不着头脑——它和现实中的机场没有任何关系，是中文互联网上对一类代理服务的俗称。
