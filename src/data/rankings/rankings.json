@@ -158,40 +158,46 @@
         "rankOverrideReason": "机场推荐综合榜第 1 位。"
       },
       {
-        "providerId": "weifeng-network",
-        "reason": "第三方资料显示其定位入门级、采用 IEPL 专线，但测速图表尚未上线，暂无具体测速数据可参考，本期综合位列第 2 位。",
+        "providerId": "jiuyun",
+        "reason": "九云是本站新收录的服务商，站长基于其线路定位（海外中转、VLESS 协议，覆盖香港/日本/台湾/新加坡/美国）与套餐价格（低至 6 元/月 150GB，性价比突出）指定其进入本期综合榜第 2 位；本站目前尚无九云的独立测试数据或第三方评测来源，相关描述均为站长转述，未经本站核实。",
         "rankOverride": 2,
-        "rankOverrideReason": "机场推荐综合榜第 2 位。"
+        "rankOverrideReason": "机场推荐综合榜第 2 位——站长基于套餐定位与性价比人工指定，非计算结果，暂无本站测试数据支撑。"
       },
       {
-        "providerId": "firefly",
-        "reason": "第三方资料显示其主打 IPLC 专线，两个独立来源的套餐价格描述基本一致，香港节点测速数据（非本站实测）在同类中较高，本期综合位列第 3 位。",
+        "providerId": "weifeng-network",
+        "reason": "第三方资料显示其定位入门级、采用 IEPL 专线，但测速图表尚未上线，暂无具体测速数据可参考，本期综合位列第 3 位。",
         "rankOverride": 3,
         "rankOverrideReason": "机场推荐综合榜第 3 位。"
       },
       {
-        "providerId": "lingmao-network",
-        "reason": "第三方资料对协议描述存在不一致（文案与截图不符），香港节点测速数据（非本站实测）尚可，本期综合位列第 4 位。",
+        "providerId": "firefly",
+        "reason": "第三方资料显示其主打 IPLC 专线，两个独立来源的套餐价格描述基本一致，香港节点测速数据（非本站实测）在同类中较高，本期综合位列第 4 位。",
         "rankOverride": 4,
         "rankOverrideReason": "机场推荐综合榜第 4 位。"
       },
       {
-        "providerId": "shanyue",
-        "reason": "第三方资料显示其主打 IPLC 专线与骨干网接入，节点测速数据（非本站实测）在同类中较高，本期综合位列第 5 位。",
+        "providerId": "lingmao-network",
+        "reason": "第三方资料对协议描述存在不一致（文案与截图不符），香港节点测速数据（非本站实测）尚可，本期综合位列第 5 位。",
         "rankOverride": 5,
         "rankOverrideReason": "机场推荐综合榜第 5 位。"
       },
       {
-        "providerId": "kuajie-cloud",
-        "reason": "据运营方自测数据，跨界云节点速度尚可（数据未经独立验证），本期综合位列第 6 位。",
+        "providerId": "shanyue",
+        "reason": "第三方资料显示其主打 IPLC 专线与骨干网接入，节点测速数据（非本站实测）在同类中较高，本期综合位列第 6 位。",
         "rankOverride": 6,
         "rankOverrideReason": "机场推荐综合榜第 6 位。"
       },
       {
-        "providerId": "kuaili",
-        "reason": "快狸是本站新收录的服务商，目前没有可用的第三方资料来源（尝试访问的评测页面报错无法核验），官方入口也需要登录/注册才能查看具体套餐，本站已对其做过 1 次真实丢包率测试（2026-09-01，2.2%），但信息完整度明显低于其他几家收录服务商，本期综合位列第 7 位。",
+        "providerId": "kuajie-cloud",
+        "reason": "据运营方自测数据，跨界云节点速度尚可（数据未经独立验证），本期综合位列第 7 位。",
         "rankOverride": 7,
-        "rankOverrideReason": "机场推荐综合榜第 7 位——第三方资料最薄弱，暂列末位。"
+        "rankOverrideReason": "机场推荐综合榜第 7 位。"
+      },
+      {
+        "providerId": "kuaili",
+        "reason": "快狸是本站新收录的服务商，目前没有可用的第三方资料来源（尝试访问的评测页面报错无法核验），官方入口也需要登录/注册才能查看具体套餐，本站已对其做过 1 次真实丢包率测试（2026-09-01，2.2%），但信息完整度明显低于其他几家收录服务商，本期综合位列第 8 位。",
+        "rankOverride": 8,
+        "rankOverrideReason": "机场推荐综合榜第 8 位——第三方资料最薄弱，暂列末位。"
       }
     ]
   }
