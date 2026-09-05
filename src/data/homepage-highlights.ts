@@ -17,4 +17,5 @@ export const HOMEPAGE_HIGHLIGHTS: Record<string, HomepageHighlight> = {
   'lingmao-network': { score: 9.1, stars: 5, tags: ['多协议', 'IPLC 专线'], price: '¥11/月起' },
   shanyue: { score: 8.9, stars: 5, tags: ['多协议', 'IPLC 专线'], price: '¥10/月起' },
   'kuajie-cloud': { score: 8.7, stars: 5, tags: ['多协议', '灵活套餐'], price: '¥10/月起' },
+  jiuyun: { score: 8.5, stars: 5, tags: ['VLESS', '海外中转'], price: '¥6/月起' },
 };
