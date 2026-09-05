@@ -390,6 +390,244 @@
     "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
   },
   {
+    "id": "wuyou-lianjie-miaoko-2026-09-04",
+    "providerId": "wuyou-lianjie",
+    "date": "2026-09-04",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 0.7
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
+    "id": "firefly-miaoko-2026-09-04",
+    "providerId": "firefly",
+    "date": "2026-09-04",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 1.7
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
+    "id": "shanyue-miaoko-2026-09-04",
+    "providerId": "shanyue",
+    "date": "2026-09-04",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 1.6
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
+    "id": "kuaili-miaoko-2026-09-04",
+    "providerId": "kuaili",
+    "date": "2026-09-04",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 2.4
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
+    "id": "weifeng-network-miaoko-2026-09-04",
+    "providerId": "weifeng-network",
+    "date": "2026-09-04",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 2.4
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
+    "id": "lingmao-network-miaoko-2026-09-04",
+    "providerId": "lingmao-network",
+    "date": "2026-09-04",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 3.3
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
+    "id": "kuajie-cloud-miaoko-2026-09-04",
+    "providerId": "kuajie-cloud",
+    "date": "2026-09-04",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 3.6
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
+    "id": "wuyou-lianjie-miaoko-2026-09-05",
+    "providerId": "wuyou-lianjie",
+    "date": "2026-09-05",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 1.1
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
+    "id": "firefly-miaoko-2026-09-05",
+    "providerId": "firefly",
+    "date": "2026-09-05",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 1.4
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
+    "id": "shanyue-miaoko-2026-09-05",
+    "providerId": "shanyue",
+    "date": "2026-09-05",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 1.9
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
+    "id": "kuaili-miaoko-2026-09-05",
+    "providerId": "kuaili",
+    "date": "2026-09-05",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 1.9
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
+    "id": "weifeng-network-miaoko-2026-09-05",
+    "providerId": "weifeng-network",
+    "date": "2026-09-05",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 2.9
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
+    "id": "lingmao-network-miaoko-2026-09-05",
+    "providerId": "lingmao-network",
+    "date": "2026-09-05",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 3.3
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
+    "id": "kuajie-cloud-miaoko-2026-09-05",
+    "providerId": "kuajie-cloud",
+    "date": "2026-09-05",
+    "methodology": "站长使用 MiaoKo 自定义测速工具测试丢包率，本次仅测试丢包率单项指标。",
+    "environment": {
+      "location": "珠海联通（MiaoKo 测速工具测试端）",
+      "network": "珠海联通",
+      "client": "MiaoKo 自定义测速工具",
+      "protocol": "未说明（站长未提供本次测试使用的具体协议）"
+    },
+    "results": {
+      "packetLossPercent": 3.5
+    },
+    "tester": "站长",
+    "notes": "本次测试仅覆盖丢包率单项指标，未包含延迟、下载/上传速度等其他数据。"
+  },
+  {
     "id": "demo-provider-alpha-test-1",
     "providerId": "demo-provider-alpha",
     "date": "2026-08-01",
