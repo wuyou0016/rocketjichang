@@ -525,6 +525,50 @@
     "updatedAt": "2026-09-05"
   },
   {
+    "id": "feimao-cloud",
+    "slug": "feimao-cloud",
+    "name": "飞猫云",
+    "aliases": [],
+    "status": "active",
+    "vendor": {
+      "officialWebsite": "https://flycat1.flycatvipaff.cc/#/?code=sTn3w676",
+      "description": "官方入口经过线路检测跳转后，落地页为账户注册页面，需要填写邮箱地址与密码才能继续，本站未创建账户，因此未能查看具体套餐、流量或节点信息。",
+      "source": {
+        "type": "vendor",
+        "sourceUrl": "https://flycat1.flycatvipaff.cc/#/?code=sTn3w676",
+        "retrievedAt": "2026-09-06",
+        "claim": "访问官方入口后先经过线路检测跳转，落地页为账户注册页面，要求填写邮箱地址与密码，页面显示已识别邀请码 sTn3w676；未创建账户，未能查看具体套餐与节点信息。"
+      }
+    },
+    "thirdPartyNotes": [
+      {
+        "source": "第三方资料（经「机场TJ」jichangtj.net 整理转引）",
+        "sourceUrl": "https://jichangtj.net/airports/feimao-cloud/",
+        "claim": "「机场TJ」（jichangtj.net）整理的资料显示，两个独立第三方来源——「机场推荐」（clashnodes.net）与「机场查」（jichangcha.com）——对飞猫云入门套餐的描述基本一致：约 7 元/月起、50GB，年付 84 元；协议记录为 Shadowsocks/Trojan/VLESS，宣称全线 IPLC 专线、单节点峰值 2.5Gbps。「机场TJ」页面同时注明其自动化访问工具未能成功打开飞猫云官方入口页面核实信息，也没有该服务商的独立测速数据。以上均为第三方资料的转引，本站未做独立核验。",
+        "date": "2026-09-06"
+      }
+    ],
+    "editorial": {
+      "pros": [],
+      "cons": [
+        "本站尚未能通过官方入口核实套餐、流量、协议等具体信息（访问时需要先创建账户）",
+        "现有套餐价格、协议与专线定位描述均来自第三方资料（经「机场TJ」整理转引），尚未经过本站独立核实或实测验证",
+        "飞猫云是本站新收录的服务商，目前没有本站测试数据（丢包率、稳定性等指标均未开始积累），来源站点本身也标注尚无该服务商的独立测速数据"
+      ],
+      "suitableFor": [],
+      "notSuitableFor": [],
+      "summary": "「飞猫云」是本站新收录的服务商，目前公开信息主要来自第三方资料（经「机场TJ」jichangtj.net 整理转引，原始来源为「机场推荐」与「机场查」两个独立第三方站点），本站尚未通过官方入口独立核实，也没有本站测试数据可交叉验证，具体请以你自己的实际体验为准，后续如积累测试数据会更新本页。",
+      "source": {
+        "type": "editorial",
+        "retrievedAt": "2026-09-06",
+        "claim": "基于第三方资料（经「机场TJ」整理转引）形成的编辑说明，未经本站独立核实或实测验证。"
+      }
+    },
+    "lastVerified": "2026-09-06",
+    "createdAt": "2026-09-06",
+    "updatedAt": "2026-09-06"
+  },
+  {
     "id": "kuajie-cloud",
     "slug": "kuajie-cloud",
     "name": "跨界云",

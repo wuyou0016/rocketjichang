@@ -13,6 +13,7 @@ export interface HomepageHighlight {
 export const HOMEPAGE_HIGHLIGHTS: Record<string, HomepageHighlight> = {
   'wuyou-lianjie': { score: 9.8, stars: 6, tags: ['多协议', '原生 IP'], price: '¥6.5/月起' },
   'weifeng-network': { score: 9.5, stars: 5, tags: ['多协议', 'IPLC 专线'], price: '¥12/月起' },
+  'feimao-cloud': { score: 9.2, stars: 5, tags: ['多协议', 'IPLC 专线'], price: '¥7/月起' },
   firefly: { score: 9.3, stars: 5, tags: ['多协议', '原生 IP'], price: '¥16/月起' },
   'lingmao-network': { score: 9.1, stars: 5, tags: ['多协议', 'IPLC 专线'], price: '¥11/月起' },
   shanyue: { score: 8.9, stars: 5, tags: ['多协议', 'IPLC 专线'], price: '¥10/月起' },
