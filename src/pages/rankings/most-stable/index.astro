@@ -12,7 +12,6 @@ import { resolveCanonicalUrl } from '../../../config/seo';
 const { ranking, entries } = await getRankingPageData('most-stable');
 
 const title = '2026最稳定的机场推荐｜稳定性榜单与评选方法｜火箭机场';
-const description = '说明火箭机场如何基于本站测试数据评估机场代理服务商的稳定性，以及稳定性榜单当前的收录情况。';
 
 // 逐 Provider 的真实进度披露：不满足门槛不代表"没有数据"，而是数据具体
 // 差多少——这里直接统计真实 TestRecord，不编造、不预估未来会有多少条。
@@ -54,6 +53,19 @@ const evidenceProgress = publishableProviders
       gap = `记录数已够，时间跨度还差 ${MIN_STABILITY_SPAN_DAYS - spanDays} 天`;
     }
 
+    const lossValues = relevant
+      .map((test) => test.data.results?.packetLossPercent)
+      .filter((value): value is number => value !== undefined);
+    const lossSummary =
+      lossValues.length > 0
+        ? {
+            count: lossValues.length,
+            avg: lossValues.reduce((sum, value) => sum + value, 0) / lossValues.length,
+            min: Math.min(...lossValues),
+            max: Math.max(...lossValues),
+          }
+        : undefined;
+
     return {
       name: provider.data.name,
       slug: provider.data.slug,
@@ -62,6 +74,9 @@ const evidenceProgress = publishableProviders
       daysObserved,
       gap,
       qualifies,
+      lossSummary,
+      firstDate: relevant.length > 0 ? relevant[0]!.data.date.toISOString().slice(0, 10) : undefined,
+      lastDate: relevant.length > 0 ? relevant[relevant.length - 1]!.data.date.toISOString().slice(0, 10) : undefined,
       records: relevant.map((test) => ({
         date: test.data.date.toISOString().slice(0, 10),
         packetLossPercent: test.data.results?.packetLossPercent,
@@ -70,6 +85,17 @@ const evidenceProgress = publishableProviders
     };
   })
   .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+
+const qualifiedRows = evidenceProgress.filter((row) => row.qualifies);
+const unqualifiedRows = evidenceProgress.filter((row) => !row.qualifies);
+const leader = [...qualifiedRows]
+  .filter((row) => row.lossSummary)
+  .sort((a, b) => a.lossSummary!.avg - b.lossSummary!.avg)[0];
+const allDates = qualifiedRows.flatMap((row) => [row.firstDate, row.lastDate]).filter((d): d is string => Boolean(d)).sort();
+const description =
+  leader && allDates.length > 0
+    ? `火箭机场稳定性榜单：基于本站 ${allDates[0]} 至 ${allDates[allDates.length - 1]} 的丢包率实测，${qualifiedRows.length} 家机场已达标排名，${leader.name}平均丢包率 ${leader.lossSummary!.avg.toFixed(1)}% 居首；附评选门槛与各家测试进度。`
+    : '说明火箭机场如何基于本站测试数据评估机场代理服务商的稳定性，以及稳定性榜单当前的收录情况。';
 const webPageJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
@@ -107,6 +133,9 @@ const webPageJsonLd = {
   <h2>当前收录情况</h2>
   <RankingEntries entries={entries} />
   {ranking && <p>方法论版本：{ranking.data.scoringVersion}，数据快照时间：{ranking.data.snapshotAt.toISOString().slice(0, 10)}。</p>}
+  <p>
+    <strong>测试口径：</strong>目前收录的丢包率记录均由站长使用 MiaoKo 自定义测速工具，在珠海联通网络环境下测得，只覆盖丢包率这一项指标，不包含速度、延迟，测试时也未说明具体协议。不同地区、运营商、时段和协议下结果可能不同，因此榜单反映的是"本站这套测试环境下的相对表现"，不等于你自己网络下的实际体验。
+  </p>
 
   <h2>各服务商目前的真实进度</h2>
   <p>
@@ -148,7 +177,7 @@ const webPageJsonLd = {
 
   <h2>本站测试历史记录</h2>
   <p>
-    逐条列出每个服务商每次测试的原始日期与数值，不做平均、不做加工，方便你自己核对数据来源。目前每家服务商都只有 1 条记录，暂时看不出趋势——等每家积累到 2 条及以上记录后，这里会同步展示丢包率的变化方向（是在改善还是在恶化），而不是只有一个孤立的数字。
+    逐条列出每个服务商每次测试的原始日期与数值，方便你自己核对数据来源；每张表上方给出的平均值、最低值和最高值是对这些原始记录的简单汇总，榜单排名使用的就是其中的平均丢包率。
   </p>
   {
     evidenceProgress
@@ -156,6 +185,11 @@ const webPageJsonLd = {
       .map((row) => (
         <div class="table-wrap">
           <h3>{row.name}</h3>
+          {row.lossSummary && (
+            <p>
+              共 {row.lossSummary.count} 次丢包率测试（{row.firstDate} 至 {row.lastDate}），平均 {row.lossSummary.avg.toFixed(1)}%，最低 {row.lossSummary.min.toFixed(1)}%，最高 {row.lossSummary.max.toFixed(1)}%。
+            </p>
+          )}
           <table>
             <thead>
               <tr>
@@ -180,11 +214,13 @@ const webPageJsonLd = {
 
   <h2>常见问题</h2>
 
-  <p><strong>为什么现在这个榜单是空的？</strong></p>
-  <p>因为目前没有任何一个已收录的服务商积累到至少 2 条、时间跨度 7 天以上的本站真实测试记录。我们不会为了让页面看起来有内容就放宽这个门槛，也不会用官方宣传或第三方测速数据代替本站实测。上表列出了每家服务商目前具体差多少。</p>
+  <p><strong>这个榜单现在是怎么排的？</strong></p>
+  <p>
+    目前有 {qualifiedRows.length} 家服务商已满足门槛（至少 {MIN_STABILITY_TEST_RECORDS} 条记录、时间跨度 {MIN_STABILITY_SPAN_DAYS} 天以上），按各自本站测试记录的平均丢包率换算基础评分，平均丢包率越低排名越靠前。{unqualifiedRows.length > 0 && `${unqualifiedRows.map((row) => row.name).join('、')}目前还没有积累到足够的本站测试记录，因此暂未列入排名。`}我们不会为了让榜单看起来更丰富而放宽门槛，也不会用官方宣传或第三方测速数据代替本站实测。上表列出了每家服务商的测试进度。
+  </p>
 
-  <p><strong>什么时候会有排名结果？</strong></p>
-  <p>等某个服务商积累够符合条件的测试数据后，会自动出现在这个榜单里。这是一个持续更新的过程，不是一次性生成的结果。</p>
+  <p><strong>榜单会更新吗？</strong></p>
+  <p>会。排名分数随本站测试记录的新增而重新计算，页面上标注的"数据快照时间"是最近一次整理榜单的日期。这是一个持续更新的过程，不是一次性生成的结果。</p>
 
   <p><strong>这个榜单的排名会调整吗？</strong></p>
   <p>会，调整时会明确标注。如果某个条目的最终排名经过编辑整理确定，页面会公开具体理由，不会包装成客观测试的结果；如果排名完全来自计算，会标注为"客观计算"。</p>
