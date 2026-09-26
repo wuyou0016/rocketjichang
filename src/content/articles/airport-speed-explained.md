@@ -44,6 +44,6 @@ relatedTopics: ["why-speed-test-varies-daily", "airport-stability-latency-packet
 
 只看速度容易忽略另一个同样重要的因素——稳定性。速度快但经常掉线、延迟波动大的连接，体验可能反而不如速度中等但持续稳定的连接。这两者的区别，我们在[机场稳定性怎么看？延迟、丢包和稳定性有什么区别](/knowledge/airport-stability-latency-packet-loss/)里做了具体说明，建议结合起来一起判断。
 
-速度表现也和节点、线路质量直接相关，可以回顾[节点和线路到底是什么](/knowledge/what-are-nodes-and-routes/)来理解背后的原因。如果你想直接查看已收录服务商的测试信息，可以参考[机场评测](/reviews/)和[机场导航](/airports/)。
+速度表现也和节点、线路质量直接相关，可以回顾[节点和线路到底是什么](/knowledge/what-are-nodes-and-routes/)来理解背后的原因。如果你想直接查看已收录服务商的测试信息，可以参考[机场评测](/airports/)和[机场导航](/airports/)。
 
 看懂这些概念后，实际比较不同机场的测速结果时还有一些需要注意的地方，可以参考[机场速度怎么比？不同机场测速结果怎么比较](/knowledge/airport-speed-comparison/)。

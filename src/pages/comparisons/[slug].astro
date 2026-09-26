@@ -1,141 +1,58 @@
 ---
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import { isDemoEntry } from '../../data/utils/demo-filter';
-import { getPublishableProviders } from '../../data/utils/provider-publish-gate';
+import PageShell from '../../components/PageShell.astro';
+import Faq from '../../components/Faq.astro';
+import { PAIRS } from '../../data/brands/pairs';
+import { BRANDS, brandHref, has, priceLine, srcLabel, AFF_REL } from '../../data/brands';
 import { resolveCanonicalUrl } from '../../config/seo';
+import { siteConfig } from '../../config/site';
 
 export async function getStaticPaths() {
-  const [comparisons, publishableProviders] = await Promise.all([
-    getCollection('comparisons', ({ id }) => !isDemoEntry(id)),
-    getPublishableProviders(),
-  ]);
-
-  // 只有 A、B 两个 Provider 都通过发布门槛，对比页面才生成，避免链接到未发布的 Provider。
-  return comparisons
-    .map((comparison) => {
-      const providerA = publishableProviders.find((p) => p.id === comparison.data.providerA.id);
-      const providerB = publishableProviders.find((p) => p.id === comparison.data.providerB.id);
-      if (!providerA || !providerB) return null;
-      return { params: { slug: comparison.id }, props: { comparison, providerA, providerB } };
-    })
-    .filter((entry): entry is NonNullable<typeof entry> => entry !== null);
+  return PAIRS.map((p) => ({ params: { slug: p.slug }, props: { pair: p } }));
 }
 
-interface Props {
-  comparison: CollectionEntry<'comparisons'>;
-  providerA: CollectionEntry<'providers'>;
-  providerB: CollectionEntry<'providers'>;
-}
-
-const { comparison, providerA, providerB } = Astro.props;
-const snapshotA = comparison.data.dataSnapshot.providerA;
-const snapshotB = comparison.data.dataSnapshot.providerB;
-
-function formatDate(value: Date | string): string {
-  const date = typeof value === 'string' ? new Date(value) : value;
-  return date.toISOString().slice(0, 10);
-}
-
-const updatedAtLabel = formatDate(comparison.data.updatedAt);
-const capturedAtLabel = formatDate(comparison.data.dataSnapshot.capturedAt);
-
-const criterionLabel: Record<string, string> = {
-  pricing: '价格',
-  stability: '稳定性',
-  speed: '速度',
-  latency: '延迟',
-  protocols: '协议',
-};
-
-const rows = [
-  { label: '价格', a: snapshotA.pricing, b: snapshotB.pricing },
-  { label: '速度', a: snapshotA.speed, b: snapshotB.speed },
-  { label: '稳定性', a: snapshotA.stability, b: snapshotB.stability },
-  { label: '延迟', a: snapshotA.latency, b: snapshotB.latency },
-  { label: '协议', a: snapshotA.protocols?.join('、'), b: snapshotB.protocols?.join('、') },
-].filter((row) => row.a || row.b);
-
-const title = `${snapshotA.name} vs ${snapshotB.name}：机场代理对比｜火箭机场`;
-const description = `对比 ${snapshotA.name} 与 ${snapshotB.name} 在${comparison.data.comparisonCriteria
-  .map((key) => criterionLabel[key] ?? key)
-  .join('、')}等方面目前可查的公开资料，并说明信息来源与差异。`;
-const canonicalUrl = resolveCanonicalUrl(`/comparisons/${comparison.id}/`);
-
-const webPageJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  name: title,
-  description,
-  url: canonicalUrl,
-};
+const { pair } = Astro.props;
+const A = BRANDS[pair.a]!;
+const B = BRANDS[pair.b]!;
+const rows: [string, (x: typeof A) => string][] = [
+  ['价格与口径', (x) => priceLine(x)],
+  ['线路', (x) => (has(x.line) ? x.line : '暂无资料')],
+  ['协议', (x) => (has(x.protocols) ? x.protocols : '暂无资料')],
+  ['节点地区', (x) => (has(x.nodes) ? x.nodes : '暂无资料')],
+  ['客户端', (x) => (has(x.client) ? x.client : '暂无资料')],
+  ['资料性质', (x) => srcLabel(x)],
+  ['适合谁', (x) => x.fit],
+  ['要注意', (x) => x.caution],
+];
+const title = `${A.name} vs ${B.name}：价格、线路与资料来源对比`;
+const desc = `${A.name}和${B.name}资料对比：价格口径、线路、协议、节点与资料性质并排整理，${pair.angle}；本站没有测速数据，价格以官网为准。`;
+const faq = [
+  { q: `${A.name}和${B.name}哪个更好？`, a: '本站不做评分和测速排名。两家的资料完整度不同，先看上表的资料性质，再各买最低档包月，在自己的晚高峰实测后再决定。' },
+  { q: '价格能直接比吗？', a: `不能直接比：${A.name}是“${priceLine(A)}”，${B.name}是“${priceLine(B)}”，口径不同。先对齐口径再比较。` },
+];
+const path = `/comparisons/${pair.slug}/`;
+const ld = { '@context': 'https://schema.org', '@type': 'Article', headline: title, description: desc, dateModified: '2026-09-26', author: { '@type': 'Organization', name: siteConfig.author.name }, url: resolveCanonicalUrl(path) };
 ---
 
-<BaseLayout title={title} description={description}>
-  <Breadcrumbs
-    items={[
-      { name: '机场对比', href: '/comparisons/' },
-      { name: `${snapshotA.name} vs ${snapshotB.name}`, href: `/comparisons/${comparison.id}/` },
-    ]}
-  />
-
-  <h1>{snapshotA.name} vs {snapshotB.name}：机场代理对比</h1>
-  <p class="article-meta">数据快照时间：{capturedAtLabel} · 更新于 {updatedAtLabel}</p>
-  <p>
-    以下对比基于公开的第三方资料整理，不是本站实测结果，具体来源和差异说明可以分别查看
-    <a href={`/airports/${providerA.data.slug}/`}>{snapshotA.name} 的服务商页面</a>
-    与 <a href={`/airports/${providerB.data.slug}/`}>{snapshotB.name} 的服务商页面</a>。
-  </p>
-
-  <h2>对比维度</h2>
-  {
-    rows.length > 0 ? (
-      <table>
-        <thead>
-          <tr>
-            <th>维度</th>
-            <th>{snapshotA.name}</th>
-            <th>{snapshotB.name}</th>
-          </tr>
-        </thead>
+<BaseLayout title={title} description={desc} ogType="article" modifiedTime="2026-09-26">
+  <PageShell h1={`${A.name} vs ${B.name}`} crumbs={[{ name: '机场对比', href: '/comparisons/' }, { name: `${A.name} vs ${B.name}`, href: path }]} lead={pair.angle} meta={['资料对照', '更新 2026-09-26', '不含测速与评分']}>
+    <div class="keybox"><span class="keybox-label">先看结论</span><p>这是资料对照，不是测速对比。看清每一项的<strong>资料性质</strong>，再用小额包月自己验证。</p></div>
+    <div class="tbl-wrap">
+      <table class="tbl wide">
+        <thead><tr><th>项目</th><th>{brandHref(A) ? <a href={brandHref(A)!}>{A.name}</a> : A.name}</th><th>{brandHref(B) ? <a href={brandHref(B)!}>{B.name}</a> : B.name}</th></tr></thead>
         <tbody>
-          {rows.map((row) => (
-            <tr>
-              <td>{row.label}</td>
-              <td>{row.a ?? '暂无资料'}</td>
-              <td>{row.b ?? '暂无资料'}</td>
-            </tr>
-          ))}
+          {rows.map(([k, f]) => <tr><th scope="row">{k}</th><td>{f(A)}</td><td>{f(B)}</td></tr>)}
+          <tr><th scope="row">官网</th><td><a href={A.aff} target="_blank" rel={AFF_REL}>{A.name}官网入口</a></td><td><a href={B.aff} target="_blank" rel={AFF_REL}>{B.name}官网入口</a></td></tr>
         </tbody>
       </table>
-    ) : (
-      <p>目前没有可展示的对比数据。</p>
-    )
-  }
-
-  <h2>编辑分析</h2>
-  <div class="prose">
-    <p>{comparison.data.editorialAnalysis}</p>
-  </div>
-
-  <h2>结论</h2>
-  <div class="prose">
-    <p>{comparison.data.conclusion}</p>
-  </div>
-
-  <p>你可能还想看：</p>
-  <ul class="quick-links">
-    <li>
-      <a href={`/airports/${providerA.data.slug}/`}>查看 {snapshotA.name} 详情</a>
-    </li>
-    <li>
-      <a href={`/airports/${providerB.data.slug}/`}>查看 {snapshotB.name} 详情</a>
-    </li>
-    <li><a href="/comparisons/">查看更多机场对比</a></li>
-    <li><a href="/rankings/">查看机场推荐</a></li>
-  </ul>
-
-  <script type="application/ld+json" set:html={JSON.stringify(webPageJsonLd)} />
+    </div>
+    <h2>怎么用这张表选</h2>
+    <ol class="lst">
+      <li>先看“资料性质”：官方页面资料比单一第三方来源更可靠，但都不等于实测。</li>
+      <li>再看价格口径，别把包月起步价和年付折算价放在一起比。</li>
+      <li>两家各买最低档包月，晚高峰连测几天，用 <a href="/tools/latency-loss/">延迟丢包计算器</a> 整理结果。</li>
+    </ol>
+    <Faq items={faq} />
+  </PageShell>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
 </BaseLayout>

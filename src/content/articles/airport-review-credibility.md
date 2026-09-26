@@ -44,7 +44,7 @@ relatedTopics: ["airport-test-data-explained", "how-to-choose-an-airport-proxy"]
 
 ## 火箭机场的评测方法
 
-我们在[机场评测](/reviews/)页面公开说明了评测时如何区分官方公开信息、本站测试与编辑分析，这也是本文提到的"信息来源区分"原则的具体实践。如果你想系统了解整个选择流程，可以回顾[机场代理怎么选？新手避坑指南](/knowledge/how-to-choose-an-airport-proxy/)。
+我们在[机场评测](/airports/)页面公开说明了评测时如何区分官方公开信息、本站测试与编辑分析，这也是本文提到的"信息来源区分"原则的具体实践。如果你想系统了解整个选择流程，可以回顾[机场代理怎么选？新手避坑指南](/knowledge/how-to-choose-an-airport-proxy/)。
 
 评测里经常出现的流媒体解锁、AI 服务可用性这类描述，同样需要用本文提到的方法交叉核实，具体可以参考[机场流媒体解锁是不是真的](/knowledge/airport-streaming-unlock-explained/)。如果评测者拿不出具体依据就下结论，也可能是判断服务商是否值得信任时需要警惕的信号之一，这一点和[机场跑路了怎么办](/knowledge/what-if-airport-shuts-down/)里提到的风险判断逻辑是相通的。
 

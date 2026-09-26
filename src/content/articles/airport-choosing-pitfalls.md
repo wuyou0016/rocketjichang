@@ -46,6 +46,6 @@ relatedTopics: ["how-to-choose-an-airport-proxy", "airport-pricing-explained", "
 
 - [机场导航](/airports/)：浏览服务商基础信息
 - [机场推荐](/rankings/)：按不同维度查看推荐榜单
-- [机场评测](/reviews/)：了解评测方法与已发布的评测内容
+- [机场评测](/airports/)：了解评测方法与已发布的评测内容
 
 选择机场代理没有一劳永逸的标准答案，随着自己需求的变化，值得定期回顾自己的判断依据是否还成立。除了以上判断维度，购买时也建议留意服务商可能出现的经营风险，具体可以参考[机场跑路了怎么办？购买前如何判断和降低风险](/knowledge/what-if-airport-shuts-down/)。

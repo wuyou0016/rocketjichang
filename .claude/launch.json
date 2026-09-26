@@ -1,12 +1,6 @@
 {
   "version": "0.0.1",
   "configurations": [
-    {
-      "name": "rocketjichang-dev",
-      "runtimeExecutable": "cmd.exe",
-      "runtimeArgs": ["/c", "set PATH=C:\\Program Files\\nodejs;%PATH% && npm run dev"],
-      "port": 4321,
-      "autoPort": true
-    }
+    { "name": "rocket-dev", "runtimeExecutable": "npx", "runtimeArgs": ["astro", "dev", "--port", "4331"], "port": 4331 }
   ]
 }

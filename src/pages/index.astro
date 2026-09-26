@@ -1,110 +1,155 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HomeHero from '../components/HomeHero.astro';
-import StatsBar from '../components/StatsBar.astro';
-import Top6Grid from '../components/Top6Grid.astro';
+import BrandCard from '../components/BrandCard.astro';
+import BrandTable from '../components/BrandTable.astro';
+import Faq from '../components/Faq.astro';
+import { BRANDS, PICKS_ORDER, WUYOU_PLANS, AFF_REL } from '../data/brands';
+import { getArticleHref } from '../data/utils/article-routing';
 import { isDemoEntry } from '../data/utils/demo-filter';
-import { getPublishableProviders } from '../data/utils/provider-publish-gate';
-import { getRankingPageData } from '../data/utils/ranking-entries';
 import { resolveCanonicalUrl } from '../config/seo';
 
-// 首页展示"当前收录的推荐榜单数量"用的是真实存在的榜单页面数量（综合 + 三个专项），
-// 和 /rankings/ 首页用的是同一份 subRankings 结构，不是凭空写的数字。
-const RANKING_PAGE_COUNT = 4; // overall + best-value + most-stable + for-beginners
+const articles = (await getCollection('articles', ({ id }) => !isDemoEntry(id))).sort(
+  (a, b) => b.data.updatedAt.getTime() - a.data.updatedAt.getTime(),
+);
+const latest = articles.filter((a) => a.data.type !== 'news').slice(0, 6);
+const picks = PICKS_ORDER.slice(0, 7).map((id) => BRANDS[id]!);
+const w = BRANDS.wuyou!;
 
-const [articles, publishableProviders, { entries: overallEntries }] = await Promise.all([
-  getCollection('articles', ({ id }) => !isDemoEntry(id)),
-  getPublishableProviders(),
-  getRankingPageData('overall'),
-]);
+const tiles: [string, string, string, string][] = [
+  ['AIRPORT', '机场导航', '/airports/', '价格 · 线路 · 协议 · 节点资料'],
+  ['RANK', '机场推荐榜', '/rankings/', '综合、性价比、稳定、新手'],
+  ['VPN', 'VPN 推荐', '/vpn/', '怎么选、和机场的区别'],
+  ['LADDER', '梯子推荐', '/ladder/', '梯子哪个好，先看形态'],
+  ['AI', 'AI 场景', '/ai-airport/', 'ChatGPT · Claude · Gemini'],
+  ['STREAM', '流媒体场景', '/streaming-airport/', 'Netflix · YouTube · Disney+'],
+  ['CLIENT', '客户端教程', '/setup-guides/', 'Clash · 小火箭 · v2rayN · sing-box'],
+  ['NODE', '协议与节点', '/protocols/', '协议怎么选，节点怎么走'],
+];
 
-const top6Entries = overallEntries.slice(0, 7);
+const faq = [
+  { q: '火箭机场是做什么的？', a: '火箭机场是机场代理、VPN、梯子的资料库：整理价格、线路、协议、节点，逐条标注来源，并教你自己测速、自己验证。本站不发没有依据的测速排名。' },
+  { q: '为什么首推无忧链接？', a: '因为它的三档套餐、线路、协议和节点都写在官方页面上，资料在收录品牌里最完整。排序不是测速结果；[资料与测试说明](/method/)里写了本站怎么整理资料。' },
+  { q: '机场、VPN 和梯子有什么区别？', a: '梯子是口语统称；VPN 通常是官方客户端一键连接；机场是“节点 + 订阅链接”配第三方客户端。详见 [VPN 和机场的区别](/knowledge/airport-vs-vpn/)。' },
+  { q: '第一次买机场怎么买最稳妥？', a: '先买最低档的包月，晚高峰连测几天，再决定是否续费或换周期。步骤见 [新手完整教程](/tutorials/airport-beginner-full-guide/)。' },
+  { q: '价格和活动以哪里为准？', a: '以官网结算页为准。本站价格来自公开资料与站长确认的口径，会变化，并标明口径（包月起步、年付折算等）。' },
+];
 
-// TOP6 是首页可见内容里唯一的真实排名列表，ItemList 里只放名称+链接，
-// 不带任何评分/评级字段——当前数据模型里没有可靠的客观评分，写了就是虚构。
-const top6ItemListJsonLd =
-  top6Entries.length > 0
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'ItemList',
-        name: '2026机场推荐 综合榜 TOP 7',
-        itemListElement: top6Entries.map((entry, index) => ({
-          '@type': 'ListItem',
-          position: index + 1,
-          name: entry.providerName,
-          url: resolveCanonicalUrl(`/airports/${entry.providerSlug}/`),
-        })),
-      }
-    : null;
+const itemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: '火箭机场机场精选',
+  itemListElement: picks.map((b, i) => ({ '@type': 'ListItem', position: i + 1, name: b.name, url: resolveCanonicalUrl(b.slug ? `/airports/${b.slug}/` : '/airport-picks/') })),
+};
 ---
 
 <BaseLayout
-  title="2026机场推荐｜火箭机场 - 稳定与性价比排行导航"
-  description="火箭机场整理2026机场推荐与导航信息，覆盖性价比机场、稳定线路与新手选购要点。综合榜每周更新，结合公开资料与使用体验，帮你更快判断不同机场代理是否适合自己。"
-  keywords={['机场推荐', '2026机场推荐', '性价比机场', '机场导航', '机场代理', '火箭机场']}
+  title="火箭机场｜机场导航、机场推荐与 VPN 梯子选购资料库"
+  description="火箭机场整理机场代理、VPN 与梯子的选购资料：价格、线路、协议、节点逐条标注来源，首推无忧链接，并提供测速方法、客户端教程与 AI、流媒体场景指南。"
+  keywords={['机场推荐', '机场导航', '机场代理', '性价比机场', '2026最稳定的机场', 'VPN推荐', '梯子推荐', '火箭机场']}
 >
-  <HomeHero entries={overallEntries} />
-
-  <div class="container">
-    <StatsBar providerCount={publishableProviders.length} rankingCount={RANKING_PAGE_COUNT} articleCount={articles.length} />
-
-    <section class="section" id="top6">
-      <div class="section__head">
+  <main id="main">
+    <section class="hero">
+      <div class="wrap hero-grid" id="heroGrid">
         <div>
-          <span class="section__eyebrow">综合推荐</span>
-          <h2>TOP 7</h2>
-        </div>
-        <a class="section__more" href="/rankings/">查看机场推荐排行榜 →</a>
-      </div>
-      {
-        top6Entries.length > 0 ? (
-          <Top6Grid entries={top6Entries} />
-        ) : (
-          <div class="empty-state">
-            <p class="empty-state__title">当前暂无符合发布条件的服务商</p>
-            <p>数据不足时我们不会为了凑数而给出排名，等有服务商满足发布门槛后会自动出现在这里。</p>
+          <span class="tag3">ROCKET · AIRPORT DATA HUB</span>
+          <h1>机场怎么选，<em>先看资料，再自己测</em></h1>
+          <p class="lead">
+            火箭机场把机场代理、VPN、梯子的选购资料放在一起：价格、线路、协议、节点逐条标注来源，缺依据的写“暂无”，也不发没有依据的测速排名。再教你用延迟丢包计算器、节点可视化和客户端教程，自己验证一遍。
+          </p>
+          <div class="chips3">
+            <a href="/airports/">机场导航</a><a href="/rankings/">推荐榜</a><a href="/vpn/">VPN</a><a href="/ladder/">梯子</a><a href="/ai-airport/">AI</a><a href="/streaming-airport/">流媒体</a><a href="/setup-guides/">客户端</a>
           </div>
-        )
-      }
-    </section>
-
-    <section class="section">
-      <div class="section__head">
-        <div>
-          <span class="section__eyebrow">继续了解</span>
-          <h2>从这里开始</h2>
+        </div>
+        <div class="scene" id="scene" aria-hidden="true">
+          <svg class="net" viewBox="0 0 420 370" preserveAspectRatio="none">
+            <path d="M60 60 L210 130 L320 250" /><path d="M60 60 L110 230 L210 130" /><path d="M110 230 L320 250" /><path d="M210 130 L360 70" />
+            <circle cx="60" cy="60" r="4" /><circle cx="210" cy="130" r="5" /><circle cx="320" cy="250" r="4" /><circle cx="110" cy="230" r="4" /><circle cx="360" cy="70" r="3" />
+          </svg>
+          <div class="layer l1"><b>机场</b><span>订阅链接 + 节点</span></div>
+          <div class="layer l2"><b>协议</b><span>VLESS · Trojan · Hysteria2</span></div>
+          <div class="layer l3"><b>节点</b><span>香港 · 日本 · 新加坡 · 美国</span></div>
+          <div class="layer l4"><b>自测</b><span>延迟 · 丢包 · 晚高峰</span></div>
         </div>
       </div>
-      <div class="entry-grid">
-        <a class="entry-card" href="/rankings/">
-          <span class="entry-card__title">查看综合推荐</span>
-          <p class="entry-card__description">火箭机场综合推荐榜每周更新，按性价比、稳定性、新手友好等维度整理候选服务商。</p>
-          <span class="entry-card__cta">查看机场推荐排行榜 →</span>
-        </a>
-        <a class="entry-card" href="/airports/">
-          <span class="entry-card__title">机场导航</span>
-          <p class="entry-card__description">浏览已收录的机场代理服务商目录，查看官方信息、测试数据与编辑分析。</p>
-          <span class="entry-card__cta">查看机场导航 →</span>
-        </a>
-        <a class="entry-card" href="/knowledge/what-is-airport-proxy/">
-          <span class="entry-card__title">机场代理基础</span>
-          <p class="entry-card__description">还不了解机场代理是什么？从这篇入门文章开始。</p>
-          <span class="entry-card__cta">阅读基础知识 →</span>
-        </a>
-        <a class="entry-card" href="/tutorials/airport-beginner-full-guide/">
-          <span class="entry-card__title">新手完整教程</span>
-          <p class="entry-card__description">从选择服务商到配置客户端，完整走一遍新手上手流程。</p>
-          <span class="entry-card__cta">查看教程 →</span>
-        </a>
-        <a class="entry-card" href="/troubleshooting/">
-          <span class="entry-card__title">故障排查</span>
-          <p class="entry-card__description">连接失败、速度异常？先查故障排查合集。</p>
-          <span class="entry-card__cta">查看故障排查 →</span>
-        </a>
-      </div>
     </section>
-  </div>
 
-  {top6ItemListJsonLd && <script type="application/ld+json" set:html={JSON.stringify(top6ItemListJsonLd)} />}
+    <div class="wrap home-body">
+      <section class="sec">
+        <h2>全场景入口</h2>
+        <p class="sub">按“你要做什么”选入口，每个入口都告诉你该关注什么，而不是替你下结论。</p>
+        <div class="tiles3">
+          {
+            tiles.map(([code, t, href, d]) => (
+              <a class="t3" href={href}>
+                <i>{code}</i>
+                <b>{t}</b>
+                <span>{d}</span>
+              </a>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="sec" id="picks">
+        <h2>机场精选</h2>
+        <p class="sub">资料相对完整的机场。无忧链接排第一；顺序不是测速名次，每项资料标注来源，价格以官网为准。</p>
+        <div class="bc-list bc-list--3d">
+          {picks.map((b, i) => <BrandCard brand={b} rank={i + 1} top={i === 0} />)}
+        </div>
+        <p class="updated-note"><a href="/airport-picks/">查看全部机场精选与资料对照 →</a></p>
+      </section>
+
+      <section class="sec">
+        <h2>无忧链接三档套餐（官方页面资料）</h2>
+        <p class="sub">首推的原因：套餐、线路、协议、节点写在官方页面上。本站没有测速数据，先买包月小额档，在自己的晚高峰实测。</p>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>档位</th><th>计费</th><th>价格</th></tr></thead>
+            <tbody>
+              {WUYOU_PLANS.map((p) => <tr><th scope="row">{p.name}</th><td>{p.billing.replace('，低至', '')}</td><td>{/低至/.test(p.billing) ? '低至' : '约'} ¥{p.m}/月{p.name === '省心' ? '起' : ''}</td></tr>)}
+            </tbody>
+          </table>
+        </div>
+        <p><a class="btn btn-aff btn-lg" href={w.aff} target="_blank" rel={AFF_REL}>访问无忧链接官网</a></p>
+      </section>
+
+      <section class="sec">
+        <h2>七家并排：价格、线路、协议、节点</h2>
+        <p class="sub">不含测速，不比较流量大小；缺资料的项写“暂无资料”。</p>
+        <BrandTable ids={picks.map((b) => b.id)} cols={['price', 'line', 'protocols', 'nodes', 'src']} />
+      </section>
+
+      <section class="sec">
+        <h2>最近更新的知识与教程</h2>
+        <p class="sub">选购、测速、协议、客户端与排障。</p>
+        <ul class="list-links">
+          {
+            latest.map((a) => (
+              <li>
+                <a href={getArticleHref(a)}>
+                  {a.data.title}
+                  <small>{a.data.description}</small>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="updated-note"><a href="/knowledge/">全部知识库 →</a>　<a href="/tutorials/">全部教程 →</a>　<a href="/troubleshooting/">故障排查 →</a>　<a href="/glossary/">术语表 →</a></p>
+      </section>
+
+      <section class="sec">
+        <h2>自己动手验证</h2>
+        <div class="cards-grid">
+          <a class="card-link" href="/tools/latency-loss/"><i>TOOL</i><b>延迟丢包计算器</b><span>粘贴 ping 结果，算丢包、均值与抖动，只在你的浏览器里运行。</span></a>
+          <a class="card-link" href="/node-visualizer/"><i>VIZ</i><b>节点可视化</b><span>直连和经代理有什么区别，一张示意图看懂。</span></a>
+          <a class="card-link" href="/rankings/most-stable/"><i>METHOD</i><b>最稳定的机场怎么判断</b><span>为什么本站不发稳定排名，以及怎么自己验证。</span></a>
+          <a class="card-link" href="/method/"><i>DATA</i><b>资料与测试说明</b><span>资料分三类、价格看口径、不打分不保证。</span></a>
+        </div>
+      </section>
+
+      <Faq items={faq} title="常见问题" />
+    </div>
+  </main>
+  <script type="application/ld+json" set:html={JSON.stringify(itemList)} />
 </BaseLayout>

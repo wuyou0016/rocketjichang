@@ -1,0 +1,48 @@
+---
+// 延迟 / 丢包计算器：只在浏览器里运行，输入不上传、不保存。
+---
+
+<div class="calc" id="calc">
+  <label for="calcIn"><b>粘贴 ping 结果</b>（每行一个数字，或整段 ping 输出；“请求超时 / Request timed out / timeout”行会计为丢包）</label>
+  <textarea id="calcIn" spellcheck="false" placeholder={'例：\ntime=38ms\ntime=41ms\n请求超时\ntime=39ms'}>time=38ms
+time=41ms
+time=36ms
+请求超时
+time=44ms
+time=39ms
+time=52ms
+time=37ms</textarea>
+  <div class="calc-btns"><button type="button" id="calcRun">计算</button><button type="button" class="ghost" id="calcClear">清空</button></div>
+  <div class="calc-out" id="calcOut" aria-live="polite"></div>
+  <p class="calc-msg" id="calcMsg">上面是示例输入（不是任何机场的实测数据），把它换成你自己的 ping 结果再计算。</p>
+</div>
+<script is:inline>
+  (function () {
+    var inp = document.getElementById('calcIn'), out = document.getElementById('calcOut'), msg = document.getElementById('calcMsg');
+    if (!inp) return;
+    function run() {
+      var lines = inp.value.split(/\r?\n/), vals = [], lost = 0;
+      lines.forEach(function (l) {
+        l = l.trim(); if (!l) return;
+        if (/超时|timed out|timeout|lost|无法访问|unreachable/i.test(l)) { lost++; return; }
+        var m = l.match(/(?:time|时间)\s*[=<]\s*([\d.]+)\s*ms/i) || l.match(/^([\d.]+)$/) || l.match(/([\d.]+)\s*ms/i);
+        if (m) vals.push(parseFloat(m[1]));
+      });
+      var n = vals.length + lost;
+      if (!n) { out.innerHTML = ''; msg.textContent = '没有识别到有效的行，请粘贴 ping 输出或每行一个毫秒数。'; return; }
+      var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals), avg = vals.reduce(function (a, b) { return a + b; }, 0) / (vals.length || 1);
+      var s = vals.slice().sort(function (a, b) { return a - b; }), med = s.length ? (s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2) : 0;
+      var j = 0; for (var i = 1; i < vals.length; i++) j += Math.abs(vals[i] - vals[i - 1]); j = vals.length > 1 ? j / (vals.length - 1) : 0;
+      var loss = lost / n * 100;
+      function box(k, v) { return '<div><small>' + k + '</small><b>' + v + '</b></div>'; }
+      out.innerHTML = box('SAMPLES', n) + box('LOSS', loss.toFixed(1) + '%') + box('MIN / AVG', vals.length ? min.toFixed(0) + ' / ' + avg.toFixed(0) + ' ms' : '-') + box('MEDIAN / MAX', vals.length ? med.toFixed(0) + ' / ' + max.toFixed(0) + ' ms' : '-') + box('JITTER', j.toFixed(1) + ' ms');
+      var t = []; if (n < 20) t.push('样本偏少（' + n + ' 个），结果仅供参考。');
+      if (loss >= 2) t.push('丢包偏高，可能影响视频与游戏，建议换时段或节点再测。'); else if (loss > 0) t.push('有少量丢包。');
+      t.push(j < 5 ? '抖动较小。' : j < 15 ? '抖动中等。' : '抖动较大，实时应用会有感觉。');
+      msg.textContent = t.join(' ') + ' 抖动 = 相邻两次延迟之差的平均绝对值；判断语只是通用经验参考，建议至少 20 个样本并在不同时段各测一组。';
+    }
+    document.getElementById('calcRun').addEventListener('click', run);
+    document.getElementById('calcClear').addEventListener('click', function () { inp.value = ''; out.innerHTML = ''; msg.textContent = '已清空。粘贴你自己的 ping 结果后点“计算”。'; inp.focus(); });
+    run();
+  })();
+</script>

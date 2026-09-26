@@ -1,0 +1,45 @@
+---
+// 节点可视化：示意“直连”与“经代理”两种路径。示意图，不代表实测路径或速度。
+---
+
+<div class="viz" id="viz" data-mode="proxy">
+  <div class="vbtns" role="group" aria-label="路径模式">
+    <button type="button" data-mode-btn="direct" aria-pressed="false">直连</button>
+    <button type="button" data-mode-btn="proxy" aria-pressed="true">经代理</button>
+  </div>
+  <div class="vbtns" role="group" aria-label="节点地区">
+    <button type="button" data-region-btn aria-pressed="false">香港</button>
+    <button type="button" data-region-btn aria-pressed="false">日本</button>
+    <button type="button" data-region-btn aria-pressed="false">新加坡</button>
+    <button type="button" data-region-btn aria-pressed="false">美国</button>
+  </div>
+  <div class="viz-row">
+    <div class="vn"><b>你的设备</b><small>浏览器 / 客户端</small></div>
+    <div class="vl dr"></div>
+    <div class="vn px" id="vizNode"><b>代理节点</b><small>由订阅提供</small></div>
+    <div class="vl px"></div>
+    <div class="vn"><b>目标网站</b><small>ChatGPT / 视频 / 网页</small></div>
+  </div>
+  <p class="calc-msg" id="vizOut">经代理：设备把流量交给客户端，由客户端选定的节点转发到目标网站。这是示意图，不代表实测路径或速度。</p>
+</div>
+<script is:inline>
+  (function () {
+    var viz = document.getElementById('viz');
+    if (!viz) return;
+    var mode = document.querySelectorAll('[data-mode-btn]'), reg = document.querySelectorAll('[data-region-btn]'), out = document.getElementById('vizOut');
+    var TXT = { direct: '直连：设备直接访问目标网站，不经过节点。', proxy: '经代理：设备把流量交给客户端，由客户端选定的节点转发到目标网站。' };
+    function setMode(m) {
+      viz.setAttribute('data-mode', m);
+      mode.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-mode-btn') === m ? 'true' : 'false'); });
+      out.textContent = TXT[m] + ' 这是示意图，不代表实测路径或速度。';
+    }
+    mode.forEach(function (b) { b.addEventListener('click', function () { setMode(b.getAttribute('data-mode-btn')); }); });
+    reg.forEach(function (b) {
+      b.addEventListener('click', function () {
+        reg.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        document.getElementById('vizNode').querySelector('b').textContent = b.textContent + ' 节点';
+        setMode('proxy');
+      });
+    });
+  })();
+</script>

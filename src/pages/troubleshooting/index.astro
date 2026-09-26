@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PageShell from '../../components/PageShell.astro';
 import EntryCard from '../../components/EntryCard.astro';
 import { isDemoEntry } from '../../data/utils/demo-filter';
 import { getArticleHref } from '../../data/utils/article-routing';
@@ -48,9 +48,7 @@ const otherCards = troubleshootingArticles
   title="机场故障排查｜连接、速度与节点问题｜火箭机场"
   description="连接失败、速度异常、延迟过高等机场代理常见问题的排查思路。"
 >
-  <Breadcrumbs items={[{ name: '故障排查', href: '/troubleshooting/' }]} />
-
-  <h1>机场故障排查｜连接、速度与节点问题</h1>
+  <PageShell h1="机场故障排查｜连接、速度与节点问题" crumbs={[{ name: '故障排查', href: '/troubleshooting/' }]}>
   <p>
     这里收录机场代理使用过程中常见问题的排查思路，按问题类型分类展示——目前已发布的内容集中在连接问题，速度、节点、订阅相关的排查文章会陆续补充。
   </p>
@@ -90,4 +88,5 @@ const otherCards = troubleshootingArticles
     <li><a href="/knowledge/">了解机场代理知识</a></li>
     <li><a href="/tutorials/">机场教程</a></li>
   </ul>
+</PageShell>
 </BaseLayout>

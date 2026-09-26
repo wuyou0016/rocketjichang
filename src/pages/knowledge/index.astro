@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PageShell from '../../components/PageShell.astro';
 import EntryCard from '../../components/EntryCard.astro';
 import { isDemoEntry } from '../../data/utils/demo-filter';
 import { getArticleHref } from '../../data/utils/article-routing';
@@ -85,9 +85,7 @@ const otherCards = knowledgeArticles
   title="机场代理知识｜从基础概念到进阶理解｜火箭机场"
   description="从机场代理基础概念到协议、网络等进阶知识的系统性说明。"
 >
-  <Breadcrumbs items={[{ name: '知识库', href: '/knowledge/' }]} />
-
-  <h1>机场代理知识｜从基础概念到进阶理解</h1>
+  <PageShell h1="机场代理知识｜从基础概念到进阶理解" crumbs={[{ name: '知识库', href: '/knowledge/' }]}>
   <p>这里是火箭机场的机场代理知识体系入口，按主题组织，帮助你从基础概念逐步了解到进阶内容。</p>
 
   <h2>机场代理是什么</h2>
@@ -132,4 +130,5 @@ const otherCards = knowledgeArticles
     <li><a href="/troubleshooting/">机场故障排查</a></li>
     <li><a href="/glossary/">术语表</a></li>
   </ul>
+</PageShell>
 </BaseLayout>

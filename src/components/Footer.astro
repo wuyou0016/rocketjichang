@@ -1,102 +1,52 @@
 ---
 import { siteConfig } from '../config/site';
-
-// 只链接已在 Information Architecture v1.1 中确定的核心结构。
-// About/Contact/Privacy/Terms 尚无对应内容规划，暂不放入，避免死链。
-const coreLinks = [
-  { label: '首页', href: '/' },
-  { label: '机场导航', href: '/airports/' },
-  { label: '机场推荐', href: '/rankings/' },
-  { label: '知识库', href: '/knowledge/' },
-  { label: '教程', href: '/tutorials/' },
-  { label: '故障排查', href: '/troubleshooting/' },
-  { label: '机场评测', href: '/reviews/' },
-];
-
-// 核心主题：对应站内最重要的几个 SEO 落点，直接指向各自的 Landing Page，
-// 不制造新的关键词竞争页面。
-const topicLinks = [
-  { label: '机场代理', href: '/knowledge/what-is-airport-proxy/' },
-  { label: '机场推荐', href: '/rankings/' },
-  { label: '性价比机场', href: '/rankings/best-value/' },
-  { label: '机场稳定性', href: '/rankings/most-stable/' },
-  { label: '机场新手教程', href: '/tutorials/airport-beginner-full-guide/' },
-];
-
-const friendLinks = [
-  { label: 'ivpn', href: 'https://ivpn.xyz' },
-  { label: 'i机场', href: 'https://ijichang.com' },
-  { label: '机场TJ', href: 'https://jichangtj.net' },
-  { label: '机场E家', href: 'https://ejichang.com' },
-  { label: '机场宝', href: 'https://jichangbao.com' },
-];
-
-const telegramUrl = 'https://t.me/wyolink';
-
-const currentYear = new Date().getFullYear();
 ---
 
-<footer class="site-footer">
-  <div class="container site-footer__inner">
-    <div>
-      <h2>{siteConfig.brandName}</h2>
-      <p>{siteConfig.description}</p>
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <h2>{siteConfig.brandName}</h2>
+        <p>机场代理、VPN、梯子的资料库：价格、线路、协议、节点逐条标注来源，没有依据的测速、解锁与稳定率一律不写，并教你自己验证。</p>
+      </div>
+      <div>
+        <h2>找机场</h2>
+        <ul>
+          <li><a href="/airports/">机场导航</a></li>
+          <li><a href="/rankings/">机场推荐榜</a></li>
+          <li><a href="/rankings/best-value/">性价比机场</a></li>
+          <li><a href="/rankings/most-stable/">最稳定的机场怎么判断</a></li>
+          <li><a href="/comparisons/">机场对比</a></li>
+          <li><a href="/airport-picks/">机场精选</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>场景与知识</h2>
+        <ul>
+          <li><a href="/vpn/">VPN</a></li>
+          <li><a href="/ladder/">梯子</a></li>
+          <li><a href="/ai-airport/">AI 场景</a></li>
+          <li><a href="/streaming-airport/">流媒体场景</a></li>
+          <li><a href="/setup-guides/">客户端教程</a></li>
+          <li><a href="/knowledge/">知识库</a></li>
+          <li><a href="/glossary/">术语表</a></li>
+          <li><a href="/troubleshooting/">故障排查</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>关于本站</h2>
+        <ul>
+          <li><a href="/about/">关于火箭机场</a></li>
+          <li><a href="/method/">资料与测试说明</a></li>
+          <li><a href="/tools/latency-loss/">延迟丢包计算器</a></li>
+          <li><a href="/faq/">常见问题</a></li>
+          <li><a href="/disclosure/">推广披露</a></li>
+          <li><a href="/disclaimer/">免责声明</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <h2>主要导航</h2>
-      <ul>
-        {
-          coreLinks.map((item) => (
-            <li>
-              <a href={item.href}>{item.label}</a>
-            </li>
-          ))
-        }
-      </ul>
+    <div class="ft-bot foot-disc">
+      本站含联盟推广链接，通过链接订阅时本站可能获得佣金，你的支付金额不变。价格与活动以官网结算页为准；请遵守你所在地区的法律法规。© 2026 {siteConfig.brandName}（rocketjichang.com）
     </div>
-    <div>
-      <h2>核心主题</h2>
-      <ul>
-        {
-          topicLinks.map((item) => (
-            <li>
-              <a href={item.href}>{item.label}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-    <div>
-      <h2>友情链接</h2>
-      <ul>
-        {
-          friendLinks.map((item) => (
-            <li>
-              <a href={item.href} target="_blank" rel="noopener">
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </div>
-  <div class="container site-footer__note">
-    <h2>网站说明</h2>
-    <p>本站提供机场信息整理、使用知识、测试数据与编辑推荐。不同来源的数据会明确标注来源类型（官方公开信息、第三方资料、本站实测、编辑观点），不会混在一起呈现。</p>
-  </div>
-  <div class="container site-footer__bottom">
-    <p>&copy; {currentYear} {siteConfig.brandName}（{siteConfig.brandNameEn}）</p>
-    <span class="site-footer__contact">
-      <span class="site-footer__contact-label">联系我们</span>
-      <a href={telegramUrl} target="_blank" rel="noopener" class="footer-icon-btn" aria-label="联系我们（Telegram）">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path
-          d="M21.05 3.64 2.98 10.7c-1.23.49-1.23 1.18-.22 1.49l4.63 1.45 1.79 5.6c.22.6.38.84.78.84.4 0 .58-.18.8-.4l1.93-1.87 4 2.96c.74.41 1.27.2 1.46-.68l2.64-12.5c.28-1.15-.42-1.66-1.79-1.15Zm-11.6 9.32-1.7-5.34 9.9-6.26c.47-.28.9-.13.54.18l-8.74 11.42Z"
-          fill="currentColor"
-        />
-      </svg>
-      </a>
-    </span>
   </div>
 </footer>

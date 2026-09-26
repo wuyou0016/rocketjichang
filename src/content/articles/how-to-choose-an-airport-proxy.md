@@ -56,7 +56,7 @@ relatedTopics: ["what-is-airport-proxy", "airport-proxy-protocols-explained", "w
 | 实测数据 | 有明确测试方法、时间、环境的测试结果 | 相对客观，但也要看测试条件是否具有代表性 |
 | 编辑观点/结论 | 综合以上信息形成的判断 | 是一种参考意见，不是绝对结论 |
 
-火箭机场的[机场评测](/reviews/)和[机场导航](/airports/)在展示 Provider 信息时，也是按照这个逻辑对不同来源的数据分别标注，方便你自己判断。如何判断一篇评测本身是否可信，可以参考[机场评测怎么看](/knowledge/airport-review-credibility/)。
+火箭机场的[机场评测](/airports/)和[机场导航](/airports/)在展示 Provider 信息时，也是按照这个逻辑对不同来源的数据分别标注，方便你自己判断。如何判断一篇评测本身是否可信，可以参考[机场评测怎么看](/knowledge/airport-review-credibility/)。
 
 ## 建议的选择流程
 

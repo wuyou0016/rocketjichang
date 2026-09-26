@@ -3,3 +3,5 @@
 # @astrojs/sitemap 只生成 sitemap-index.xml，不生成 sitemap.xml，但后者是最常见的
 # 默认猜测路径，不重定向会 404。
 /sitemap.xml /sitemap-index.xml 301
+/reviews/ /airports/ 301
+/reviews/* /airports/ 301

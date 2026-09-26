@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PageShell from '../../components/PageShell.astro';
 import { isDemoEntry } from '../../data/utils/demo-filter';
 
 const terms = await getCollection('glossary', ({ id }) => !isDemoEntry(id));
@@ -11,9 +11,7 @@ const terms = await getCollection('glossary', ({ id }) => !isDemoEntry(id));
   title="机场代理术语表｜常见概念与名词解释｜火箭机场"
   description="机场代理相关术语与名词的解释，帮助你看懂技术概念。"
 >
-  <Breadcrumbs items={[{ name: '术语表', href: '/glossary/' }]} />
-
-  <h1>机场代理术语表｜常见概念与名词解释</h1>
+  <PageShell h1="机场代理术语表｜常见概念与名词解释" crumbs={[{ name: '术语表', href: '/glossary/' }]}>
   <p>这里收录机场代理相关的常见术语与名词解释。</p>
 
   <h2>已收录的术语</h2>
@@ -35,4 +33,5 @@ const terms = await getCollection('glossary', ({ id }) => !isDemoEntry(id));
   <ul class="quick-links">
     <li><a href="/knowledge/">了解机场代理知识</a></li>
   </ul>
+</PageShell>
 </BaseLayout>

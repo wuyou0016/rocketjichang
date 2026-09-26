@@ -43,15 +43,16 @@ const organizationJsonLd = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#060814" />
     <script is:inline>
-      // 在首次绘制前设置 data-theme，避免切换主题时出现刷新闪烁（FOUC）。
-      // 优先级：用户在本站保存过的选择 > 系统颜色偏好。纯内联、同步执行，不依赖外部脚本。
+      // 首次绘制前设置 data-theme，避免闪烁。优先级：本站保存的选择 > 默认深色。
       (function () {
         try {
-          var stored = localStorage.getItem('rj-theme');
-          var theme = stored === 'light' || stored === 'dark' ? stored : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-          document.documentElement.setAttribute('data-theme', theme);
-        } catch (e) {}
+          var s = localStorage.getItem('rj-theme');
+          document.documentElement.setAttribute('data-theme', s === 'light' || s === 'dark' ? s : 'dark');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
       })();
     </script>
     <SEOHead
@@ -67,20 +68,72 @@ const organizationJsonLd = {
     />
     <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
-    <script is:inline type="text/javascript">
-      (function (c, l, a, r, i, t, y) {
-        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
-        t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
-        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-      })(window, document, 'clarity', 'script', 'y5nptxq5kc');
-    </script>
     <Analytics />
   </head>
   <body>
     <Header />
-    <main class="container">
-      <slot />
-    </main>
+    <slot />
     <Footer />
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        var tb = document.getElementById('themeBtn');
+        function sync() { if (tb) tb.setAttribute('aria-pressed', root.getAttribute('data-theme') === 'dark' ? 'true' : 'false'); }
+        if (tb) {
+          tb.addEventListener('click', function () {
+            var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            try { localStorage.setItem('rj-theme', next); } catch (e) {}
+            sync();
+          });
+        }
+        sync();
+        var nb = document.getElementById('navBtn'), nav = document.getElementById('siteNav');
+        if (nb && nav) {
+          nb.addEventListener('click', function () {
+            var open = nav.classList.toggle('open');
+            nb.setAttribute('aria-expanded', open ? 'true' : 'false');
+          });
+        }
+        var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var hv = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+        var sc = document.getElementById('scene'), hg = document.getElementById('heroGrid');
+        if (sc && hg && !rm && hv) {
+          hg.addEventListener('pointermove', function (e) {
+            var r = hg.getBoundingClientRect();
+            var x = (e.clientX - r.left) / (r.width || 1) - 0.5, y = (e.clientY - r.top) / (r.height || 1) - 0.5;
+            sc.style.setProperty('--ry', (x * 16).toFixed(1) + 'deg');
+            sc.style.setProperty('--rx', (-y * 12).toFixed(1) + 'deg');
+          });
+          hg.addEventListener('pointerleave', function () { sc.style.setProperty('--ry', '0deg'); sc.style.setProperty('--rx', '0deg'); });
+        }
+        if (!rm && hv) {
+          [].slice.call(document.querySelectorAll('[data-tilt],.t3')).forEach(function (el) {
+            el.addEventListener('pointermove', function (e) {
+              var r = el.getBoundingClientRect();
+              var x = (e.clientX - r.left) / (r.width || 1) - 0.5, y = (e.clientY - r.top) / (r.height || 1) - 0.5;
+              el.style.setProperty('--ry', (x * 6).toFixed(1) + 'deg');
+              el.style.setProperty('--rx', (-y * 6).toFixed(1) + 'deg');
+            });
+            el.addEventListener('pointerleave', function () { el.style.setProperty('--ry', '0deg'); el.style.setProperty('--rx', '0deg'); });
+          });
+        }
+        var tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+        if (tocLinks.length && 'IntersectionObserver' in window) {
+          var map = {};
+          tocLinks.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+          var io = new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+              if (e.isIntersecting) {
+                tocLinks.forEach(function (a) { a.classList.remove('on'); });
+                var a = map[e.target.id];
+                if (a) a.classList.add('on');
+              }
+            });
+          }, { rootMargin: '0px 0px -70% 0px' });
+          Object.keys(map).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+        }
+      })();
+    </script>
   </body>
 </html>

@@ -26,23 +26,18 @@ const breadcrumbJsonLd = {
 };
 ---
 
-<nav aria-label="Breadcrumb" class="breadcrumbs">
-  <ol>
-    {
-      allItems.map((item, index) => {
-        const isLast = index === allItems.length - 1;
-        return (
-          <li>
-            {isLast ? (
-              <span aria-current="page">{item.name}</span>
-            ) : (
-              <a href={item.href}>{item.name}</a>
-            )}
-          </li>
-        );
-      })
-    }
-  </ol>
+<nav aria-label="Breadcrumb" class="crumbs">
+  {
+    allItems.map((item, index) => {
+      const isLast = index === allItems.length - 1;
+      return (
+        <>
+          {isLast ? <span aria-current="page">{item.name}</span> : <a href={item.href}>{item.name}</a>}
+          {!isLast && <i>/</i>}
+        </>
+      );
+    })
+  }
 </nav>
 
 <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />

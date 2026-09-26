@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PageShell from '../../components/PageShell.astro';
 import EntryCard from '../../components/EntryCard.astro';
 import { isDemoEntry } from '../../data/utils/demo-filter';
 import { getArticleHref } from '../../data/utils/article-routing';
@@ -41,9 +41,7 @@ const otherCards = tutorials.filter((article) => !categorizedIds.has(getArticleH
   title="机场教程｜从入门到进阶的使用指南｜火箭机场"
   description="机场代理相关的客户端配置、节点与线路设置等操作型教程分类。"
 >
-  <Breadcrumbs items={[{ name: '教程', href: '/tutorials/' }]} />
-
-  <h1>机场教程｜从入门到进阶的使用指南</h1>
+  <PageShell h1="机场教程｜从入门到进阶的使用指南" crumbs={[{ name: '教程', href: '/tutorials/' }]}>
   <p>
     这里是"操作型教程"的入口——和知识库偏向解释概念不同，教程更侧重具体怎么操作，围绕客户端安装、订阅导入等实际步骤展开。
   </p>
@@ -83,4 +81,5 @@ const otherCards = tutorials.filter((article) => !categorizedIds.has(getArticleH
     <li><a href="/knowledge/">了解机场代理知识</a></li>
     <li><a href="/troubleshooting/">机场故障排查</a></li>
   </ul>
+</PageShell>
 </BaseLayout>
