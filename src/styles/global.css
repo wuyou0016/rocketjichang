@@ -261,3 +261,5 @@ body::before{content:"";position:fixed;left:-20%;right:-20%;bottom:-38%;height:7
 .quick-links a:hover{border-color:var(--primary);color:var(--primary)}
 .article-meta{font:600 .72rem/1.4 var(--mono);color:var(--muted);letter-spacing:.06em;margin:0 0 12px}
 .empty-state{padding:16px;border:1px dashed var(--line);border-radius:14px;color:var(--muted)}
+
+.ft-friends{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}.ft-friends ul{display:flex;flex-wrap:wrap;gap:6px 18px}
