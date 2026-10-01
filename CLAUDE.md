@@ -300,6 +300,8 @@ URL 必须：简洁、稳定、可读、语义明确、长期可维护。
 
 未来支持：XML Sitemap、IndexNow、canonical、准确 lastmod、清晰内部链接、结构化内容。
 
+**每次部署上线后运行 `npm run indexnow`**，把线上 sitemap 的全部网址推送给 IndexNow；只改了个别页面时可用 `npm run indexnow -- 路径/`（如 `knowledge/xxx/`） 只推这几页。
+
 ---
 
 ## 19. Google

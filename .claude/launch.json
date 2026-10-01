@@ -1,6 +1,10 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "rocket-dev", "runtimeExecutable": "npx", "runtimeArgs": ["astro", "dev", "--port", "4331"], "port": 4331 }
+    { "name": "rocket-dev", "runtimeExecutable": "npx", "runtimeArgs": ["astro", "dev", "--port", "4331"], "port": 4331 },
+    { "name": "jc8-serve", "runtimeExecutable": "node", "runtimeArgs": ["C:/Users/USER/Desktop/five-jc-sites-8/serve.js"], "port": 4461 },
+    { "name": "jc9-serve", "runtimeExecutable": "node", "runtimeArgs": ["C:/Users/USER/Desktop/five-jc-sites-9/serve.js"], "port": 4471 },
+    { "name": "jc10-serve", "runtimeExecutable": "node", "runtimeArgs": ["C:/Users/USER/Desktop/four-jc-sites/serve.js"], "port": 4481 },
+    { "name": "flybit-ssy-preview", "runtimeExecutable": "python", "runtimeArgs": ["-m", "http.server", "4491", "--directory", "C:/Users/USER/Desktop/flybit-ssy-5sites"], "port": 4491 }
   ]
 }
