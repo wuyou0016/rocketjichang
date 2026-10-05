@@ -48,3 +48,5 @@ relatedTopics: ["what-is-clash-getting-started", "how-to-choose-an-airport-proxy
 ## 订阅只是第一步
 
 拿到节点列表之后，具体选择哪个节点、连接是否稳定，还需要结合实际测试表现来判断，这部分内容可以参考[机场代理怎么选？新手避坑指南](/knowledge/how-to-choose-an-airport-proxy/)。
+
+订阅链接的保管习惯，以及客户端导入的通用步骤，姊妹站机场E家整理了 [订阅链接：是什么、怎么用、怎么保管](https://ejichang.com/subscription/)。

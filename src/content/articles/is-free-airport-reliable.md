@@ -58,6 +58,8 @@ relatedTopics: ["airport-pricing-explained", "airport-value-for-money-explained"
 **免费机场值不值得用来测试线路？**
 可以作为初步了解，但因为免费和付费节点的资源投入通常不同，免费节点的测试结果不一定能代表该服务商付费套餐的真实表现。
 
+免费方案的几种常见形态（公开节点、共享账号等）和各自的风险，姊妹站机场E家另有梳理：[免费梯子靠谱吗？免费背后的成本、风险与替代做法](https://ejichang.com/knowledge/free-ladder-risk/)。
+
 ## 相关内容
 
 如果你想了解价格背后包含哪些信息，可以看 [机场价格怎么看？机场代理套餐价格比较方法](/knowledge/airport-pricing-explained/) 和 [机场性价比怎么看](/knowledge/airport-value-for-money-explained/)；选择服务商时的整体判断维度可以参考 [机场代理怎么选？新手避坑指南](/knowledge/how-to-choose-an-airport-proxy/)。购买前如何判断和降低服务商跑路风险，可以看 [机场跑路了怎么办](/knowledge/what-if-airport-shuts-down/)。

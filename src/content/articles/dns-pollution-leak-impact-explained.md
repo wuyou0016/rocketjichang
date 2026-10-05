@@ -70,6 +70,8 @@ DNS 泄漏通常是客户端配置层面的问题，比如 DNS 解析请求的�
 **普通用户有必要专门研究 DNS 配置吗？**
 如果日常使用没有遇到明显异常，不需要特意深入研究；如果反复遇到"部分网站访问异常但节点正常"的情况，了解 DNS 污染和泄漏的基本区别，有助于更快定位问题方向。
 
+关于怎么检查和减少 DNS 泄露，姊妹站机场E家有一份偏操作的整理：[DNS 泄露是什么？怎么检查与减少](https://ejichang.com/knowledge/dns-leak-note/)。
+
 ## 相关内容
 
 如果你想了解节点和线路本身怎么影响使用体验，可以看[节点和线路到底是什么](/knowledge/what-are-nodes-and-routes/)；遇到具体的连接故障，建议按[机场连接不上怎么办](/troubleshooting/connection-troubleshooting-step-by-step/)逐层排查。如果你还在纠结机场代理和传统 VPN 的区别，可以参考[机场和 VPN 有什么区别](/knowledge/airport-vs-vpn/)。

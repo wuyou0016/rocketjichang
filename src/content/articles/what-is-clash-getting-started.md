@@ -53,3 +53,5 @@ Clash 系列覆盖电脑、手机等多个平台；如果你只用 iOS 设备，
 ## 协议支持也需要留意
 
 Clash 及其衍生客户端对不同协议的支持程度可能不完全一样，如果服务商提供的节点使用了某种特定协议，建议先确认客户端是否支持。协议相关的基础概念可以参考[机场代理协议入门](/knowledge/airport-proxy-protocols-explained/)。
+
+如果想先弄清“支持 Clash”意味着什么，再去选机场，可以参考姊妹站机场E家的 [Clash 机场怎么选：先确认支持，再谈哪家好](https://ejichang.com/clash-airports/)。

@@ -62,6 +62,8 @@ relatedTopics: ["what-is-airport-proxy", "airport-vs-vpn", "how-to-choose-an-air
 **为什么不同人说的"梯子"完全不一样？**
 因为"梯子"从来就不特指某一种工具，取决于说话人自己用的是哪一类服务。
 
+想了解“访问受限”的常见技术原因，以及这类工具的工作原理，可以看姊妹站机场E家的 [翻墙是什么意思：访问受限的常见原因与常见方式](https://ejichang.com/knowledge/what-is-fanqiang/)。
+
 ## 相关内容
 
 - [机场代理是什么](/knowledge/what-is-airport-proxy/)

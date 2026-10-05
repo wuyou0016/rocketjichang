@@ -55,3 +55,5 @@ relatedTopics: ["what-is-subscription-link", "what-are-nodes-and-routes", "what-
 ## 和基础排查清单配合使用
 
 这套分层思路和[常见连接失败排查步骤](/troubleshooting/connection-failed-troubleshooting/)里的检查清单并不冲突——分层思路帮你判断"大方向问题出在哪一层"，确定方向后，可以回到那篇文章里对应的具体检查项逐条确认细节。
+
+客户端弹出英文报错时，可以先对照姊妹站机场E家的 [客户端常见报错对照表](https://ejichang.com/troubleshooting/client-error-messages/)，判断属于超时、域名解析、证书还是订阅失效。
