@@ -54,3 +54,5 @@ relatedTopics: ["airport-speed-explained", "airport-test-data-explained", "airpo
 
 **有没有必要长期反复测速？**
 如果你只是偶尔使用，测一两次确认能正常用就够了；如果对稳定性要求较高（比如工作需要），建议在不同时段多测几次，或者关注是否有本站或其他来源持续更新的测试记录。
+
+想按天安排一次完整的自测，可以参考姊妹站机场TJ的 [一周自测计划：用 7 天验证一家机场是否适合你](https://jichangtj.net/knowledge/self-test-seven-days/)。

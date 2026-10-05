@@ -57,6 +57,8 @@ relatedTopics: ["airport-pricing-explained", "airport-value-for-money-explained"
 **长周期套餐的设备数限制会不会更宽松？**
 不一定，设备数限制通常和套餐档位而不是付费周期挂钩，具体可以参考 [机场设备数量怎么看](/knowledge/airport-devices-count-explained/)确认某个套餐的具体规则。
 
+月付与年付怎么取舍，姊妹站机场TJ整理了一套判断问题：[月付还是年付：先看这四个问题](https://jichangtj.net/knowledge/monthly-vs-yearly/)。
+
 ## 相关内容
 
 如果你想系统了解价格构成，可以看 [机场价格怎么看？机场代理套餐价格比较方法](/knowledge/airport-pricing-explained/)；性价比不等于价格最低，具体怎么理解可以参考 [机场性价比怎么看](/knowledge/airport-value-for-money-explained/)。购买前的风险判断可以看 [机场跑路了怎么办](/knowledge/what-if-airport-shuts-down/)。

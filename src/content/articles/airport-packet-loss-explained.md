@@ -52,3 +52,5 @@ relatedTopics: ["airport-stability-latency-packet-loss", "airport-latency-normal
 
 **0% 丢包率是不是意味着这个机场绝对稳定？**
 不能这么理解。0% 只是某一次测试的结果，不代表长期都能保持这个水平，判断稳定性需要结合多次、持续一段时间的数据。
+
+丢包、延迟、抖动三个指标分别影响什么场景，姊妹站机场TJ有一篇更偏场景判断的文章：[丢包、延迟、抖动：三个指标分别影响什么](https://jichangtj.net/knowledge/loss-latency-jitter-explained/)。

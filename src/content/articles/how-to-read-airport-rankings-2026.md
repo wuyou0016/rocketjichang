@@ -52,3 +52,5 @@ relatedTopics: ["airport-review-credibility", "how-to-choose-an-airport-proxy", 
 2026年做机场推荐，信息比以前更碎，变化也更快。你与其收藏十篇「年度最强」，不如固定一个更新比较勤的榜（比如本站综合榜），再配合自己的月付试验，慢慢形成自己的短名单。
 
 后面我会单独写几家我还在用的详细体验，包括首推相关的说明。你有特定场景（只看视频、要相对稳的办公、预算很紧），也可以当参考问题，我写的时候会尽量往场景上靠。
+
+关于“评测与榜单里的数据能信几分”，姊妹站机场E家从另一个角度写过：[机场测评怎么看？排行榜与评测文章的数据能信几分](https://ejichang.com/knowledge/how-to-read-airport-rankings-note/)。

@@ -74,6 +74,8 @@ relatedTopics: ["what-are-nodes-and-routes", "what-is-transit-route", "airport-s
 **一个套餐能同时使用多个地区的节点吗？**
 通常可以，大多数机场套餐提供多个地区节点供用户在客户端里自由切换，具体覆盖地区以你所选服务商的说明为准。
 
+如果想按用途一步步挑节点，姊妹站机场E家整理过一份流程：[机场节点怎么选：按用途定地区，再看倍率与晚高峰](https://ejichang.com/knowledge/airport-node-selection/)。
+
 ## 相关内容
 
 理解节点和线路的基础概念，可以先看[节点和线路到底是什么](/knowledge/what-are-nodes-and-routes/)；如果你的需求是访问特定地区限定内容，可以看[机场流媒体解锁怎么看待](/knowledge/airport-streaming-unlock-explained/)；延迟敏感场景的进一步权衡，可以参考[机场代理适合打游戏吗](/knowledge/is-airport-proxy-good-for-gaming/)。
