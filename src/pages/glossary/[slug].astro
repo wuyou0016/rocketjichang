@@ -44,11 +44,12 @@ const updatedAtLabel = formatDate(term.data.updatedAt);
 const shortName = term.data.term.replace(/（[^）]*）/g, '').trim();
 const baseTitle = `${shortName}是什么？｜机场代理术语表｜火箭机场`;
 const title = baseTitle.length < 24 ? `${shortName}是什么？含义、作用与常见用法｜机场代理术语表｜火箭机场` : baseTitle;
-// 描述 = 定义 + 扩展说明的第一句，保证有足够信息量（85 字以上、不超过 125 字）。
-const firstSentence = (term.data.extendedExplanation ?? '').split('。')[0] ?? '';
-let metaDescription = term.data.definition;
-if (metaDescription.length < 85 && firstSentence) metaDescription = `${metaDescription.replace(/。$/, '')}。${firstSentence}。`;
-if (metaDescription.length > 125) metaDescription = `${metaDescription.slice(0, 122).replace(/[，、；：]$/, '')}…`;
+// 描述 = 定义；不足 85 字时补一句本页确有的“常见误区与自查”小节说明；超过 125 字则在最后一个逗号处截断，不留半句。
+let metaDescription = term.data.definition.replace(/。$/, '');
+if (metaDescription.length < 85) metaDescription += '，并说明它在机场代理中的常见误区与自查方法';
+if (metaDescription.length < 85) metaDescription += '，以及和相关术语的关系';
+if (metaDescription.length > 124) metaDescription = metaDescription.slice(0, metaDescription.lastIndexOf('，', 124));
+metaDescription += '。';
 const canonicalUrl = resolveCanonicalUrl(`/glossary/${term.id}/`);
 
 const definedTermJsonLd = {

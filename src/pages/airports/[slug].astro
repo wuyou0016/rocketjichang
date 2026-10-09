@@ -35,7 +35,7 @@ const others = PICKS_ORDER.filter((x) => x !== b.id).slice(0, 5);
 const hasData = b.tier !== 4;
 const title = hasData ? `${b.name}怎么样：价格、线路、协议与资料来源` : `${b.name}：官方入口与资料状态`;
 const baseDesc = hasData
-  ? `${b.name}资料页：${priceLine(b).slice(0, 40)}；${has(b.line) ? '线路' + b.line.replace(/（.*?）/g, '').slice(0, 20) + '；' : ''}资料性质${srcLabel(b)}，本站没有测速数据，价格以官网为准。`
+  ? `${b.name}资料页：${priceLine(b).slice(0, 40)}；${has(b.line) ? '线路' + b.line.replace(/（.*?）/g, '').slice(0, 20) + '；' : ''}资料性质：${srcLabel(b)}，本站没有测速数据，价格以官网为准。`
   : `${b.name}官方入口与资料状态：本站只登记了官方推广入口，价格、线路、协议、节点暂无可核实的公开资料，请以官网页面为准。`;
 // 描述至少 85 字：不足时补上“适合谁”和买前提示（来自品牌资料本身），过长则截断。
 let desc = baseDesc;
