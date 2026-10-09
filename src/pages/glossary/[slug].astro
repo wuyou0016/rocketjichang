@@ -48,6 +48,7 @@ const title = baseTitle.length < 24 ? `${shortName}是什么？含义、作用�
 let metaDescription = term.data.definition.replace(/。$/, '');
 if (metaDescription.length < 85) metaDescription += '，并说明它在机场代理中的常见误区与自查方法';
 if (metaDescription.length < 85) metaDescription += '，以及和相关术语的关系';
+if (metaDescription.length < 85) metaDescription += '，适合新手先建立整体概念';
 if (metaDescription.length > 124) metaDescription = metaDescription.slice(0, metaDescription.lastIndexOf('，', 124));
 metaDescription += '。';
 const canonicalUrl = resolveCanonicalUrl(`/glossary/${term.id}/`);
