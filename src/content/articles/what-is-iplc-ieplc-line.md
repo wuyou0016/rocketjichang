@@ -1,7 +1,7 @@
 ---
 type: "knowledge"
 title: "IPLC 和 IEPL 是什么意思？机场专线怎么理解"
-description: "解释机场代理套餐页常见的 IPLC、IEPL 专线术语具体指什么，和普通中转线路有什么区别，以及为什么不能简单认为专线一定更快更稳。"
+description: "解释机场套餐页常见的 IPLC、IEPL 专线术语具体指什么，和普通中转线路有什么区别，机场宣传的专线到底意味着什么，以及为什么不能简单认为“专线一定更快更稳”，火箭机场知识库整理。"
 category: "节点与线路"
 difficulty: "intermediate"
 author: "火箭机场编辑团队"

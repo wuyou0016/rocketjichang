@@ -1,7 +1,7 @@
 ---
 type: "knowledge"
-title: "机场流媒体解锁是不是真的？怎么判断"
-description: "解释机场代理宣传的流媒体解锁是什么意思，为什么不能只看一句「完美解锁」，以及普通用户应该怎么自己验证。"
+title: "机场流媒体解锁是不是真的？Netflix 等平台怎么判断"
+description: "解释机场宣传的流媒体解锁是什么意思，为什么“支持 Netflix”不等于所有节点都能解锁，原生 IP 为什么重要，同一机场不同节点结果为何不同，以及普通用户怎么自己验证。"
 category: "流媒体与AI服务"
 difficulty: "beginner"
 author: "火箭机场编辑团队"

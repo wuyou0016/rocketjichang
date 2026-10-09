@@ -1,7 +1,7 @@
 ---
 type: "knowledge"
-title: "Shadowsocks（SS）是什么？机场里常见的 SS 协议怎么用"
-description: "介绍 Shadowsocks（SS）协议的基本特点，以及在机场代理场景中怎么理解和使用它。"
+title: "Shadowsocks（SS）是什么？机场里怎么用"
+description: "介绍 Shadowsocks（SS）协议的基本特点，它现在还在使用吗，在机场代理场景中怎么理解和使用，使用时需要注意什么，以及与 Trojan、VLESS 等相关协议的关系，附常见问题。"
 category: "协议"
 difficulty: "intermediate"
 author: "火箭机场编辑团队"

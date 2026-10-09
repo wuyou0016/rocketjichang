@@ -1,7 +1,7 @@
 ---
 type: "knowledge"
 title: "DNS 污染和 DNS 泄漏对机场代理用户有什么实际影响"
-description: "说明 DNS 污染和 DNS 泄漏这两个不同的问题，分别会给机场代理用户带来什么实际影响、怎么大致判断，以及常见的应对思路。"
+description: "说明 DNS 污染和 DNS 泄漏这两个不同的问题，分别会给机场代理用户带来什么实际影响、怎么大致判断自己是否遇到了，以及常见的应对思路，帮你分清“打不开”背后的不同原因。"
 category: "节点与线路"
 difficulty: "advanced"
 author: "火箭机场编辑团队"

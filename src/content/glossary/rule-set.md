@@ -5,7 +5,12 @@ extendedExplanation: "常见的分流规则会按域名、IP 段或地区判断�
 aliases: ["分流规则"]
 relatedTerms: ["tun-mode", "system-proxy-mode", "sni"]
 relatedArticles: ["what-is-clash-getting-started"]
-updatedAt: 2026-08-29
+updatedAt: 2026-10-09
 ---
 
 [Clash 是什么？新手如何开始使用](/tutorials/what-is-clash-getting-started/)里提到的"规则配置"进阶功能，指的就是这里说的分流规则。新手第一次使用不需要马上研究，先确保基础连接正常，后续有需要（比如希望境内网站不走代理节点）时，再逐步了解怎么导入或编写规则集。
+
+## 常见误区与自查
+
+- **误区**：规则越多越好。规则集过大会增加加载与匹配开销，规则之间冲突还会导致“该走代理的没走、该直连的绕了路”。
+- **自查**：先使用客户端或服务商推荐的规则集；遇到个别网站访问异常时，再针对该域名单独补一条规则，并记下改动，方便回退。

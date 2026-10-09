@@ -1,7 +1,7 @@
 ---
 type: "knowledge"
-title: "微风网络机场入门套餐与协议资料解读"
-description: "整理微风网络机场目前可查的第三方公开资料，包括入门套餐价格、IEPL 专线与 VLESS 协议描述，并说明资料来源的局限性。"
+title: "微风网络机场入门套餐、IEPL 线路与协议资料解读"
+description: "整理微风网络机场目前可查的第三方公开资料，包括入门套餐价格、IEPL 专线与 VLESS 协议描述、流量与设备、客户端支持，并说明这些资料来源的局限性，价格以官网为准，火箭机场知识库整理。"
 category: "服务商评测"
 difficulty: "beginner"
 author: "火箭机场编辑团队"

@@ -1,6 +1,6 @@
 ---
 title: "流媒体用机场怎么选｜Netflix、YouTube、Disney+ 要点"
-description: "看 Netflix、YouTube、Disney+ 时机场怎么选：解锁受地区与 IP 影响，需要看节点地区、带宽与稳定性，并先包月试用；不承诺任何解锁结果。"
+description: "看 Netflix、YouTube、Disney+ 时机场怎么选：解锁受地区与 IP 影响，需要看节点地区、带宽与稳定性，并先包月试用；不承诺任何解锁结果，价格以官网为准。"
 h1: "流媒体场景：Netflix、YouTube、Disney+ 用机场"
 lead: "流媒体看的是稳定带宽与节点地区。解锁会随平台策略变化，任何机场都不应承诺“永久解锁”。"
 kicker: "SCENE · 流媒体"

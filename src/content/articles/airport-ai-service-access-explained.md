@@ -1,7 +1,7 @@
 ---
 type: "knowledge"
 title: "机场支持 ChatGPT 吗？机场 AI 服务可用性怎么看"
-description: "解释机场代理宣传的 ChatGPT、Claude、Gemini 等 AI 服务可用性是什么意思，为什么套餐页写「支持 AI」不等于长期稳定可用。"
+description: "解释机场宣传的 ChatGPT、Claude、Gemini 等 AI 服务可用性是什么意思：能打开、能登录、能用和长期稳定是不同层次，套餐页写“支持 AI”不等于稳定可用，并附 6 家服务商的资料速览。"
 category: "流媒体与AI服务"
 difficulty: "beginner"
 author: "火箭机场编辑团队"

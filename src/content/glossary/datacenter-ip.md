@@ -5,7 +5,12 @@ extendedExplanation: "很多网站和流媒体平台会维护数据中心 IP 段
 aliases: ["机房 IP", "数据中心 IP"]
 relatedTerms: ["residential-ip", "exit-ip"]
 relatedArticles: ["airport-streaming-unlock-explained"]
-updatedAt: 2026-08-29
+updatedAt: 2026-10-09
 ---
 
 节点是不是 IDC IP，普通用户很难仅凭节点名称或宣传语判断，更实际的做法是自己连接后实际测试流媒体、常用服务的访问效果，具体验证思路可以参考[机场流媒体解锁是不是真的？怎么判断](/knowledge/airport-streaming-unlock-explained/)。
+
+## 常见误区与自查
+
+- **误区**：节点是机房 IP 就一定不能用。多数网站只是对机房 IP 更严格，是否能正常使用要看具体网站和当时的风控策略。
+- **自查**：想确认节点落地 IP 的类型，可以连接后访问常见的 IP 归属查询网站，对照其标注的“机房/家庭”类型；这类标注本身也可能不准，只能作参考。

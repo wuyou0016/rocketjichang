@@ -1,7 +1,7 @@
 ---
 type: "tutorial"
 title: "V2rayN 是什么？Windows 电脑怎么导入机场订阅"
-description: "介绍 Windows 平台常见客户端 V2rayN 的基本作用、下载方式，以及导入机场订阅、选择节点和排查连接问题的大致流程。"
+description: "介绍 Windows 平台常见客户端 V2rayN 的基本作用、和 Clash 系列的区别、下载渠道的注意事项，以及导入机场订阅、开启系统代理和排查连接问题的大致流程，适合 Windows 新手。"
 category: "机场客户端"
 difficulty: "beginner"
 author: "火箭机场编辑团队"

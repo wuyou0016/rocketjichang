@@ -1,7 +1,7 @@
 ---
 type: "knowledge"
 title: "Astrill VPN 贵不贵？和机场代理比怎么选"
-description: "Astrill 是在中国大陆比较知名、能连得上的付费 VPN，但价格明显高于机场代理。整理第三方资料里的价格区间和近年口碑变化，说明两种方案分别适合什么人。"
+description: "Astrill 是在中国大陆比较知名、能连得上的付费 VPN，但价格明显高于机场代理。整理第三方资料里的价格区间和近年口碑变化，对比它与机场代理的差异，并说明两种方案分别适合什么人。"
 category: "入门知识"
 difficulty: "beginner"
 author: "火箭机场编辑团队"

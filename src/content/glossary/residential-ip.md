@@ -5,7 +5,12 @@ extendedExplanation: "流媒体平台、部分网站的风控系统在判断一�
 aliases: ["住宅 IP"]
 relatedTerms: ["exit-ip", "datacenter-ip"]
 relatedArticles: ["airport-streaming-unlock-explained"]
-updatedAt: 2026-08-29
+updatedAt: 2026-10-09
 ---
 
 "家宽 IP"和"原生 IP"这两个词在机场行业里经常混用，指向的都是"这个 IP 段看起来像普通宽带用户，而不是数据中心"这个核心特点，具体的判定标准和识别逻辑，可以看[机场流媒体解锁是不是真的？怎么判断](/knowledge/airport-streaming-unlock-explained/)里对原生 IP 的完整说明，这里不重复展开。
+
+## 常见误区与自查
+
+- **误区**：家宽 IP 一定能解锁所有流媒体。能否解锁还取决于平台策略、该 IP 的历史使用情况和地区版权，宣传需要你自己验证。
+- **自查**：试用期内分别打开你要用的平台，记录不同时间段的结果；如果服务商承诺“原生家宽”，可以请对方说明具体的判定口径。

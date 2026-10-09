@@ -1,12 +1,12 @@
 ---
 type: "knowledge"
 title: "无忧链接怎么样？公开套餐资料与测速数据整理"
-description: "整理无忧链接机场目前可查的第三方公开资料，包括套餐价格、流量、协议与测速数据，并说明不同来源之间存在的差异。"
+description: "整理无忧链接机场目前可查的第三方公开资料，包括套餐价格、流量与设备、线路协议、测速数据，并说明不同来源之间存在的差异和这些资料的局限，价格以官网为准，火箭机场知识库整理。"
 category: "服务商评测"
 difficulty: "beginner"
 author: "火箭机场编辑团队"
 publishedAt: 2026-08-10
-updatedAt: 2026-08-10
+updatedAt: 2026-10-09
 relatedTopics: ["how-to-choose-an-airport-proxy", "what-is-airport-multiplier-rule", "airport-review-credibility", "why-i-still-use-wuyou-lianjie"]
 ---
 
@@ -18,7 +18,7 @@ relatedTopics: ["how-to-choose-an-airport-proxy", "what-is-airport-multiplier-ru
 
 ## 套餐与价格
 
-官方页面（截至 2026-09）列出三档套餐：MINI 包月起步约 6.6 元/月；舒心 100GB，包月低至 14 元/月；省心 200GB，33 元/月起。价格与活动以[官方入口](/airports/wuyou-lianjie/)结算页当时显示为准，本站不在品牌之间比较流量大小。
+官方页面（截至 2026-09）列出三档套餐：MINI 约 6.6 元/月起（年付 79 元）；舒心 100GB，19 元/月（官方 8 折活动期间约 15.2 元/月）；省心 200GB，33 元/月起。价格与活动以[官方入口](/airports/wuyou-lianjie/)结算页当时显示为准，本站不在品牌之间比较流量大小。
 
 此前本站参考的第三方资料（如「机场Clash」「二毛」）价格说法各不相同，且可能已过期，现以官方页面为准。
 
@@ -74,7 +74,7 @@ relatedTopics: ["how-to-choose-an-airport-proxy", "what-is-airport-multiplier-ru
 ## 常见问题
 
 **无忧链接的价格到底是多少？**
-官方页面写明 MINI 包月起步约 6.6 元/月，其余档位见上文。价格随活动变化，请查看[官方入口](/airports/wuyou-lianjie/)当前结算页的实际报价。
+官方页面写明 MINI 为年付 79 元（折合约 6.6 元/月），其余档位见上文。价格随活动变化，请查看[官方入口](/airports/wuyou-lianjie/)当前结算页的实际报价。
 
 **无忧链接支持哪些客户端？**
 第三方资料提到支持通用订阅，可以在 Shadowrocket 等主流客户端中使用，具体是否支持你正在用的客户端，建议购买前确认。

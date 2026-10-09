@@ -5,7 +5,12 @@ extendedExplanation: "传统的 VLESS+TLS 需要自己申请域名和证书，�
 aliases: ["VLESS Reality", "REALITY"]
 relatedTerms: ["alpn", "ech", "fallback"]
 relatedArticles: ["what-is-vless-protocol", "airport-proxy-protocols-explained"]
-updatedAt: 2026-08-29
+updatedAt: 2026-10-09
 ---
 
 理解 Reality 之前，建议先了解 VLESS 协议本身的基本设计思路，可以看[VLESS 是什么？机场用户为什么经常看到这个协议](/knowledge/what-is-vless-protocol/)。Reality 是在 VLESS 基础上的一种传输层伪装配置方式，不是一个独立于 VLESS 的新协议，服务商是否使用 Reality、具体配置得是否合理，普通用户很难自行核实，更多需要依赖客户端连接后的实际体验判断。
+
+## 常见误区与自查
+
+- **误区**：用了 Reality 就不会被封。它降低了基于证书和域名识别流量的难度，但检测手段持续变化，节点能否长期可用仍取决于运营和线路。
+- **自查**：不要仅凭“支持 Reality”就下结论，先看服务商的运营时间与公告，再用包月在晚高峰连测几天，决定是否续费。

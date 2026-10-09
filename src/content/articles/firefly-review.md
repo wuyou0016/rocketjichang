@@ -1,7 +1,7 @@
 ---
 type: "knowledge"
 title: "Firefly机场：IPLC套餐、协议与第三方测速数据一览"
-description: "整理 Firefly 机场目前可查的第三方公开资料，包括套餐价格、IPLC 专线与 VLESS 协议描述，以及第三方测速数据。"
+description: "整理 Firefly 机场目前可查的第三方公开资料，包括套餐价格、IPLC 专线与 VLESS 协议描述、流量与设备、客户端支持，以及第三方测速数据和这些资料的局限，价格以官网为准。"
 category: "服务商评测"
 difficulty: "beginner"
 author: "火箭机场编辑团队"

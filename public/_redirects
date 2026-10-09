@@ -5,3 +5,4 @@
 /sitemap.xml /sitemap-index.xml 301
 /reviews/ /airports/ 301
 /reviews/* /airports/ 301
+/airports/jiuyun/ /airports/ 301

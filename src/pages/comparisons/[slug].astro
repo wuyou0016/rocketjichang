@@ -25,7 +25,7 @@ const rows: [string, (x: typeof A) => string][] = [
   ['要注意', (x) => x.caution],
 ];
 const title = `${A.name} vs ${B.name}：价格、线路与资料来源对比`;
-const desc = `${A.name}和${B.name}资料对比：价格口径、线路、协议、节点与资料性质并排整理，${pair.angle}；本站没有测速数据，价格以官网为准。`;
+const desc = `${A.name}和${B.name}资料对比：价格口径、线路、协议、节点与资料性质并排整理，${pair.angle}；并给出怎么用这张表选、怎样小额包月自测的步骤，本站没有测速数据，价格以官网为准。`;
 const faq = [
   { q: `${A.name}和${B.name}哪个更好？`, a: '本站不做评分和测速排名。两家的资料完整度不同，先看上表的资料性质，再各买最低档包月，在自己的晚高峰实测后再决定。' },
   { q: '价格能直接比吗？', a: `不能直接比：${A.name}是“${priceLine(A)}”，${B.name}是“${priceLine(B)}”，口径不同。先对齐口径再比较。` },

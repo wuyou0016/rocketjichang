@@ -5,7 +5,12 @@ extendedExplanation: "和只处理特定应用、特定端口流量的系统代�
 aliases: ["TUN", "全局模式"]
 relatedTerms: ["system-proxy-mode", "rule-set"]
 relatedArticles: ["what-is-clash-getting-started", "connection-troubleshooting-step-by-step"]
-updatedAt: 2026-08-29
+updatedAt: 2026-10-09
 ---
 
 不同客户端对 TUN 模式的叫法不完全一样，有的直接标注"TUN"，有的叫"全局模式"或"虚拟网卡模式"，具体操作步骤建议以你使用的客户端官方文档为准，可以先从[Clash 是什么？新手如何开始使用](/tutorials/what-is-clash-getting-started/)了解基础配置流程。如果开启 TUN 模式后出现无法访问网络的情况，可以参考[机场连接不上怎么办？从订阅、节点到客户端逐步排查](/troubleshooting/connection-troubleshooting-step-by-step/)排查思路，也可以先尝试关闭 TUN 模式、切回系统代理模式做对比。
+
+## 常见误区与自查
+
+- **误区**：开了 TUN 就万事大吉。TUN 会接管更多流量，也让排障更复杂，规则配置不当时甚至可能出现“全部断网”。
+- **自查**：开启前确认客户端具备所需权限（Windows 上通常需要管理员权限或服务模式）；一旦断网，先关闭 TUN 切回系统代理，再检查规则和 DNS 设置。

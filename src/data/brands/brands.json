@@ -7,7 +7,7 @@
   "aff": "https://vip02.worryfreeaff.com/#/?code=XT1WDPvr",
   "source": "官方/联盟页面展示信息",
   "tagline": "套餐档位和价格展示得比较清楚，适合作为第一次尝试机场的起点",
-  "price": "MINI 包月起步约 ¥6.6/月；舒心（100GB）包月低至 ¥14/月；省心 ¥33/月起",
+  "price": "MINI 约 ¥6.6/月起（年付 ¥79）；舒心 100GB ¥19/月（官方 8 折活动期间约 ¥15.2/月）；省心 200GB ¥33/月起",
   "line": "IPLC / IEPL 专线（官方页面表述）",
   "protocols": "VLESS / Trojan / Hysteria2",
   "nodes": "香港、日本、新加坡、美国",
@@ -22,7 +22,7 @@
   "num": {
    "m": 6.6,
    "gb": 40,
-   "basis": "MINI 包月起步",
+   "basis": "MINI 年付 ¥79 折算",
    "note": "站长确认口径"
   },
   "slug": "wuyou-lianjie"
@@ -608,24 +608,5 @@
   "facts": [],
   "num": null,
   "slug": null
- },
- "jiuyun": {
-  "id": "jiuyun",
-  "name": "九云",
-  "alias": "",
-  "tier": 4,
-  "aff": "https://888.jiuyundl.com/#/register?code=e1zoRqXM",
-  "source": "仅登记官方推广入口",
-  "tagline": "公开资料有限，本站暂未整理这家的套餐、价格与节点信息",
-  "price": "暂无可核实的公开资料",
-  "line": "暂无可核实的公开资料",
-  "protocols": "暂无可核实的公开资料",
-  "nodes": "暂无可核实的公开资料",
-  "client": "暂无可核实的公开资料",
-  "fit": "想自己到官网查看最新套餐再决定的用户",
-  "caution": "本站没有创建账户，也没有整理这家的资料，无法给出套餐、价格、节点等结论；请以官网页面为准。",
-  "facts": [],
-  "num": null,
-  "slug": "jiuyun"
  }
 }

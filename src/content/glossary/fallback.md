@@ -5,7 +5,12 @@ extendedExplanation: "这个机制的意义在于，即使有人（包括审查�
 aliases: ["协议回落"]
 relatedTerms: ["reality"]
 relatedArticles: ["what-is-trojan-protocol", "what-is-vless-protocol"]
-updatedAt: 2026-08-29
+updatedAt: 2026-10-09
 ---
 
 Fallback 常和 Trojan 的"伪装成正常 HTTPS 流量"设计思路一起出现，可以先了解[Trojan 是什么？机场配置中的 Trojan 协议怎么理解](/knowledge/what-is-trojan-protocol/)里对流量伪装的基础说明；VLESS 搭配 Reality 使用时，也会用到类似的回落思路，可以参考[VLESS 是什么](/knowledge/what-is-vless-protocol/)。
+
+## 常见误区与自查
+
+- **误区**：直接访问节点 IP 看到一个正常网站，就说明这家服务商可靠。这恰恰是回落机制的作用，不能据此判断服务商的好坏。
+- **自查**：判断服务商是否靠谱，要看运营时间、退款规则、官方公告和你自己的包月试用，而不是节点 IP 打开后看到了什么。

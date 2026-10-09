@@ -1,7 +1,7 @@
 ---
 type: "tutorial"
 title: "sing-box 和 Mihomo 是什么？新手怎么开始用"
-description: "解释 sing-box 内核和 Mihomo（原 Clash Meta）客户端的关系、和传统 Clash 的区别，以及新手第一次接触时的大致使用思路。"
+description: "解释 sing-box 内核和 Mihomo（原 Clash Meta）客户端的关系、和传统 Clash 的区别，以及新手第一次接触时需要关心哪些区别、大致的使用流程，和为什么会有这么多相似的名字。"
 category: "机场客户端"
 difficulty: "intermediate"
 author: "火箭机场编辑团队"

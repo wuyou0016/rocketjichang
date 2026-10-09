@@ -8,7 +8,7 @@ import { BRANDS } from '../../data/brands';
 const items = PAIRS.map((p) => ({ href: `/comparisons/${p.slug}/`, title: `${BRANDS[p.a]!.name} vs ${BRANDS[p.b]!.name}`, desc: p.angle, tag: 'VS' }));
 ---
 
-<BaseLayout title="机场对比｜价格、线路、协议、节点资料并排" description="火箭机场机场对比：把两家机场的价格口径、线路、协议、节点与资料性质并排整理，不含测速与评分，价格以官网为准，帮你缩小要试用的范围。">
+<BaseLayout title="机场对比｜价格、线路、协议、节点资料并排" description="火箭机场机场对比：把两家机场的价格口径、线路、协议、节点与资料性质并排整理，不含测速与评分，价格以官网为准，帮你缩小要试用的范围；每组对比都说明资料来源，并教你怎样用包月自测确认。">
   <PageShell h1="机场对比：资料并排，不做评分" crumbs={[{ name: '机场对比', href: '/comparisons/' }]} lead="每一页把两家机场的资料放在同一张表里，标注资料性质。没有测速数据，也不给分数。">
     <CardGrid items={items} />
     <div class="related-block">

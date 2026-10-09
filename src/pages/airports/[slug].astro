@@ -34,9 +34,14 @@ const review = articles.find((a) => a.id === reviewArticleIds[b.id]);
 const others = PICKS_ORDER.filter((x) => x !== b.id).slice(0, 5);
 const hasData = b.tier !== 4;
 const title = hasData ? `${b.name}怎么样：价格、线路、协议与资料来源` : `${b.name}：官方入口与资料状态`;
-const desc = hasData
-  ? `${b.name}资料页：${priceLine(b).slice(0, 40)}；${has(b.line) ? '线路' + b.line.replace(/（.*?）/g, '').slice(0, 20) + '；' : ''}资料性质${srcLabel(b)}，本站没有测速数据，价格以官网为准。`
+const baseDesc = hasData
+  ? `${b.name}资料页：${priceLine(b).slice(0, 40)}；${has(b.line) ? '线路' + b.line.replace(/（.*?）/g, '').slice(0, 20) + '；' : ''}资料性质：${srcLabel(b)}，本站没有测速数据，价格以官网为准。`
   : `${b.name}官方入口与资料状态：本站只登记了官方推广入口，价格、线路、协议、节点暂无可核实的公开资料，请以官网页面为准。`;
+// 描述至少 85 字：不足时补上“适合谁”和买前提示（来自品牌资料本身），过长则截断。
+let desc = baseDesc;
+if (desc.length < 85 && hasData) desc = `${desc.replace(/。$/, '')}；适合：${b.fit.replace(/[。.]$/, '')}。`;
+if (desc.length < 85) desc = `${desc.replace(/。$/, '')}；本站没有创建账户、不做测速评分，建议先包月试用，晚高峰连测几天再决定。`;
+if (desc.length > 125) desc = `${desc.slice(0, 122).replace(/[，、；：]$/, '')}…`;
 const faq = [
   { q: `${b.name}的价格是多少？`, a: `${priceLine(b)}。价格与活动以官网结算页为准，本站不在品牌之间比较流量大小。` },
   { q: `${b.name}的资料从哪里来？`, a: `资料性质：${srcLabel(b)}。${b.source}。本站没有测速与实测数据，也不对速度与稳定性作保证。` },

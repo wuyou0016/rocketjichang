@@ -40,7 +40,17 @@ function formatDate(value: Date | string): string {
 }
 
 const updatedAtLabel = formatDate(term.data.updatedAt);
-const title = `${term.data.term}是什么？｜机场代理术语表｜火箭机场`;
+// 标题用不含英文全称括号的短名，避免过长被截断；过短时补充“含义与用法”。
+const shortName = term.data.term.replace(/（[^）]*）/g, '').trim();
+const baseTitle = `${shortName}是什么？｜机场代理术语表｜火箭机场`;
+const title = baseTitle.length < 24 ? `${shortName}是什么？含义、作用与常见用法｜机场代理术语表｜火箭机场` : baseTitle;
+// 描述 = 定义；不足 85 字时补一句本页确有的“常见误区与自查”小节说明；超过 125 字则在最后一个逗号处截断，不留半句。
+let metaDescription = term.data.definition.replace(/。$/, '');
+if (metaDescription.length < 85) metaDescription += '，并说明它在机场代理中的常见误区与自查方法';
+if (metaDescription.length < 85) metaDescription += '，以及和相关术语的关系';
+if (metaDescription.length < 85) metaDescription += '，适合新手先建立整体概念';
+if (metaDescription.length > 124) metaDescription = metaDescription.slice(0, metaDescription.lastIndexOf('，', 124));
+metaDescription += '。';
 const canonicalUrl = resolveCanonicalUrl(`/glossary/${term.id}/`);
 
 const definedTermJsonLd = {
@@ -53,7 +63,7 @@ const definedTermJsonLd = {
 };
 ---
 
-<BaseLayout title={title} description={term.data.definition}>
+<BaseLayout title={title} description={metaDescription}>
   <PageShell h1={term.data.term} crumbs={[{ name: '术语表', href: '/glossary/' }, { name: term.data.term, href: `/glossary/${term.id}/` }]} meta={[`更新 ${updatedAtLabel}`, ...(term.data.aliases && term.data.aliases.length > 0 ? [`也叫：${term.data.aliases.join('、')}`] : [])]}>
 
   <div class="prose">

@@ -1,7 +1,7 @@
 ---
 type: "knowledge"
 title: "Proton VPN 在中国能用吗？打不开时可以怎么办"
-description: "整理多个独立第三方来源对 Proton VPN 在中国大陆实际可用性的说法，解释背后的一般性技术原因，以及打不开时通常有哪些方向可以考虑。"
+description: "整理多个独立第三方来源对 Proton VPN 在中国大陆实际可用性的不同说法，解释背后的一般性技术背景，以及打不开时通常有哪些方向可以考虑，并说明哪些结论本站无法验证。"
 category: "入门知识"
 difficulty: "beginner"
 author: "火箭机场编辑团队"
