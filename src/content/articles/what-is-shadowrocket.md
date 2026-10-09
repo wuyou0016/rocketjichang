@@ -1,7 +1,7 @@
 ---
 type: "tutorial"
 title: "Shadowrocket 是什么？机场用户怎么使用"
-description: "介绍 Shadowrocket 这款 iOS 客户端的基本作用、适合什么用户，以及导入机场订阅、更新和排查连接问题的大致流程。"
+description: "介绍 Shadowrocket（小火箭）这款 iOS 客户端的基本作用、适合什么设备和用户，以及添加机场订阅、更新订阅和排查连接问题的大致流程，帮助 iPhone 新手快速上手。"
 category: "机场客户端"
 difficulty: "beginner"
 author: "火箭机场编辑团队"

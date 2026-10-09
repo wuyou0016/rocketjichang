@@ -1,6 +1,6 @@
-// 品牌资料库（28 个机场品牌入口 + 九云）。
+// 品牌资料库（28 个机场品牌入口；九云只有推广入口、没有可核实资料，2026-10 已下线）。
 // 来源与口径：站长提供的推广入口 + 已整理的第三方资料；没有可核实资料的品牌一律写“暂无”。
-// 价格口径（站长确认 2026-09-25）：无忧链接 MINI 包月起步约 ¥6.6/月，舒心 100GB 包月低至 ¥14/月，
+// 价格口径（站长 2026-10-08 按官网订阅页更新）：无忧链接 MINI 年付 ¥79（约 ¥6.6/月），舒心 100GB ¥19/月（8 折活动期约 ¥15.2），
 // 省心 200GB ¥33/月起；微风网络约 ¥27/月（包月价）。本站不在品牌之间比较流量大小或每 GB 单价。
 import raw from './brands.json';
 import plansRaw from './wuyou-plans.json';
@@ -56,7 +56,7 @@ export function brandHref(b: Brand): string | null {
 }
 
 export function priceLine(b: Brand): string {
-  if (b.id === 'wuyou') return 'MINI 包月起步约 ¥6.6/月；舒心 100GB 包月低至 ¥14/月；省心 200GB ¥33/月起';
+  if (b.id === 'wuyou') return 'MINI 约 ¥6.6/月起（年付 ¥79）；舒心 100GB ¥19/月（官方 8 折活动期间约 ¥15.2/月）；省心 200GB ¥33/月起';
   if (b.num) return `约 ¥${b.num.m}/月起（${b.num.basis}）`;
   return '价格资料有限';
 }

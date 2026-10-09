@@ -1,6 +1,6 @@
 ---
-title: "机场协议对比｜Shadowsocks、Trojan、VLESS、Hysteria2"
-description: "机场常见协议对比：Shadowsocks、Trojan、VLESS、Hysteria2 的特点、适用场景与选择建议，以及客户端支持情况。"
+title: "机场协议对比｜SS、Trojan、VLESS、Hysteria2 怎么选"
+description: "机场常见协议对比：Shadowsocks、Trojan、VLESS、Hysteria2 的特点、适用场景与选择建议，以及各协议的客户端支持情况；多数人用服务商默认协议即可，了解区别有助于排错。"
 h1: "机场协议对比"
 lead: "协议决定了数据怎么传输。多数用户不需要选协议，但了解区别有助于排错和选客户端。"
 kicker: "PROTOCOL · 协议"

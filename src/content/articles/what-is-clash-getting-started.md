@@ -1,7 +1,7 @@
 ---
 type: "tutorial"
-title: "Clash 是什么？新手如何开始使用"
-description: "介绍 Clash 这类客户端软件的基本作用，以及新手第一次使用时的大致流程。"
+title: "Clash 是什么？新手第一次使用的准备与流程"
+description: "介绍 Clash 这类客户端软件的基本作用、使用前需要准备什么、新手第一次使用的大致流程，规则配置属于进阶功能，以及只用 iOS 设备的用户可以考虑的 Shadowrocket。"
 category: "机场客户端"
 difficulty: "beginner"
 author: "火箭机场编辑团队"

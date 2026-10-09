@@ -1,7 +1,7 @@
 ---
 type: "knowledge"
 title: "VLESS 是什么？机场用户为什么经常看到这个协议"
-description: "介绍 VLESS 协议的基本设计思路和特点，以及机场代理场景中为什么经常能看到它。"
+description: "介绍 VLESS 协议的基本设计思路和特点，机场代理场景中为什么经常能看到它，使用 VLESS 时需要注意什么，以及与 Trojan、Shadowsocks 等相关协议的关系，附常见问题解答。"
 category: "协议"
 difficulty: "intermediate"
 author: "火箭机场编辑团队"

@@ -1,7 +1,7 @@
 ---
 type: "knowledge"
-title: "Hysteria2 是什么协议？和 VLESS、Trojan 有什么区别"
-description: "介绍 Hysteria2 协议的基本设计思路和特点，以及它和 VLESS、Trojan 等常见机场协议的主要区别。"
+title: "Hysteria2 是什么？和 VLESS、Trojan 有何不同"
+description: "介绍 Hysteria2 协议的基本设计思路和特点，它和 VLESS、Trojan 等常见机场协议的主要区别，机场行业为什么开始使用它，使用时需要注意什么，以及常见问题解答。"
 category: "协议"
 difficulty: "intermediate"
 author: "火箭机场编辑团队"

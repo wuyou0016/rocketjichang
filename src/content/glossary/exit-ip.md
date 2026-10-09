@@ -5,7 +5,12 @@ extendedExplanation: "「落地 IP」描述的是这个 IP 在网络路径中的
 aliases: ["出口 IP"]
 relatedTerms: ["residential-ip", "datacenter-ip"]
 relatedArticles: ["airport-streaming-unlock-explained", "what-is-transit-route"]
-updatedAt: 2026-08-29
+updatedAt: 2026-10-09
 ---
 
 同一个节点标注的地区和它真实的落地 IP 地区不一定完全一致，具体的地区识别逻辑和为什么会出现节点标注地区与实际解锁结果不符的情况，可以参考[机场流媒体解锁是不是真的？怎么判断](/knowledge/airport-streaming-unlock-explained/)。落地 IP 也会随线路方式（直连、中转、专线）的不同而变化，相关基础概念见[什么是中转线路](/knowledge/what-is-transit-route/)。
+
+## 常见误区与自查
+
+- **误区**：节点名写“美国”，落地就一定在美国。名称只是服务商的标注，真实的落地地区要连接后用 IP 查询或实际访问目标服务来确认。
+- **自查**：切换节点后重新查询一次出口 IP，并分别访问你关心的服务；同一节点在不同时间的结果也可能变化，不要只测一次。

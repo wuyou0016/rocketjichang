@@ -1,7 +1,7 @@
 ---
 type: "knowledge"
 title: "QuickQ VPN怎么样？中国大陆可用性目前没有独立信源证实"
-description: "整理 QuickQ 这款一体化 VPN 应用目前公开可查的定价与产品信息，并如实说明本站没有找到任何独立于官方之外的中国大陆可用性验证来源。"
+description: "整理 QuickQ 这款一体化 VPN 应用目前公开可查的定价与产品信息，指出价格数据中存在未核实的冲突，并如实说明本站没有找到独立于官方之外的中国大陆可用性验证来源，火箭机场知识库整理。"
 category: "入门知识"
 difficulty: "beginner"
 author: "火箭机场编辑团队"

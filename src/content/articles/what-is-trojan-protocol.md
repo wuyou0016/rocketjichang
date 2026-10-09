@@ -1,7 +1,7 @@
 ---
 type: "knowledge"
 title: "Trojan 是什么？机场配置中的 Trojan 协议怎么理解"
-description: "介绍 Trojan 协议的设计思路和特点，说明它和普通 HTTPS 流量之间的关系。"
+description: "介绍 Trojan 协议的设计思路和特点，说明它和普通 HTTPS 流量之间的关系，使用 Trojan 需要什么条件，和其他协议怎么选，以及常见问题和相关协议，适合想弄懂配置的新手。"
 category: "协议"
 difficulty: "intermediate"
 author: "火箭机场编辑团队"

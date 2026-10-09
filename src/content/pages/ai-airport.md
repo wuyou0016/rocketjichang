@@ -1,6 +1,6 @@
 ---
 title: "AI 用机场怎么选｜ChatGPT、Claude、Gemini 使用要点"
-description: "使用 ChatGPT、Claude、Gemini 等 AI 工具时机场怎么选：节点地区、IP 稳定性、多设备与合规注意事项，以及先包月试用的建议；不承诺任何解锁结果。"
+description: "使用 ChatGPT、Claude、Gemini 等 AI 工具时机场怎么选：节点地区、IP 稳定性、多设备与合规注意事项，以及先包月试用的建议；不承诺任何解锁结果，价格与活动以官网为准。"
 h1: "AI 场景：ChatGPT、Claude、Gemini 用机场怎么选"
 lead: "AI 工具对节点地区与 IP 稳定性更敏感。选机场时，看节点地区是否覆盖、线路是否稳定，再包月试用。"
 kicker: "SCENE · AI"

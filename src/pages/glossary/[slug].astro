@@ -40,7 +40,15 @@ function formatDate(value: Date | string): string {
 }
 
 const updatedAtLabel = formatDate(term.data.updatedAt);
-const title = `${term.data.term}是什么？｜机场代理术语表｜火箭机场`;
+// 标题用不含英文全称括号的短名，避免过长被截断；过短时补充“含义与用法”。
+const shortName = term.data.term.replace(/（[^）]*）/g, '').trim();
+const baseTitle = `${shortName}是什么？｜机场代理术语表｜火箭机场`;
+const title = baseTitle.length < 24 ? `${shortName}是什么？含义、作用与常见用法｜机场代理术语表｜火箭机场` : baseTitle;
+// 描述 = 定义 + 扩展说明的第一句，保证有足够信息量（85 字以上、不超过 125 字）。
+const firstSentence = (term.data.extendedExplanation ?? '').split('。')[0] ?? '';
+let metaDescription = term.data.definition;
+if (metaDescription.length < 85 && firstSentence) metaDescription = `${metaDescription.replace(/。$/, '')}。${firstSentence}。`;
+if (metaDescription.length > 125) metaDescription = `${metaDescription.slice(0, 122).replace(/[，、；：]$/, '')}…`;
 const canonicalUrl = resolveCanonicalUrl(`/glossary/${term.id}/`);
 
 const definedTermJsonLd = {
@@ -53,7 +61,7 @@ const definedTermJsonLd = {
 };
 ---
 
-<BaseLayout title={title} description={term.data.definition}>
+<BaseLayout title={title} description={metaDescription}>
   <PageShell h1={term.data.term} crumbs={[{ name: '术语表', href: '/glossary/' }, { name: term.data.term, href: `/glossary/${term.id}/` }]} meta={[`更新 ${updatedAtLabel}`, ...(term.data.aliases && term.data.aliases.length > 0 ? [`也叫：${term.data.aliases.join('、')}`] : [])]}>
 
   <div class="prose">

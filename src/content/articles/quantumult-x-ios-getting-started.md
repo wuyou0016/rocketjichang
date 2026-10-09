@@ -1,7 +1,7 @@
 ---
 type: "tutorial"
 title: "Quantumult X 是什么？iOS 新手入门与订阅导入"
-description: "介绍 iOS 客户端 Quantumult X 的基本作用、适合什么用户，以及导入机场订阅、选择节点的大致流程。"
+description: "介绍 iOS 客户端 Quantumult X 的基本作用、适合什么用户，以及导入机场订阅、选择节点、连接的大致流程，并说明配置文件和普通订阅的区别，帮助 iPhone 用户判断是否值得使用。"
 category: "机场客户端"
 difficulty: "intermediate"
 author: "火箭机场编辑团队"
